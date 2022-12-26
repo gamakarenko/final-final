@@ -1,0 +1,24 @@
+.passenger-block {
+    margin-bottom: 10px;
+    &__title {
+        font-family: 'SF Pro Display';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 20px;
+    }
+    &__description {
+        font-family: 'SF Pro Display';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+    }
+}
+.passss {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}

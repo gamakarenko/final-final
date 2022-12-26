@@ -1,0 +1,132 @@
+$sfpro-font-path: '../../fonts/SF pro/';
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Medium.eot');
+    src: local('SF Pro Display Medium'), local('SFProDisplay-Medium'),
+        url('#{$sfpro-font-path}/SFProDisplay-Medium.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Medium.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Medium.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Heavy.eot');
+    src: local('#{$sfpro-font-path}/SF Pro Display Heavy'), local('SFProDisplay-Heavy'),
+        url('#{$sfpro-font-path}/SFProDisplay-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Heavy.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Heavy.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-UltralightItalic.eot');
+    src: local('SF Pro Display UltralightItalic'), local('SFProDisplay-UltralightItalic'),
+        url('#{$sfpro-font-path}/SFProDisplay-UltralightItalic.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-UltralightItalic.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-UltralightItalic.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-UltralightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Thin.eot');
+    src: local('SF Pro Display Thin'), local('SFProDisplay-Thin'),
+        url('#{$sfpro-font-path}/SFProDisplay-Thin.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Thin.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Thin.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Light.eot');
+    src: local('SF Pro Display Light'), local('SFProDisplay-Light'),
+        url('#{$sfpro-font-path}/SFProDisplay-Light.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Light.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Light.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Light.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Bold.eot');
+    src: local('SF Pro Display Bold'), local('SFProDisplay-Bold'),
+        url('#{$sfpro-font-path}/SFProDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Bold.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Bold.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Black.eot');
+    src: local('SF Pro Display Black'), local('SFProDisplay-Black'),
+        url('#{$sfpro-font-path}/SFProDisplay-Black.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Black.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Black.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Ultralight.eot');
+    src: local('SF Pro Display Ultralight'), local('SFProDisplay-Ultralight'),
+        url('#{$sfpro-font-path}/SFProDisplay-Ultralight.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Ultralight.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Ultralight.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Ultralight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Semibold.eot');
+    src: local('SF Pro Display Semibold'), local('SFProDisplay-Semibold'),
+        url('#{$sfpro-font-path}/SFProDisplay-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Semibold.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Semibold.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('#{$sfpro-font-path}/SFProDisplay-Regular.eot');
+    src: local('SF Pro Display Regular'), local('SFProDisplay-Regular'),
+        url('#{$sfpro-font-path}/SFProDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+        url('#{$sfpro-font-path}/SFProDisplay-Regular.woff2') format('woff2'),
+        url('#{$sfpro-font-path}/SFProDisplay-Regular.woff') format('woff'),
+        url('#{$sfpro-font-path}/SFProDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
