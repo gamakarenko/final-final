@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import * as React from 'react';
 import MainButton from "../components/MainButton.tsx";
 import { AboutIcon, FAQIcon, OrderIcon, SearchIcon, ShareIcon, TransfersIcon } from "../components/svg";
 
@@ -13,6 +14,10 @@ export const MainPage: React.FC<MainPageProps> = () => {
     let user = tg?.initDataUnsafe?.user
     console.log("Сам объект",tg.initData)
     console.log("user",tg.initDataUnsafe )
+
+    React.useEffect(() => {
+        tg.expand()
+    }, [])
 
     return ( 
         <div className="main-page">

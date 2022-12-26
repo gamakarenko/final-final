@@ -11,7 +11,7 @@ $api.interceptors.request.use((config: AxiosRequestConfig) => {
   //@ts-ignore
   let tg = window?.Telegram?.WebApp;
   let user = tg?.initDataUnsafe?.user
-  config.headers!.id = 210230408;
+  config.headers!.id = user?.id;
   return config;
 });
 
