@@ -1,12 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 interface OrderedPageProps {
     
 }
  
 export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
+    const navigate = useNavigate()
     //@ts-ignore
     let tg = window?.Telegram?.WebApp;
     const back = tg.BackButton
     back.show()
+    back.onClick(() => navigate('/transfers'))
     return ( 
         <div className="transfers-page">
             <div className="transfers-page__title-s">Заказанные поездки</div>
