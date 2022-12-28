@@ -20,7 +20,6 @@ export const MainPage: React.FC<MainPageProps> = () => {
     }, [])
 
     //@ts-ignore
-    let tg = window?.Telegram?.WebApp;
     const back = tg.BackButton
     back.hide()
 

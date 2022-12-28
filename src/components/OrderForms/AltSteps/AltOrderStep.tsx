@@ -81,6 +81,7 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
                 <Input sx={input} type="text" {...register("order.end")} />
             </div>
             <RadioGroup>
+                <div className="label">Тип автомобиля</div>
                 <div className="type-block">
                     <Radio sx={{padding: 0, margin: 0}} value={'Vito'} icon={<CheckboxActive icon={vitoIcon} title='Vito' info="До 8 человек"/>} checkedIcon={<CheckboxChecked icon={vitoIcon} title='Vito' info="До 8 человек"/>} {...register("order.carType")} />
                     <Radio sx={{padding: 0, margin: 0}} value={'Sedan'} icon={<CheckboxActive icon={sedanIcon} title='Sedan' info="До 4 человек"/>} checkedIcon={<CheckboxChecked icon={sedanIcon} title='Sedan' info="До 4 человек"/>} {...register("order.carType")}/>
