@@ -29,6 +29,11 @@ const ButtonStyle : SxProps = {
  
 export const MyTransfersPage: React.FunctionComponent<MyTransfersPageProps> = () => {
     const navigate = useNavigate()
+    //@ts-ignore
+    let tg = window?.Telegram?.WebApp;
+    const back = tg.BackButton
+    back.show()
+    back.onClick(() => navigate('/'))
     return ( 
         <div className="transfers-page">
             <div className="transfers-page__title">Мои поездки</div>
