@@ -7,10 +7,12 @@ interface IUserState {
   users: any;
   isLoading: boolean;
   errors: string;
+  isAirport: boolean;
 }
 
 const initialState: IUserState = {
   users: [],
+  isAirport: false,
   isLoading: true,
   errors: '',
 };
@@ -42,7 +44,11 @@ const usersSlice = createSlice({
     usersDelete(state, action: PayloadAction<number>) {
       state.users = state.users.filter((user: any) => user.id !== action.payload);
     },
+    fromAirport(state, action: PayloadAction<boolean>) {
+      state.isAirport = action.payload
+    }
   },
 });
+export const {fromAirport} = usersSlice.actions
 
 export default usersSlice.reducer;

@@ -1,0 +1,21 @@
+.transfers-page {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 16px;
+    &__title {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 30px;
+        &-s {
+            font-style: normal;
+            font-weight: 510;
+            font-size: 30px;
+            line-height: 36px;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+    }
+}

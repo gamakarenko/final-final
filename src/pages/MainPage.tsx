@@ -30,7 +30,7 @@ export const MainPage: React.FC<MainPageProps> = () => {
             <MainButton title="Заказать трансфер" icon={<OrderIcon/>} onClick={() => navigate("/order")}/>
             <MainButton disabled={true} title="Пошерить трансфер" icon={<ShareIcon/>} onClick={() => navigate("/share")}/>
             <MainButton disabled title="Найти попутчиков к своей поездке" icon={<SearchIcon/>}/>
-            <MainButton title="Мои поездки" icon={<TransfersIcon/>}/>
+            <MainButton title="Мои поездки" icon={<TransfersIcon/>} onClick={() => navigate("/transfers")}/>
             <MainButton disabled title="О проекте" icon={<AboutIcon/>}/>
             <MainButton title="FAQ" icon={<FAQIcon/>} onClick={() => navigate("/faq")}/>
         </div>

@@ -1,5 +1,7 @@
 import { Button, Checkbox, FormGroup, Input, Radio, RadioGroup, SxProps } from "@mui/material";
 import { useFormContext } from "react-hook-form";
+import { fromAirport } from "../../../store/slices/userSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { CheckboxActive, CheckboxChecked } from "../../CheckboxStatus";
 import { sedanIcon, vitoIcon } from "../../images";
 
@@ -33,6 +35,8 @@ const input : SxProps = {
 
 export const AltOrderStep: React.FC<OrderStepProps> = () => {
     const { register } = useFormContext()
+    const dispatch = useAppDispatch()
+    const { isAirport } = useAppSelector(state => state.user)
     return ( 
         <>
             <p className="order__description">
@@ -58,6 +62,10 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
                     <Input type="time" sx={{...input, width: '164px'}} {...register("order.transferTime")} />
                 </div>
             </div>
+            <div className="pick">
+                <Checkbox onClick={(e: any) => dispatch(fromAirport(e.target.checked))} value={isAirport} {...register("order.pickYouUpFromAirPort")} />
+                <div>Вас забрать из аэропорта?</div>
+            </div>
             <div>
                 <div className="step">
                     <div>Откуда тебя забрать?</div>
@@ -71,10 +79,6 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
                     <Button sx={button}>Выбрать на карте</Button>
                 </div>
                 <Input sx={input} type="text" {...register("order.end")} />
-            </div>
-            <div className="pick">
-                <Checkbox {...register("order.pickYouUpFromAirPort")} />
-                <div>Вас забрать из аэропорта?</div>
             </div>
             <RadioGroup>
                 <div className="type-block">

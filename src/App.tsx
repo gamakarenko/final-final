@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import FAQPage from './pages/FAQPage';
 import {MainPage} from './pages/MainPage';
 import { MyTransfersPage } from './pages/MyTransfersPage';
+import { OrderedPage } from './pages/ordered/OrderedPage';
 import OrderPage from './pages/OrderPage';
 import SharePage from './pages/SharePage';
 
@@ -15,6 +16,7 @@ function App() {
         <Route path='/share' element={<SharePage/>}/>
         <Route path='/transfers' element={<MyTransfersPage/>}/>
         <Route path='/faq' element={<FAQPage/>}/>
+        <Route path='/transfers/ordered' element={<OrderedPage/>}/>
       </Routes>
     </BrowserRouter>
   );
