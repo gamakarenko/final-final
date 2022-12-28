@@ -66,13 +66,13 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
                 <Checkbox onClick={(e: any) => dispatch(fromAirport(e.target.checked))} value={isAirport} {...register("order.pickYouUpFromAirPort")} />
                 <div>Вас забрать из аэропорта?</div>
             </div>
-            <div>
+           {!isAirport && <div>
                 <div className="step">
                     <div>Откуда тебя забрать?</div>
                     <Button sx={button}>Выбрать на карте</Button>
                 </div>
                 <Input sx={input} type="text" {...register("order.start")} />
-            </div>
+            </div>}
             <div>
                 <div className="step">
                     <div>Куда тебя привести?</div>
