@@ -19,6 +19,11 @@ export const MainPage: React.FC<MainPageProps> = () => {
         tg.expand()
     }, [])
 
+    //@ts-ignore
+    let tg = window?.Telegram?.WebApp;
+    const back = tg.BackButton
+    back.hide()
+
     return ( 
         <div className="main-page">
             {/* <span>Тестирование получения данных</span>
