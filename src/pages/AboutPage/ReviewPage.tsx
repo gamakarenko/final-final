@@ -48,10 +48,10 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
     const back = tg.BackButton
     back.show()
     back.onClick(() => navigate('/about'))
-    const popUp = tg.PopupParams
-    const popBtn = tg.PopupButton
-    popUp({title: 'Отзыв отправлен', message: 'Благодарим Вас за фидбек'}); 
-    popBtn({type: 'ok'})
+    // const popUp = tg.PopupParams
+    // const popBtn = tg.PopupButton
+    // popUp({title: 'Отзыв отправлен', message: 'Благодарим Вас за фидбек'}); 
+    // popBtn({type: 'ok'})
 
     return ( 
         <div className="transfers-page">
