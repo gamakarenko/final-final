@@ -73,7 +73,7 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
             <form onSubmit={handleSubmit((e) => console.log(e))}>
             <div className="info-label">Твой отзыв</div>
             <Input type="text" sx={input} multiline={true} minRows={3} {...register("review")} />
-            <Button type="submit" sx={ButtonStyle} onClick={() => tg.showAlert('Отзыв отправлен')}>Оставить отзыв</Button>
+            <Button type="submit" sx={ButtonStyle} onClick={() => {tg.showAlert('Отзыв отправлен'); navigate('/')}}>Оставить отзыв</Button>
             </form>
         </div>
      );
