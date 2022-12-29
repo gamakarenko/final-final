@@ -48,6 +48,9 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
     const back = tg.BackButton
     back.show()
     back.onClick(() => navigate('/about'))
+    const popUp = tg.PopupParams
+    const popBtn = tg.PopupButton
+
     return ( 
         <div className="transfers-page">
             <div style={{marginBottom: '0px'}} className="transfers-page__title">О проекте</div>
@@ -68,7 +71,7 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
             <form onSubmit={handleSubmit((e) => console.log(e))}>
             <div className="info-label">Твой отзыв</div>
             <Input type="text" sx={input} multiline={true} minRows={3} {...register("review")} />
-            <Button type="submit" sx={ButtonStyle} >Оставить отзыв</Button>
+            <Button type="submit" sx={ButtonStyle} onClick={() => {popUp({title: 'Отзыв отправлен', message: 'Благодарим Вас за фидбек'}); popBtn({type: 'ok'})}}>Оставить отзыв</Button>
             </form>
         </div>
      );
