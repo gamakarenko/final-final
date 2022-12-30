@@ -2,7 +2,6 @@ import * as React from 'react';
 import { FormProvider, useForm } from "react-hook-form";
 import { Stepper, Step, Button, SxProps } from '@mui/material';
 import { CompleteStep, ConfirmationStep} from '../components/OrderForms/Steps';
-import { useNavigate } from 'react-router-dom';
 import { AltOrderStep, AltPassengerInfoStep } from '../components/OrderForms/AltSteps';
 import { useAppDispatch } from '../store/store';
 import { createTransfer } from '../store/slices/userSlice';
@@ -57,12 +56,12 @@ const OrderPage: React.FC<OrderPageProps> = () => {
             description: <CompleteStep/>
         }
     ]
+    
+
 
   const dispatch = useAppDispatch()
-
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = steps.length;
-  const navigate = useNavigate()
+  const maxSteps = steps.length ;
 
   const methods = useForm<any>();
 
@@ -76,10 +75,13 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   };
 
   const sentPost = () => {
-    if(activeStep == 2) {
+    if(activeStep === 2) {
       dispatch(createTransfer(data))
     }
   }
+
+  const {order} = methods.getValues()
+  console.log(order)
 
     return ( 
         <form className="order-page" onSubmit={methods.handleSubmit(d => setData(d))}>
@@ -99,7 +101,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
                 <Button sx={button} type='submit' onClick={handleNext}>Далее</Button>
               </div>
                 : 
-                activeStep == 3 ? <></>: <Button sx={button} type='submit' onClick={handleNext}>Далее</Button>}
+                activeStep === 3 ? <></>: <Button sx={button} type='submit' onClick={handleNext}>Далее</Button>}
           </FormProvider>
         </form>
      );
