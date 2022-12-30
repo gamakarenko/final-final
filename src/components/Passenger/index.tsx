@@ -13,15 +13,10 @@ export const Passenger: React.FunctionComponent<PassengersProps> = () => {
     console.log(passengers)
     return ( 
         <div>
-            <div>
-                <div>
-                    <div>Дата поездки</div>
-                    <div>{order?.transferDate}</div>
-                </div>
-                <div>
-                    <div>Время поездки</div>
-                    <div>{order?.transferTime}</div>
-                </div>
+            <br/>
+            <div style={{display: "flex", justifyContent: 'space-between', }}>
+                <PassengerBlock title="Дата поездки" description={order?.transferDate}/>
+                <PassengerBlock title="Время поездки" description={order?.transferTime}/>
             </div>
             <PassengerBlock title="Откуда тебя забрать?" description={order?.start}/>
             <PassengerBlock title="Куда привести?" description={order?.end}/>

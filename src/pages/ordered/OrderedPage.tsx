@@ -20,7 +20,7 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
             <br/>
             <hr/>
             <br/>
-            <div className="order-block-wrap">
+            <div className="order-block-wrap" onClick={() => navigate('/transfers/ordered/11')}>
                 <div className="order-block-title">Забронированная поездка #11</div>
 
                 <div className="order-block">
