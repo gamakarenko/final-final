@@ -66,13 +66,13 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
                 <Checkbox onClick={(e: any) => dispatch(fromAirport(e.target.checked))} value={isAirport} {...register("order.pickYouUpFromAirPort")} />
                 <div>Вас забрать из аэропорта?</div>
             </div>
-           {!isAirport && <div>
+           <div>
                 <div className="step">
                     <div>Откуда тебя забрать?</div>
                     <Button sx={button}>Выбрать на карте</Button>
                 </div>
                 <Input sx={input} type="text" {...register("order.start")} />
-            </div>}
+            </div>
             <div>
                 <div className="step">
                     <div>Куда тебя привести?</div>
@@ -88,16 +88,16 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
                 </div>
             </RadioGroup>
             <div className="label">Количество взрослых</div>
-            <Input sx={input} {...register("order.adults")}/>
+            <Input type='number' sx={input} {...register("order.adults")}/>
             <div style={{display: "flex", gap: '15px', marginBottom: '15px'}}>
                 <div>
                     <div className="label">Количество детей<br/>(0-5 лет)</div>
-                    <Input sx={input} {...register("order.childrenUnder5")}/>
+                    <Input type='number' sx={input} {...register("order.childrenUnder5")}/>
                 </div>
                 <div>
                     <div className="label">Количество детей<br/>
                     (6-12 лет)</div>
-                    <Input sx={input} {...register("order.childrenAbove5")} />
+                    <Input type='number' sx={input} {...register("order.childrenAbove5")} />
                 </div>
             </div>
         </>

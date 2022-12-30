@@ -1,10 +1,18 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchTransfers } from "../../store/slices/transferSlice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 
 interface OrderedPageProps {
     
 }
  
 export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
+    const  {transfers} = useAppSelector(state => state.transfers)
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(fetchTransfers())
+    }, [])
     const navigate = useNavigate()
     //@ts-ignore
     let tg = window?.Telegram?.WebApp;

@@ -45,7 +45,7 @@ export const AltPassengerInfoStep: React.FunctionComponent<PassengerInfoStepProp
     const [ passengersValue, setPassengersValue ] = useState(1)
     const {isAirport} = useAppSelector(state => state.user)
     return ( <>
-        {!isAirport ? 
+        {isAirport ? 
           <div>
             <p className="order__description">
             Отлично! Мы почти у цели:) Для оформления <br/>

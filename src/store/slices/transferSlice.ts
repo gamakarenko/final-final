@@ -39,7 +39,7 @@ const initialState: IUserState = {
 
 export const fetchTransfers = () => async (dispatch: TAppDispatch) => {
   try {
-    const {data} = await $api.get(`/transfers/create-transfer`);
+    const {data} = await $api.get(`/users/allTransfers`);
     dispatch(transfersSlice.actions.transfersFetchingSuccess(data))
   } catch (e) {
     console.log(e)

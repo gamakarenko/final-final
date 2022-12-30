@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
+import transferSlice from './slices/transferSlice';
 import userSlice from './slices/userSlice';
 
 const store = configureStore({
   reducer: combineReducers({
     user: userSlice,
+    transfers: transferSlice,
   }),
 });
 
