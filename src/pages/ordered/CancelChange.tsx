@@ -35,7 +35,7 @@ const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
     
     const {transfers} = useAppSelector(state => state.transfers)
     return ( 
-        <div className="transfer-page" style={{height: '100vh', flexDirection: 'column'}}>
+        <div className="transfer-page" style={{height: '100vh', flexDirection: 'column', display: 'flex'}}>
             <div className="transfers-page__title-s">Заказанные поездки</div>
             <p>Данные поездки</p>
             <br/>
