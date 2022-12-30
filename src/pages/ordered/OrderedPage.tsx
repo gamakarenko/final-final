@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchTransfers } from "../../store/slices/transferSlice";
@@ -28,30 +29,30 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
             <br/>
             <hr/>
             <br/>
-            <div className="order-block-wrap" onClick={() => navigate('/transfers/ordered/11')}>
-                <div className="order-block-title">Забронированная поездка #11</div>
+            {transfers.map((transfer: any) => <div className="order-block-wrap" onClick={() => navigate('/transfers/ordered/11')}>
+                <div className="order-block-title">{`Забронированная поездка #${transfer?.id}`}</div>
 
                 <div className="order-block">
                     <div>Откуда:</div>
-                    <div>Анталия (город)</div>
+                    <div>{transfer?.startPlace}</div>
                 </div>
 
                 <div className="order-block">
                     <div>Куда:</div>
-                    <div>Даламан (город)</div>
+                    <div>{transfer?.endPlace}</div>
                 </div>
                 
                 <div className="order-block">
                     <div>Дата:</div>
-                    <div>3 мая</div>
+                    <div>{transfer?.tripDate?.slice(0, 10)}</div>
                 </div>
 
                 <div className="order-block">
                     <div>Время:</div>
-                    <div>18:00</div>
+                    <div>{transfer?.tripDate?.slice(10)}</div>
                 </div>
 
-            </div>
+            </div>)}
         </div>
      );
 }

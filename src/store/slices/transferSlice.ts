@@ -10,7 +10,7 @@ interface IUserState {
 }
 
 const initialState: IUserState = {
-  transfers: {
+  transfers: [{
     "transferDate": "2022-02-21",
     "transferTime": "16:13",
     "pickYouUpFromAirPort": "true",
@@ -30,7 +30,7 @@ const initialState: IUserState = {
             "transferComment": "1111111"
         }
     ]
-},
+}],
   isAirport: false,
   isLoading: true,
   errors: '',
