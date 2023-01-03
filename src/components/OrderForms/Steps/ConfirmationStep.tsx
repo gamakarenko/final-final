@@ -1,19 +1,14 @@
-import { Passenger } from "../../Passenger";
+import { Passenger } from '../../Passenger';
 
+interface ConfirmationStepProps {}
 
-interface ConfirmationStepProps {
-    
-}
- 
 export const ConfirmationStep: React.FC<ConfirmationStepProps> = () => {
-    return ( 
-        <>
-            <p className="order__description">
-                Подтверждение введённой информации
-            </p>
-            <br />
-            <hr/>
-            <Passenger/>
-        </>
-     );
-}
+  return (
+    <>
+      <p className="order__description">Подтверждение введённой информации</p>
+      <br />
+      <hr />
+      <Passenger />
+    </>
+  );
+};

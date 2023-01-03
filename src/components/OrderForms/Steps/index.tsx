@@ -1,4 +1,4 @@
-import { CompleteStep } from "./CompleteStep";
-import { ConfirmationStep } from "./ConfirmationStep";
+import { CompleteStep } from './CompleteStep';
+import { ConfirmationStep } from './ConfirmationStep';
 
-export { CompleteStep, ConfirmationStep }
+export { CompleteStep, ConfirmationStep };

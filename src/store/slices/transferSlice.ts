@@ -10,39 +10,40 @@ interface IUserState {
 }
 
 const initialState: IUserState = {
-  transfers: [{
-    "transferDate": "2022-02-21",
-    "transferTime": "16:13",
-    "pickYouUpFromAirPort": "true",
-    "start": "",
-    "end": "",
-    "carType": "Vito",
-    "adults": "3",
-    "childrenUnder5": "2",
-    "childrenAbove5": "2",
-    "passengers": [
+  transfers: [
+    {
+      transferDate: '2022-02-21',
+      transferTime: '16:13',
+      pickYouUpFromAirPort: 'true',
+      start: '',
+      end: '',
+      carType: 'Vito',
+      adults: '3',
+      childrenUnder5: '2',
+      childrenAbove5: '2',
+      passengers: [
         {
-            "fullName": "1111111111111111",
-            "passportId": "1111111111",
-            "phoneNumber": "111111111",
-            "email": "111111111",
-            "telegramId": "111111111",
-            "transferComment": "1111111"
-        }
-    ]
-}],
+          fullName: '1111111111111111',
+          passportId: '1111111111',
+          phoneNumber: '111111111',
+          email: '111111111',
+          telegramId: '111111111',
+          transferComment: '1111111',
+        },
+      ],
+    },
+  ],
   isAirport: false,
   isLoading: true,
   errors: '',
 };
 
-
 export const fetchTransfers = () => async (dispatch: TAppDispatch) => {
   try {
-    const {data} = await $api.get(`/users/allTransfers`);
-    dispatch(transfersSlice.actions.transfersFetchingSuccess(data))
+    const { data } = await $api.get(`/users/allTransfers`);
+    dispatch(transfersSlice.actions.transfersFetchingSuccess(data));
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 };
 
@@ -62,10 +63,10 @@ const transfersSlice = createSlice({
       state.errors = action.payload;
     },
     fromAirport(state, action: PayloadAction<boolean>) {
-      state.isAirport = action.payload
-    }
+      state.isAirport = action.payload;
+    },
   },
 });
-export const {fromAirport} = transfersSlice.actions
+export const { fromAirport } = transfersSlice.actions;
 
 export default transfersSlice.reducer;

@@ -1,125 +1,149 @@
-import { Button, Input, SxProps } from "@mui/material";
-import { useState } from "react";
-import { useForm, useFormContext } from "react-hook-form";
-import { useAppSelector } from "../../../store/store";
+import { Button, Input, SxProps } from '@mui/material';
+import { useState } from 'react';
+import { useForm, useFormContext } from 'react-hook-form';
+import { useAppSelector } from '../../../store/store';
 
+interface PassengerInfoStepProps {}
 
-interface PassengerInfoStepProps {
-    
-}
+const button: SxProps = {
+  width: '343px',
+  height: '40px',
+  background: '#F2F2F2',
+  border: '1px solid #007AFF',
+  borderRadius: '8px',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '15px',
+  lineHeight: '18px',
+  textTransform: 'none',
+  marginTop: '20px',
+};
 
-const button : SxProps = {
-    width: '343px',
-    height: '40px',
-    background: "#F2F2F2",
-    border: "1px solid #007AFF",
-    borderRadius: "8px",
-    fontStyle: "normal",
-    fontWeight: '400',
-    fontSize: '15px',
-    lineHeight: '18px',
-    textTransform: 'none',
-    marginTop: '20px',
-}
-
-const input : SxProps = {
-        width: "100%",
-        minHeight: "45px",
-        background: '#E9E9E9',
-        border: '1px solid #ADADAD',
-        borderRadius: '5px',
-        outline: 'none',
-        paddingLeft: '1rem',
-        paddingRight: '1rem',
-        "&:before": {
-          borderBottom: 'none'
-        }
-}
+const input: SxProps = {
+  width: '100%',
+  minHeight: '45px',
+  background: '#E9E9E9',
+  border: '1px solid #ADADAD',
+  borderRadius: '5px',
+  outline: 'none',
+  paddingLeft: '1rem',
+  paddingRight: '1rem',
+  '&:before': {
+    borderBottom: 'none',
+  },
+};
 
 function createArrayWithNumbers(length: any) {
-    return Array.from({ length }, (_, i) => i);
-  }
- 
+  return Array.from({ length }, (_, i) => i);
+}
+
 export const AltPassengerInfoStep: React.FunctionComponent<PassengerInfoStepProps> = () => {
-    const { register } = useFormContext()
-    const [ passengersValue, setPassengersValue ] = useState(1)
-    const {isAirport} = useAppSelector(state => state.user)
-    return ( <>
-        {isAirport ? 
-          <div>
-            <p className="order__description">
-            Отлично! Мы почти у цели:) Для оформления <br/>
-            трансфера нам потребуются некоторые <br/>
-            данные о тебе. Пожалуйста, заполни форму <br/>
-            на каждого пассажира.
-            </p>
-            {createArrayWithNumbers(passengersValue).map((number) => {
-            return (
-              <div key={number}>
-              <br />
-              <hr/>
-              <div className="label">{`Пассажир ${number + 1}`}</div>
-            <div className="fullname">ФИО</div>
-            <Input sx={input} type="text" {...register(`order.passengers[${number}].fullName`)} />
-            <div className="label">Номер загранпаспорта</div>
-            <Input sx={input} type="text" {...register(`order.passengers[${number}].passportId`)} />
-            <div style={{display: "flex", gap: '15px'}}>
-                <div>
-                <div className="label">Дата вылета</div>
-                <Input type="date" sx={{...input, width: '164px'}} {...register(`order.passengers[${number}].departureDate`)}/>
-                </div>
-                <div>
-                <div className="label">Время вылета</div>
-                <Input type="time" sx={{...input, width: '164px'}}  {...register(`order.passengers[${number}].departureTime`)}/>
-                </div>
-            </div>
-            <div className="label">Номер телефона</div>
-            <Input sx={input} {...register(`order.passengers[${number}].phoneNumber`)} />
-            <div className="label">Логин в телеграмме</div>
-            <Input sx={input} {...register(`order.passengers[${number}].telegramId`)} />
-            <div className="label">Комментарий к поездке</div>
-            <Input sx={input} multiline={true} minRows={3} {...register(`order.passengers[${number}].transferComment`)} />
-            </div>
-            )})
-            }
-            <Button sx={button} onClick={() => setPassengersValue((prev) => prev + 1)} >Добавить пассажира</Button>       
-            <p className="help">При возникновении вопросов на этапе бронирования, пожалуйста, обратитесь к ассистенту @assistantkas</p>
-        </div>
-        :
+  const { register } = useFormContext();
+  const [passengersValue, setPassengersValue] = useState(1);
+  const { isAirport } = useAppSelector((state) => state.user);
+  return (
+    <>
+      {isAirport ? (
         <div>
           <p className="order__description">
-            Отлично! Мы почти у цели:) Для оформления <br/>
-            трансфера нам потребуются некоторые <br/>
-            данные о тебе. Пожалуйста, заполни форму <br/>
+            Отлично! Мы почти у цели:) Для оформления <br />
+            трансфера нам потребуются некоторые <br />
+            данные о тебе. Пожалуйста, заполни форму <br />
             на каждого пассажира.
-            </p>
-            <br />
-            <hr/>
-            {createArrayWithNumbers(passengersValue).map((number) => {
+          </p>
+          {createArrayWithNumbers(passengersValue).map((number) => {
             return (
-                <div key={number}>
-            <div className="fullname">ФИО</div>
-            <Input sx={input} type="text" {...register(`order.passengers[${number}].fullName`)} />
-            <div className="label">Номер загранпаспорта</div>
-            <Input sx={input} type="text" {...register(`order.passengers[${number}].passportId`)} />
-            <div className="label">Номер телефона</div>
-            <Input sx={input} {...register(`order.passengers[${number}].phoneNumber`)} />
-            <div className="label">Электронная почта</div>
-            <Input sx={input} {...register(`order.passengers[${number}].email`)} />
-            <div className="label">Логин в телеграмме</div>
-            <Input sx={input} {...register(`order.passengers[${number}].telegramId`)} />
-            <div className="label">Комментарий к поездке</div>
-            <Input sx={input} multiline={true} minRows={3} {...register(`order.passengers[${number}].transferComment`)} />
-            </div>
-            )})
-            }
-            <Button sx={button} onClick={() => setPassengersValue((prev) => prev + 1)} >Добавить пассажира</Button>  
-            <p className="help">При возникновении вопросов на этапе бронирования, пожалуйста, обратитесь к ассистенту @assistantkas</p>
+              <div key={number}>
+                <br />
+                <hr />
+                <div className="label">{`Пассажир ${number + 1}`}</div>
+                <div className="fullname">ФИО</div>
+                <Input sx={input} type="text" {...register(`order.passengers[${number}].fullName`)} />
+                <div className="label">Номер загранпаспорта</div>
+                <Input sx={input} type="text" {...register(`order.passengers[${number}].passportId`)} />
+                <div style={{ display: 'flex', gap: '15px' }}>
+                  <div>
+                    <div className="label">Дата вылета</div>
+                    <Input
+                      type="date"
+                      sx={{ ...input, width: '164px' }}
+                      {...register(`order.passengers[${number}].departureDate`)}
+                    />
+                  </div>
+                  <div>
+                    <div className="label">Время вылета</div>
+                    <Input
+                      type="time"
+                      sx={{ ...input, width: '164px' }}
+                      {...register(`order.passengers[${number}].departureTime`)}
+                    />
+                  </div>
+                </div>
+                <div className="label">Номер телефона</div>
+                <Input sx={input} {...register(`order.passengers[${number}].phoneNumber`)} />
+                <div className="label">Логин в телеграмме</div>
+                <Input sx={input} {...register(`order.passengers[${number}].telegramId`)} />
+                <div className="label">Комментарий к поездке</div>
+                <Input
+                  sx={input}
+                  multiline={true}
+                  minRows={3}
+                  {...register(`order.passengers[${number}].transferComment`)}
+                />
+              </div>
+            );
+          })}
+          <Button sx={button} onClick={() => setPassengersValue((prev) => prev + 1)}>
+            Добавить пассажира
+          </Button>
+          <p className="help">
+            При возникновении вопросов на этапе бронирования, пожалуйста, обратитесь к ассистенту @assistantkas
+          </p>
         </div>
-        }
-        </>
-     );
-}
+      ) : (
+        <div>
+          <p className="order__description">
+            Отлично! Мы почти у цели:) Для оформления <br />
+            трансфера нам потребуются некоторые <br />
+            данные о тебе. Пожалуйста, заполни форму <br />
+            на каждого пассажира.
+          </p>
+          <br />
+          <hr />
+          {createArrayWithNumbers(passengersValue).map((number) => {
+            return (
+              <div key={number}>
+                <div className="fullname">ФИО</div>
+                <Input sx={input} type="text" {...register(`order.passengers[${number}].fullName`)} />
+                <div className="label">Номер загранпаспорта</div>
+                <Input sx={input} type="text" {...register(`order.passengers[${number}].passportId`)} />
+                <div className="label">Номер телефона</div>
+                <Input sx={input} {...register(`order.passengers[${number}].phoneNumber`)} />
+                <div className="label">Электронная почта</div>
+                <Input sx={input} {...register(`order.passengers[${number}].email`)} />
+                <div className="label">Логин в телеграмме</div>
+                <Input sx={input} {...register(`order.passengers[${number}].telegramId`)} />
+                <div className="label">Комментарий к поездке</div>
+                <Input
+                  sx={input}
+                  multiline={true}
+                  minRows={3}
+                  {...register(`order.passengers[${number}].transferComment`)}
+                />
+              </div>
+            );
+          })}
+          <Button sx={button} onClick={() => setPassengersValue((prev) => prev + 1)}>
+            Добавить пассажира
+          </Button>
+          <p className="help">
+            При возникновении вопросов на этапе бронирования, пожалуйста, обратитесь к ассистенту @assistantkas
+          </p>
+        </div>
+      )}
+    </>
+  );
+};
 
 export function AltPassengerInfoStp() {
   const {
@@ -176,10 +200,7 @@ export function AltPassengerInfoStp() {
           Add Person
         </button>
         <br />
-        <div style={{ color: 'red' }}>
-          {Object.keys(errors).length > 0 &&
-            'There are errors, check your console.'}
-        </div>
+        <div style={{ color: 'red' }}>{Object.keys(errors).length > 0 && 'There are errors, check your console.'}</div>
         <button type="submit">Submit</button>
       </form>
     </div>

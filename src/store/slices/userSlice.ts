@@ -17,12 +17,11 @@ const initialState: IUserState = {
   errors: '',
 };
 
-
-export const createTransfer = (obj : any) => async (dispatch: TAppDispatch) => {
+export const createTransfer = (obj: any) => async (dispatch: TAppDispatch) => {
   try {
     await $api.post(`/transfers/create-transfer`, obj);
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 };
 
@@ -45,10 +44,10 @@ const usersSlice = createSlice({
       state.users = state.users.filter((user: any) => user.id !== action.payload);
     },
     fromAirport(state, action: PayloadAction<boolean>) {
-      state.isAirport = action.payload
-    }
+      state.isAirport = action.payload;
+    },
   },
 });
-export const {fromAirport} = usersSlice.actions
+export const { fromAirport } = usersSlice.actions;
 
 export default usersSlice.reducer;

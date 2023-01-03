@@ -1,5 +1,4 @@
-import { InferType } from "yup";
-import { validationSchema } from "./validationShema";
+import { InferType } from 'yup';
+import { validationSchema } from './validationShema';
 
-
-export type TValidationSchema = InferType<typeof validationSchema>
+export type TValidationSchema = InferType<typeof validationSchema>;

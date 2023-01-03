@@ -30,7 +30,7 @@ const InputView = <T extends FieldValues>({
       name={name}
       control={control}
       render={({ field, fieldState }) => (
-        <FormControl sx={{width: '100%'}}>
+        <FormControl sx={{ width: '100%' }}>
           {/* Label */}
           {label && (
             <InputLabel
@@ -53,23 +53,23 @@ const InputView = <T extends FieldValues>({
             onBlur={field.onBlur}
             onChange={field.onChange}
             sx={{
-              width: "100%",
-              minHeight: "45px",
+              width: '100%',
+              minHeight: '45px',
               background: '#E9E9E9',
               border: '1px solid #ADADAD',
               borderRadius: '5px',
               outline: 'none',
-              "&:before": {
-                borderBottom: 'none'
-              }
+              '&:before': {
+                borderBottom: 'none',
+              },
             }}
           />
 
           {/* Errors */}
-          {fieldState.error && <FormHelperText  error={true}>{fieldState.error.message}</FormHelperText>}
+          {fieldState.error && <FormHelperText error={true}>{fieldState.error.message}</FormHelperText>}
 
           {/* Helpers */}
-          {helperText && <FormHelperText  {...helperTextProps}>{helperText}</FormHelperText>}
+          {helperText && <FormHelperText {...helperTextProps}>{helperText}</FormHelperText>}
         </FormControl>
       )}
     />

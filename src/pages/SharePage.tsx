@@ -10,24 +10,21 @@ const schema = yup
   })
   .required();
 
-interface SharePageProps {
-    
-}
- 
+interface SharePageProps {}
+
 const SharePage: React.FC<SharePageProps> = () => {
-    const { register, handleSubmit } = useForm({
-        resolver: yupResolver(schema),
-      });
-    
-      return (
-        <form onSubmit={handleSubmit((d) => console.log(d))}>
-          {/* <input {...register('name')} />
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  return (
+    <form onSubmit={handleSubmit((d) => console.log(d))}>
+      {/* <input {...register('name')} />
           <input type="number" {...register('age')} />
           <input type="submit" /> */}
-          <div>Share</div>
-        </form>
-      );
-    
-}
- 
+      <div>Share</div>
+    </form>
+  );
+};
+
 export default SharePage;
