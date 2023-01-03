@@ -8,6 +8,7 @@ import { MainPage } from './pages/MainPage';
 import { MyTransfersPage } from './pages/MyTransfersPage';
 import CancelChangePage from './pages/ordered/CancelChange';
 import { OrderedPage } from './pages/ordered/OrderedPage';
+import SelectPage from './pages/ordered/SelectPage';
 import OrderPage from './pages/OrderPage';
 import SharePage from './pages/SharePage';
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/about/info" element={<InfoPage />} />
         <Route path="/about/review" element={<ReviewPage />} />
         <Route path="/transfers/ordered/11" element={<CancelChangePage />} />
+        <Route path='/transfers/ordered/11/change' element={<SelectPage/>} />
       </Routes>
     </BrowserRouter>
   );
