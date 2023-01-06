@@ -6,6 +6,7 @@ import ReviewPage from './pages/AboutPage/ReviewPage';
 import FAQPage from './pages/FAQPage';
 import { MainPage } from './pages/MainPage';
 import { MyTransfersPage } from './pages/MyTransfersPage';
+import AgeInfo from './pages/ordered/AgeInfoPage';
 import CancelChangePage from './pages/ordered/CancelChange';
 import { OrderedPage } from './pages/ordered/OrderedPage';
 import SelectPage from './pages/ordered/SelectPage';
@@ -27,6 +28,7 @@ function App() {
         <Route path="/about/review" element={<ReviewPage />} />
         <Route path="/transfers/ordered/11" element={<CancelChangePage />} />
         <Route path='/transfers/ordered/11/change' element={<SelectPage/>} />
+        <Route path='/transfers/ordered/11/change/age' element={<AgeInfo/>} />
       </Routes>
     </BrowserRouter>
   );
