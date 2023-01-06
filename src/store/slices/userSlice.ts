@@ -8,11 +8,13 @@ interface IUserState {
   isLoading: boolean;
   errors: string;
   isAirport: boolean;
+  carType: string;
 }
 
 const initialState: IUserState = {
   users: [],
   isAirport: false,
+  carType: '',
   isLoading: true,
   errors: '',
 };
@@ -46,8 +48,11 @@ const usersSlice = createSlice({
     fromAirport(state, action: PayloadAction<boolean>) {
       state.isAirport = action.payload;
     },
+    setCarType(state, action: PayloadAction<string>) {
+      state.carType = action.payload;
+    },
   },
 });
-export const { fromAirport } = usersSlice.actions;
+export const { fromAirport, setCarType } = usersSlice.actions;
 
 export default usersSlice.reducer;

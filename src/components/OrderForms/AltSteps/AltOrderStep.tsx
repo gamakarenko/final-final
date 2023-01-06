@@ -1,6 +1,6 @@
 import { Button, Checkbox, FormGroup, Input, Radio, RadioGroup, SxProps } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import { fromAirport } from '../../../store/slices/userSlice';
+import { fromAirport, setCarType } from '../../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { CheckboxActive, CheckboxChecked } from '../../CheckboxStatus';
 import { sedanIcon, vitoIcon } from '../../images';
@@ -34,7 +34,7 @@ const input: SxProps = {
 export const AltOrderStep: React.FC<OrderStepProps> = () => {
   const { register } = useFormContext();
   const dispatch = useAppDispatch();
-  const { isAirport } = useAppSelector((state) => state.user);
+  const { isAirport, carType } = useAppSelector((state) => state.user);
   return (
     <>
       <p className="order__description">
@@ -65,7 +65,7 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
       <div className="pick">
         <Checkbox
           onClick={(e: any) => dispatch(fromAirport(e.target.checked))}
-          value={isAirport}
+          defaultChecked={isAirport}
           {...register('order.pickYouUpFromAirPort')}
         />
         <div>Вас забрать из аэропорта?</div>
@@ -84,11 +84,12 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
         </div>
         <Input sx={input} type="text" {...register('order.end')} />
       </div>
-      <RadioGroup>
+      <RadioGroup defaultValue={carType}>
         <div className="label">Тип автомобиля</div>
         <div className="type-block">
           <Radio
             sx={{ padding: 0, margin: 0 }}
+            onClick={(e: any) => dispatch(setCarType(e.target.value))}
             value={'Vito'}
             icon={<CheckboxActive icon={vitoIcon} title="Vito" info="До 8 человек" />}
             checkedIcon={<CheckboxChecked icon={vitoIcon} title="Vito" info="До 8 человек" />}
@@ -96,6 +97,7 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
           />
           <Radio
             sx={{ padding: 0, margin: 0 }}
+            onClick={(e: any) => dispatch(setCarType(e.target.value))}
             value={'Sedan'}
             icon={<CheckboxActive icon={sedanIcon} title="Sedan" info="До 4 человек" />}
             checkedIcon={<CheckboxChecked icon={sedanIcon} title="Sedan" info="До 4 человек" />}
