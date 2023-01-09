@@ -1,6 +1,8 @@
 .transfers-page {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
     padding: 15px 16px;
     &__title {
         font-style: normal;

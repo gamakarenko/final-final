@@ -1,6 +1,7 @@
 import { Button, Input, SxProps } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { cancelButton } from '../../styles/styles';
 
 interface ReviewPageProps {}
 
@@ -43,9 +44,9 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
   const navigate = useNavigate();
   //@ts-ignore
   let tg = window?.Telegram?.WebApp;
-  const back = tg.BackButton;
-  back.show();
-  back.onClick(() => navigate('/about'));
+  // const back = tg.BackButton;
+  // back.show();
+  // back.onClick(() => navigate('/about'));
   // const popUp = tg.PopupParams
   // const popBtn = tg.PopupButton
   // popUp({title: 'Отзыв отправлен', message: 'Благодарим Вас за фидбек'});
@@ -53,47 +54,52 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
 
   return (
     <div className="transfers-page">
-      <div style={{ marginBottom: '0px' }} className="transfers-page__title">
-        О проекте
+      <div>
+        <div style={{ marginBottom: '0px' }} className="transfers-page__title">
+          О проекте
+        </div>
+        <br />
+        <hr />
+        <br />
+        <p>
+          #обратнаясвязь
+          <br />
+          👩🏻‍💻 Это Transfer.Bot версии 1.0
+          <br />
+          Мы очень старались сделать этот бот <br />
+          удобным и функциональным. Однако, <br />
+          признаём, что впереди большой путь до <br />
+          совершенства. В скором времени мы <br />
+          планируем расширить список подключенных направлений.
+          <br />
+          <br />
+          🖤 Мы открыты к обратной связи и будем благодарны твоим идеям по улучшению помощника!
+          <br />
+          <br />
+          Есть ли что-то, что можно улучшить? Какие <br />
+          ещё города ты бы хотел увидеть в боте? <br />
+          Место для фидбэка⤵️
+          <br />
+          <br />
+        </p>
+        <form onSubmit={handleSubmit((e) => console.log(e))}>
+          <div className="info-label">Твой отзыв</div>
+          <Input type="text" sx={input} multiline={true} minRows={3} {...register('review')} />
+          <Button
+            type="submit"
+            sx={ButtonStyle}
+            onClick={() => {
+              tg.showAlert('Отзыв отправлен');
+              navigate('/');
+            }}
+          >
+            Оставить отзыв
+          </Button>
+          <Button sx={cancelButton} onClick={() => navigate(-1)}>
+            Назад
+          </Button>
+        </form>
       </div>
-      <br />
-      <hr />
-      <br />
-      <p>
-        #обратнаясвязь
-        <br />
-        👩🏻‍💻 Это Transfer.Bot версии 1.0
-        <br />
-        Мы очень старались сделать этот бот <br />
-        удобным и функциональным. Однако, <br />
-        признаём, что впереди большой путь до <br />
-        совершенства. В скором времени мы <br />
-        планируем расширить список подключенных направлений.
-        <br />
-        <br />
-        🖤 Мы открыты к обратной связи и будем благодарны твоим идеям по улучшению помощника!
-        <br />
-        <br />
-        Есть ли что-то, что можно улучшить? Какие <br />
-        ещё города ты бы хотел увидеть в боте? <br />
-        Место для фидбэка⤵️
-        <br />
-        <br />
-      </p>
-      <form onSubmit={handleSubmit((e) => console.log(e))}>
-        <div className="info-label">Твой отзыв</div>
-        <Input type="text" sx={input} multiline={true} minRows={3} {...register('review')} />
-        <Button
-          type="submit"
-          sx={ButtonStyle}
-          onClick={() => {
-            tg.showAlert('Отзыв отправлен');
-            navigate('/');
-          }}
-        >
-          Оставить отзыв
-        </Button>
-      </form>
     </div>
   );
 };

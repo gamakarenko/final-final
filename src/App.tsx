@@ -27,8 +27,8 @@ function App() {
         <Route path="/about/info" element={<InfoPage />} />
         <Route path="/about/review" element={<ReviewPage />} />
         <Route path="/transfers/ordered/11" element={<CancelChangePage />} />
-        <Route path='/transfers/ordered/11/change' element={<SelectPage/>} />
-        <Route path='/transfers/ordered/11/change/age' element={<AgeInfo/>} />
+        <Route path="/transfers/ordered/11/change" element={<SelectPage />} />
+        <Route path="/transfers/ordered/11/change/age" element={<AgeInfo />} />
       </Routes>
     </BrowserRouter>
   );

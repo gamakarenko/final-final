@@ -2,6 +2,7 @@ import { Button, SxProps } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PassengerBlock from '../../components/Passenger/PassangerBlock';
 import { useAppSelector } from '../../store/store';
+import { cancelButton } from '../../styles/styles';
 
 interface CancelChangePageProps {}
 
@@ -16,8 +17,7 @@ const button: SxProps = {
   fontSize: '15px',
   lineHeight: '18px',
   textTransform: 'none',
-  marginBottom: '20px',
-  marginTop: '15px',
+  margin: '15px 0',
 };
 
 const buttonComplete: SxProps = {
@@ -32,7 +32,7 @@ const buttonComplete: SxProps = {
 
 const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
   const { transfers } = useAppSelector((state) => state.transfers);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div
       className="transfer-page"
@@ -84,8 +84,13 @@ const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
         );
       })}
       <div className="" style={{ marginTop: 'auto' }}>
-        <Button sx={buttonComplete} onClick={() => navigate('/transfers/ordered/11/change')} >Изменить данные</Button>
+        <Button sx={buttonComplete} onClick={() => navigate('/transfers/ordered/11/change')}>
+          Изменить данные
+        </Button>
         <Button sx={button}>Отменить поездку</Button>
+        <Button sx={cancelButton} onClick={() => navigate('/transfers/ordered')}>
+          Назад
+        </Button>
       </div>
     </div>
   );

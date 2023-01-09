@@ -1,5 +1,6 @@
 import { Button, SxProps } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { cancelButton } from '../../styles/styles';
 
 interface AboutPageProps {}
 
@@ -26,18 +27,23 @@ const ButtonStyle: SxProps = {
 export const AboutPage: React.FunctionComponent<AboutPageProps> = () => {
   const navigate = useNavigate();
   //@ts-ignore
-  let tg = window?.Telegram?.WebApp;
-  const back = tg.BackButton;
-  back.show();
-  back.onClick(() => navigate('/'));
+  // let tg = window?.Telegram?.WebApp;
+  // const back = tg.BackButton;
+  // back.show();
+  // back.onClick(() => navigate('/'));
   return (
-    <div className="transfers-page">
-      <div className="transfers-page__title">О проекте</div>
-      <Button sx={ButtonStyle} onClick={() => navigate('/about/info')}>
-        Больше о нас
-      </Button>
-      <Button sx={ButtonStyle} onClick={() => navigate('/about/review')}>
-        Оставить отзыв
+    <div className="transfers-page" style={{ height: '100vh', justifyContent: 'space-between' }}>
+      <div>
+        <div className="transfers-page__title">О проекте</div>
+        <Button sx={ButtonStyle} onClick={() => navigate('/about/info')}>
+          Больше о нас
+        </Button>
+        <Button sx={ButtonStyle} onClick={() => navigate('/about/review')}>
+          Оставить отзыв
+        </Button>
+      </div>
+      <Button sx={cancelButton} onClick={() => navigate(-1)}>
+        Назад
       </Button>
     </div>
   );

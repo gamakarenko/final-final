@@ -2,6 +2,7 @@ import { Button, SxProps } from '@mui/material';
 import { textAlign } from '@mui/system';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { cancelButton } from '../styles/styles';
 
 interface MyTransfersPageProps {}
 
@@ -31,21 +32,26 @@ const ButtonStyle: SxProps = {
 export const MyTransfersPage: React.FunctionComponent<MyTransfersPageProps> = () => {
   const navigate = useNavigate();
   //@ts-ignore
-  let tg = window?.Telegram?.WebApp;
-  const back = tg.BackButton;
-  back.show();
-  back.onClick(() => navigate('/'));
+  // let tg = window?.Telegram?.WebApp;
+  // const back = tg.BackButton;
+  // back.show();
+  // back.onClick(() => navigate('/'));
   return (
-    <div className="transfers-page">
-      <div className="transfers-page__title">Мои поездки</div>
-      <Button sx={ButtonStyle} onClick={() => navigate('/transfers/ordered')}>
-        Заказанные поездки
-      </Button>
-      <Button disabled sx={ButtonStyle}>
-        Пошеренные поездки
-      </Button>
-      <Button disabled sx={ButtonStyle}>
-        Внесенные поездки
+    <div className="transfers-page" style={{ height: '100vh', justifyContent: 'space-between' }}>
+      <div>
+        <div className="transfers-page__title">Мои поездки</div>
+        <Button sx={ButtonStyle} onClick={() => navigate('/transfers/ordered')}>
+          Заказанные поездки
+        </Button>
+        <Button disabled sx={ButtonStyle}>
+          Пошеренные поездки
+        </Button>
+        <Button disabled sx={ButtonStyle}>
+          Внесенные поездки
+        </Button>
+      </div>
+      <Button sx={cancelButton} onClick={() => navigate('/')}>
+        Назад
       </Button>
     </div>
   );
