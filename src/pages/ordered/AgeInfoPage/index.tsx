@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import AgeStep from './steps/AgeStep';
 import InfoStep from './steps/InfoStep';
-import { cancelButton } from '../../../styles/styles';
+import { backButton } from '../../../styles/styles';
 
 interface AgeInfoProps {}
 
@@ -77,7 +77,7 @@ const AgeInfo: React.FunctionComponent<AgeInfoProps> = () => {
 
       {activeStep === 0 ? (
         <div style={{ display: 'flex', gap: '15px' }}>
-          <Button sx={cancelButton} onClick={() => navigate(-1)}>
+          <Button sx={backButton} onClick={() => navigate(-1)}>
             Назад
           </Button>
           <Button onClick={handleNext} sx={button}>
@@ -86,7 +86,7 @@ const AgeInfo: React.FunctionComponent<AgeInfoProps> = () => {
         </div>
       ) : (
         <div style={{ display: 'flex', gap: '15px' }}>
-          <Button sx={cancelButton} onClick={() => setActiveStep((prev) => prev - 1)}>
+          <Button sx={backButton} onClick={() => setActiveStep((prev) => prev - 1)}>
             Назад
           </Button>
           <Button onClick={handleNext} sx={button}>

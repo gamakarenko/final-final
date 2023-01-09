@@ -2,34 +2,11 @@ import { Button, Checkbox, FormGroup, Input, Radio, RadioGroup, SxProps } from '
 import { useFormContext } from 'react-hook-form';
 import { fromAirport, setCarType } from '../../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { button, input } from '../../../styles/styles';
 import { CheckboxActive, CheckboxChecked } from '../../CheckboxStatus';
 import { sedanIcon, vitoIcon } from '../../images';
 
 interface OrderStepProps {}
-
-const button: SxProps = {
-  width: '143px',
-  height: '30px',
-  border: '1px solid #007AFF',
-  borderRadius: '5px',
-  fontWeight: '400',
-  fontSize: '10px',
-  lineHeight: '12px',
-};
-
-const input: SxProps = {
-  width: '100%',
-  minHeight: '45px',
-  background: '#E9E9E9',
-  border: '1px solid #ADADAD',
-  borderRadius: '5px',
-  outline: 'none',
-  paddingLeft: '1rem',
-  paddingRight: '1rem',
-  '&:before': {
-    borderBottom: 'none',
-  },
-};
 
 export const AltOrderStep: React.FC<OrderStepProps> = () => {
   const { register } = useFormContext();

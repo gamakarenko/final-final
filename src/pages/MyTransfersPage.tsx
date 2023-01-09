@@ -2,7 +2,7 @@ import { Button, SxProps } from '@mui/material';
 import { textAlign } from '@mui/system';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { cancelButton } from '../styles/styles';
+import { backButton } from '../styles/styles';
 
 interface MyTransfersPageProps {}
 
@@ -50,7 +50,7 @@ export const MyTransfersPage: React.FunctionComponent<MyTransfersPageProps> = ()
           Внесенные поездки
         </Button>
       </div>
-      <Button sx={cancelButton} onClick={() => navigate('/')}>
+      <Button sx={backButton} onClick={() => navigate('/')}>
         Назад
       </Button>
     </div>

@@ -1,6 +1,6 @@
 import { Button, SxProps } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { cancelButton } from '../../styles/styles';
+import { backButton } from '../../styles/styles';
 
 interface AboutPageProps {}
 
@@ -42,7 +42,7 @@ export const AboutPage: React.FunctionComponent<AboutPageProps> = () => {
           Оставить отзыв
         </Button>
       </div>
-      <Button sx={cancelButton} onClick={() => navigate(-1)}>
+      <Button sx={backButton} onClick={() => navigate(-1)}>
         Назад
       </Button>
     </div>

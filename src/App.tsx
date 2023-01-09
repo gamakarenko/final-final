@@ -8,6 +8,7 @@ import { MainPage } from './pages/MainPage';
 import { MyTransfersPage } from './pages/MyTransfersPage';
 import AgeInfo from './pages/ordered/AgeInfoPage';
 import CancelChangePage from './pages/ordered/CancelChange';
+import DateTime from './pages/ordered/DateTime';
 import { OrderedPage } from './pages/ordered/OrderedPage';
 import SelectPage from './pages/ordered/SelectPage';
 import OrderPage from './pages/OrderPage';
@@ -29,6 +30,7 @@ function App() {
         <Route path="/transfers/ordered/11" element={<CancelChangePage />} />
         <Route path="/transfers/ordered/11/change" element={<SelectPage />} />
         <Route path="/transfers/ordered/11/change/age" element={<AgeInfo />} />
+        <Route path="/transfers/ordered/11/change/date" element={<DateTime />} />
       </Routes>
     </BrowserRouter>
   );

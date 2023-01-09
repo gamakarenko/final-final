@@ -2,7 +2,7 @@ import { Button, SxProps } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PassengerBlock from '../../components/Passenger/PassangerBlock';
 import { useAppSelector } from '../../store/store';
-import { cancelButton } from '../../styles/styles';
+import { backButton } from '../../styles/styles';
 
 interface CancelChangePageProps {}
 
@@ -88,7 +88,7 @@ const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
           Изменить данные
         </Button>
         <Button sx={button}>Отменить поездку</Button>
-        <Button sx={cancelButton} onClick={() => navigate('/transfers/ordered')}>
+        <Button sx={backButton} onClick={() => navigate('/transfers/ordered')}>
           Назад
         </Button>
       </div>

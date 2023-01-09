@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchTransfers } from '../../store/slices/transferSlice';
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import { cancelButton } from '../../styles/styles';
+import { backButton } from '../../styles/styles';
 
 interface OrderedPageProps {}
 
@@ -16,10 +16,10 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
   }, []);
   const navigate = useNavigate();
   //@ts-ignore
-  let tg = window?.Telegram?.WebApp;
-  const back = tg.BackButton;
-  back.show();
-  back.onClick(() => navigate('/transfers'));
+  // let tg = window?.Telegram?.WebApp;
+  // const back = tg.BackButton;
+  // back.show();
+  // back.onClick(() => navigate('/transfers'));
   return (
     <div className="transfers-page" style={{ height: '100vh', justifyContent: 'space-between' }}>
       <div>
@@ -58,7 +58,7 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
           </div>
         ))}
       </div>
-      <Button sx={cancelButton} onClick={() => navigate('/transfers')}>
+      <Button sx={backButton} onClick={() => navigate('/transfers')}>
         Назад
       </Button>
     </div>

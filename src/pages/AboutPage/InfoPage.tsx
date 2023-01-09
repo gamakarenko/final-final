@@ -1,6 +1,6 @@
 import { Button, SxProps } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { cancelButton } from '../../styles/styles';
+import { backButton } from '../../styles/styles';
 
 interface InfoPageProps {}
 
@@ -32,7 +32,7 @@ const InfoPage: React.FunctionComponent<InfoPageProps> = () => {
   // back.show();
   // back.onClick(() => navigate('/about'));
   return (
-    <div className="transfers-page">
+    <div className="transfers-page" style={{ height: '100%' }}>
       <div style={{ marginBottom: '0px' }} className="transfers-page__title">
         О проекте
       </div>
@@ -80,7 +80,7 @@ const InfoPage: React.FunctionComponent<InfoPageProps> = () => {
       <Button sx={ButtonStyle} onClick={() => navigate('/about/review')}>
         Оставить отзыв
       </Button>
-      <Button sx={cancelButton} onClick={() => navigate(-1)}>
+      <Button sx={backButton} onClick={() => navigate(-1)}>
         Назад
       </Button>
     </div>

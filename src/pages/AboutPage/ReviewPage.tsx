@@ -1,7 +1,7 @@
 import { Button, Input, SxProps } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { cancelButton } from '../../styles/styles';
+import { backButton } from '../../styles/styles';
 
 interface ReviewPageProps {}
 
@@ -95,7 +95,7 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
           >
             Оставить отзыв
           </Button>
-          <Button sx={cancelButton} onClick={() => navigate(-1)}>
+          <Button sx={backButton} onClick={() => navigate(-1)}>
             Назад
           </Button>
         </form>
