@@ -4,22 +4,25 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import AgeStep from './steps/AgeStep';
 import InfoStep from './steps/InfoStep';
-import { backButton } from '../../../styles/styles';
+import { backButton, defaultButton } from '../../../styles/styles';
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+
 
 interface AgeInfoProps {}
 
-const button: SxProps = {
-  width: '343px',
-  height: '40px',
-  background: '#007AFF',
-  borderRadius: '8px',
-  color: 'white',
-  fontSize: '15px',
-  textTransform: 'none',
-  '&:hover': {
-    backgroundColor: '#007AFF',
-  },
-};
+// const button: SxProps = {
+//   width: '343px',
+//   height: '40px',
+//   background: '#007AFF',
+//   borderRadius: '8px',
+//   color: 'white',
+//   fontSize: '15px',
+//   textTransform: 'none',
+//   '&:hover': {
+//     backgroundColor: '#007AFF',
+//   },
+// };
 
 const buttonBack: SxProps = {
   width: '343px',
@@ -47,8 +50,17 @@ const steps = [
 ];
 
 const AgeInfo: React.FunctionComponent<AgeInfoProps> = () => {
+
+  const validationSchema = yup.object({
+    adults: yup.string().required('Обязательное поле'),
+    childrenUnder5: yup.string().required('Обязательное поле'),
+    childrenAbove5: yup.boolean().required('Обязательное поле'),
+  });
+
   const navigate = useNavigate();
-  const methods = useForm<any>();
+  const methods = useForm<any>({ resolver: yupResolver(validationSchema) });
+  const {isValid} = methods.formState;
+  console.log(isValid)
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
     if (activeStep !== 1) {
@@ -80,7 +92,7 @@ const AgeInfo: React.FunctionComponent<AgeInfoProps> = () => {
           <Button sx={backButton} onClick={() => navigate(-1)}>
             Назад
           </Button>
-          <Button onClick={handleNext} sx={button}>
+          <Button disabled={!isValid} onClick={handleNext} sx={defaultButton}>
             Далее
           </Button>
         </div>
@@ -89,7 +101,7 @@ const AgeInfo: React.FunctionComponent<AgeInfoProps> = () => {
           <Button sx={backButton} onClick={() => setActiveStep((prev) => prev - 1)}>
             Назад
           </Button>
-          <Button onClick={handleNext} sx={button}>
+          <Button onClick={handleNext} sx={defaultButton}>
             Далее
           </Button>
         </div>

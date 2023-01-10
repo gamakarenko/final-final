@@ -6,7 +6,6 @@ import { sedanIcon, vitoIcon } from "../../../components/images";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { button, backButton, input, defaultButton } from "../../../styles/styles";
 import { fromAirport, setCarType } from '../../../store/slices/userSlice';
-import { useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 

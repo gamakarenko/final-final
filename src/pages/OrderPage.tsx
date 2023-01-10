@@ -5,21 +5,31 @@ import { CompleteStep, ConfirmationStep } from '../components/OrderForms/Steps';
 import { AltOrderStep, AltPassengerInfoStep } from '../components/OrderForms/AltSteps';
 import { useAppDispatch } from '../store/store';
 import { createTransfer } from '../store/slices/userSlice';
+import { defaultButton } from '../styles/styles';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
 
 interface OrderPageProps {}
 
-const button: SxProps = {
-  width: '343px',
-  height: '40px',
-  background: '#007AFF',
-  borderRadius: '8px',
-  color: 'white',
-  fontSize: '15px',
-  textTransform: 'none',
-  '&:hover': {
-    backgroundColor: '#007AFF',
+const steps = [
+  {
+    label: 'Заказать трансфер',
+    description: <AltOrderStep />,
   },
-};
+  {
+    label: 'Заказать трансфер',
+    description: <AltPassengerInfoStep />,
+  },
+  {
+    label: 'Заказать трансфер',
+    description: <ConfirmationStep />,
+  },
+  {
+    label: 'Заказать трансфер',
+    description: <CompleteStep />,
+  },
+];
 
 const buttonBack: SxProps = {
   width: '343px',
@@ -36,30 +46,27 @@ const buttonBack: SxProps = {
 };
 
 const OrderPage: React.FC<OrderPageProps> = () => {
-  const steps = [
-    {
-      label: 'Заказать трансфер',
-      description: <AltOrderStep />,
-    },
-    {
-      label: 'Заказать трансфер',
-      description: <AltPassengerInfoStep />,
-    },
-    {
-      label: 'Заказать трансфер',
-      description: <ConfirmationStep />,
-    },
-    {
-      label: 'Заказать трансфер',
-      description: <CompleteStep />,
-    },
-  ];
+
+  const validationSchema = yup.object({
+    order: yup.object({
+    carType: yup.string().required('Обязательное поле'),
+    end: yup.string().required('Обязательное поле'),
+    pickYouUpFromAirPort: yup.boolean().required('Обязательное поле'),
+    start: yup.string().required('Обязательное поле'),
+    transferDate: yup.string().required('Обязательное поле'),
+    transferTime: yup.string().required('Обязательное поле'),
+    adults: yup.string().required('Обязательное поле'),
+    childrenUnder5: yup.string().required('Обязательное поле'),
+    childrenAbove5: yup.boolean().required('Обязательное поле'),
+  })
+  });
 
   const dispatch = useAppDispatch();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
 
-  const methods = useForm<any>();
+  const methods = useForm<any>({ resolver: yupResolver(validationSchema) });
+  const {isValid} = methods.formState;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => (prevActiveStep !== steps.length - 1 ? prevActiveStep + 1 : prevActiveStep));
@@ -94,14 +101,14 @@ const OrderPage: React.FC<OrderPageProps> = () => {
             <Button sx={buttonBack} onClick={handleBack}>
               Назад
             </Button>
-            <Button sx={button} type="submit" onClick={handleNext}>
+            <Button sx={defaultButton} type="submit" onClick={handleNext}>
               Далее
             </Button>
           </div>
         ) : activeStep === 3 ? (
           <></>
         ) : (
-          <Button sx={button} type="submit" onClick={handleNext}>
+          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={handleNext}>
             Далее
           </Button>
         )}

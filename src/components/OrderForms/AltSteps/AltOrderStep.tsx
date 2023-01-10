@@ -42,7 +42,7 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
       <div className="pick">
         <Checkbox
           onClick={(e: any) => dispatch(fromAirport(e.target.checked))}
-          defaultChecked={isAirport}
+          checked={isAirport}
           {...register('order.pickYouUpFromAirPort')}
         />
         <div>Вас забрать из аэропорта?</div>
@@ -61,7 +61,7 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
         </div>
         <Input sx={input} type="text" {...register('order.end')} />
       </div>
-      <RadioGroup defaultValue={carType}>
+      <RadioGroup value={carType}>
         <div className="label">Тип автомобиля</div>
         <div className="type-block">
           <Radio

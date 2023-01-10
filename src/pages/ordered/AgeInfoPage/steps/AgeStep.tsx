@@ -40,7 +40,7 @@ const AgeStep: React.FunctionComponent<AgeStepProps> = () => {
       <br />
       <hr />
       <div className="label">Количество взрослых</div>
-      <Input defaultValue={adults} type="number" sx={{ ...input, width: '164px' }} {...register('order.adults')} />
+      <Input defaultValue={adults} type="number" sx={{ ...input, width: '164px' }} {...register('adults')} />
       <div style={{ display: 'flex', gap: '15px', marginBottom: '15px' }}>
         <div>
           <div className="label">
@@ -48,7 +48,7 @@ const AgeStep: React.FunctionComponent<AgeStepProps> = () => {
             <br />
             (0-5 лет)
           </div>
-          <Input type="number" defaultValue={children} sx={input} {...register('order.childrenUnder5')} />
+          <Input type="number" defaultValue={children} sx={input} {...register('childrenUnder5')} />
         </div>
         <div>
           <div className="label">
@@ -56,7 +56,7 @@ const AgeStep: React.FunctionComponent<AgeStepProps> = () => {
             <br />
             (6-12 лет)
           </div>
-          <Input type="number" sx={input} {...register('order.childrenAbove5')} />
+          <Input type="number" sx={input} {...register('childrenAbove5')} />
         </div>
       </div>
     </>
