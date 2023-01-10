@@ -33,7 +33,7 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
 
 
     return ( 
-        <form className="transfers-page" style={{width: '100%'}} onSubmit={handleSubmit((d) => console.log(d))}>
+        <form className="transfers-page" style={{height: '100%'}} onSubmit={handleSubmit((d) => console.log(d))}>
             <div>
                 <h1 className="order-title">Заказанные поездки</h1>
                 <p>Изменить данные возможно не менее чем за 28 часов</p>
@@ -92,7 +92,7 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
                     </div>
                 </RadioGroup>
             </div>
-            <div>
+            <div style={{marginTop: '15px'}}>
                 <Button disabled={!isValid} type="submit" sx={{...defaultButton, marginBottom: '15px'}} >Сохранить изменения</Button>
                 <Button sx={backButton} onClick={() => navigate(-1)}>Назад</Button>
             </div>
