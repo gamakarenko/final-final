@@ -33,7 +33,7 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
 
 
     return ( 
-        <form className="transfers-page" onSubmit={handleSubmit((d) => console.log(d))}>
+        <form className="transfers-page" style={{width: '100%'}} onSubmit={handleSubmit((d) => console.log(d))}>
             <div>
                 <h1 className="order-title">Заказанные поездки</h1>
                 <p>Изменить данные возможно не менее чем за 28 часов</p>
