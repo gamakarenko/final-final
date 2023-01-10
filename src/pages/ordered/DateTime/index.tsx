@@ -6,6 +6,9 @@ import { sedanIcon, vitoIcon } from "../../../components/images";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { button, backButton, input, defaultButton } from "../../../styles/styles";
 import { fromAirport, setCarType } from '../../../store/slices/userSlice';
+import { useState } from "react";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 
 interface DateTimeProps {
@@ -16,7 +19,18 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const { isAirport, carType } = useAppSelector((state) => state.user);
-    const { register, handleSubmit } = useForm()
+    //const { register, handleSubmit } = useForm()
+    const validationSchema = yup.object({
+        carType: yup.string().required('Обязательное поле'),
+        end: yup.string().required('Обязательное поле'),
+        pickYouUpFromAirPort: yup.boolean().required('Обязательное поле'),
+        start: yup.string().required('Обязательное поле'),
+        transferDate: yup.string().required('Обязательное поле'),
+        transferTime: yup.string().required('Обязательное поле'),
+      });
+      const { handleSubmit, register, formState } = useForm({ resolver: yupResolver(validationSchema) });
+      const {isValid} = formState;
+
 
     return ( 
         <form className="transfers-page" onSubmit={handleSubmit((d) => console.log(d))}>
@@ -79,7 +93,7 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
                 </RadioGroup>
             </div>
             <div>
-                <Button type="submit" sx={{...defaultButton, marginBottom: '15px'}}>Сохранить изменения</Button>
+                <Button disabled={!isValid} type="submit" sx={{...defaultButton, marginBottom: '15px'}} >Сохранить изменения</Button>
                 <Button sx={backButton} onClick={() => navigate(-1)}>Назад</Button>
             </div>
         </form>

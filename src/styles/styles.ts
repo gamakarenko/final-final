@@ -23,6 +23,9 @@ export const defaultButton: SxProps = {
   '&:hover': {
     backgroundColor: '#007AFF',
   },
+  '&:disabled': {
+    backgroundColor: '#AFAFAF',
+  }
 };
 
 export const button: SxProps = {

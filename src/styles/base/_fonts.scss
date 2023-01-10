@@ -10,7 +10,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -23,7 +23,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Heavy.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -36,7 +36,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-UltralightItalic.ttf') format('truetype');
     font-weight: 200;
     font-style: italic;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -49,7 +49,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Thin.ttf') format('truetype');
     font-weight: 100;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -62,7 +62,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Light.ttf') format('truetype');
     font-weight: 200;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -75,7 +75,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -88,7 +88,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Black.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -101,7 +101,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Ultralight.ttf') format('truetype');
     font-weight: 200;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -114,7 +114,7 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Semibold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
 @font-face {
@@ -127,6 +127,6 @@ $sfpro-font-path: '../../fonts/SF pro/';
         url('#{$sfpro-font-path}/SFProDisplay-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-    font-display: block;
+    font-display: auto;
 }
 
