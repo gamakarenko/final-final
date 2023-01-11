@@ -27,8 +27,12 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
         transferDate: yup.string().required('Обязательное поле'),
         transferTime: yup.string().required('Обязательное поле'),
       });
-      const { handleSubmit, register, formState } = useForm({ resolver: yupResolver(validationSchema) });
-      const {isValid} = formState;
+      const { handleSubmit, register, formState } = useForm<any>({ 
+        mode: 'onBlur',
+        resolver: yupResolver(validationSchema) 
+        });
+      const {isValid, errors} = formState;
+      console.log(errors, isValid)
 
 
     return ( 
@@ -57,10 +61,11 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
                 </div>
                 <div>
                     <div className="step">
-                    <div>Откуда тебя забрать?</div>
-                    <Button sx={button}>Выбрать на карте</Button>
+                        <div>Откуда тебя забрать?</div>
+                        <Button sx={button}>Выбрать на карте</Button>
                     </div>
                     <Input sx={input} type="text" {...register('start')} />
+                    <p className="error">{errors.start?.message as any}</p>
                 </div>
                 <div>
                     <div className="step">

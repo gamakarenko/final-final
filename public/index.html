@@ -17,5 +17,12 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU&load=SuggestView&onload=onLoad"></script>
+    <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU&load=SuggestView&onload=onLoad"></script>
+<script>
+function onLoad (ymaps) {
+    var suggestView = new ymaps.SuggestView('suggest', {results: 1, offset: [20, 30]});
+}
+</script>
   </body>
 </html>

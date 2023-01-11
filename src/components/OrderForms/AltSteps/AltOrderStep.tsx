@@ -1,14 +1,26 @@
 import { Button, Checkbox, FormGroup, Input, Radio, RadioGroup, SxProps } from '@mui/material';
+import { usePlacesWidget } from 'react-google-autocomplete';
 import { useFormContext } from 'react-hook-form';
 import { fromAirport, setCarType } from '../../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { button, input } from '../../../styles/styles';
 import { CheckboxActive, CheckboxChecked } from '../../CheckboxStatus';
 import { sedanIcon, vitoIcon } from '../../images';
+import Autocomplete from "react-google-autocomplete";
 
 interface OrderStepProps {}
 
 export const AltOrderStep: React.FC<OrderStepProps> = () => {
+//   const { ref } = usePlacesWidget({
+//     apiKey: 'AIzaSyAEj2RHtCENOj9s_KUVBlakeaM4hbXyyjM',
+//     onPlaceSelected: (place) => console.log(place)
+//   })
+//   ymaps
+//   function onLoad (ymaps) {
+//     var suggestView = new ymaps.SuggestView('suggest');
+// }
+
+
   const { register } = useFormContext();
   const dispatch = useAppDispatch();
   const { isAirport, carType } = useAppSelector((state) => state.user);
@@ -52,7 +64,7 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
           <div>Откуда тебя забрать?</div>
           <Button sx={button}>Выбрать на карте</Button>
         </div>
-        <Input sx={input} type="text" {...register('order.start')} />
+        <Input id="suggest" sx={input} type="text" {...register('order.start')} required/>
       </div>
       <div>
         <div className="step">
