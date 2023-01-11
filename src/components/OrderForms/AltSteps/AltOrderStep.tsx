@@ -7,6 +7,7 @@ import { button, input } from '../../../styles/styles';
 import { CheckboxActive, CheckboxChecked } from '../../CheckboxStatus';
 import { sedanIcon, vitoIcon } from '../../images';
 import Autocomplete from "react-google-autocomplete";
+import { useEffect } from 'react';
 
 interface OrderStepProps {}
 
@@ -19,7 +20,16 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
 //   function onLoad (ymaps) {
 //     var suggestView = new ymaps.SuggestView('suggest');
 // }
+//@ts-ignore
+const ymaps = window.ymaps
+function onLoad (ymaps: any) {
+  var suggestView = new ymaps.SuggestView('suggest', {results: 5})
+  var suggestView = new ymaps.SuggestView('suggest2', {results: 5});
+}
 
+useEffect(() => {
+onLoad(ymaps)
+}, [])
 
   const { register } = useFormContext();
   const dispatch = useAppDispatch();
