@@ -71,7 +71,7 @@ export const AltOrderStep: React.FC<OrderStepProps> = () => {
           <div>Куда тебя привести?</div>
           <Button sx={button}>Выбрать на карте</Button>
         </div>
-        <Input sx={input} type="text" {...register('order.end')} />
+        <Input id="suggest2" sx={input} type="text" {...register('order.end')} />
       </div>
       <RadioGroup value={carType}>
         <div className="label">Тип автомобиля</div>
