@@ -12,14 +12,6 @@ import { useEffect } from 'react';
 interface OrderStepProps {}
 
 export const AltOrderStep: React.FC<OrderStepProps> = () => {
-//   const { ref } = usePlacesWidget({
-//     apiKey: 'AIzaSyAEj2RHtCENOj9s_KUVBlakeaM4hbXyyjM',
-//     onPlaceSelected: (place) => console.log(place)
-//   })
-//   ymaps
-//   function onLoad (ymaps) {
-//     var suggestView = new ymaps.SuggestView('suggest');
-// }
 //@ts-ignore
 const ymaps = window.ymaps
 function onLoad (ymaps: any) {
@@ -29,6 +21,21 @@ function onLoad (ymaps: any) {
 
 useEffect(() => {
 onLoad(ymaps)
+ymaps.ready(init);
+    function init(){
+        // Создание карты.
+        var myMap = new ymaps.Map("map", {
+            // Координаты центра карты.
+            // Порядок по умолчанию: «широта, долгота».
+            // Чтобы не определять координаты центра карты вручную,
+            // воспользуйтесь инструментом Определение координат.
+            center: [55.76, 37.64],
+            // Уровень масштабирования. Допустимые значения:
+            // от 0 (весь мир) до 19.
+            zoom: 7
+        });
+    }
+
 }, [])
 
   const { register } = useFormContext();
@@ -69,10 +76,11 @@ onLoad(ymaps)
         />
         <div>Вас забрать из аэропорта?</div>
       </div>
+      <div id="map" style={{width: "100%", height: "400px"}}></div>
       <div>
         <div className="step">
           <div>Откуда тебя забрать?</div>
-          <Button sx={button}>Выбрать на карте</Button>
+          <Button  sx={button}>Выбрать на карте</Button>
         </div>
         <Input id="suggest" sx={input} type="text" {...register('order.start')} required/>
       </div>
