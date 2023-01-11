@@ -7,11 +7,12 @@ import { button, input } from '../../../styles/styles';
 import { CheckboxActive, CheckboxChecked } from '../../CheckboxStatus';
 import { sedanIcon, vitoIcon } from '../../images';
 import Autocomplete from "react-google-autocomplete";
-import { useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 interface OrderStepProps {}
 
-export const AltOrderStep: React.FC<OrderStepProps> = () => {
+const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
+  const [start, setStart] = useState('')
 //@ts-ignore
 const ymaps = window.ymaps
 function onLoad (ymaps: any) {
@@ -80,8 +81,9 @@ ymaps.ready(init);
                         firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
                     ].filter(Boolean).join(', '),
                     // В качестве контента балуна задаем строку с адресом объекта.
-                    balloonContent: firstGeoObject.getAddressLine()
+                    balloonContent: firstGeoObject.getAddressLine(),
                 });
+                setStart(firstGeoObject.getAddressLine())
         });
     }
 }
@@ -132,7 +134,7 @@ ymaps.ready(init);
           <div>Откуда тебя забрать?</div>
           <Button  sx={button}>Выбрать на карте</Button>
         </div>
-        <Input id="suggest" sx={input} type="text" {...register('order.start')} required/>
+        <Input id="suggest" sx={input} value={start} type="text" {...register('order.start')} required/>
       </div>
       <div>
         <div className="step">
@@ -185,3 +187,6 @@ ymaps.ready(init);
     </>
   );
 };
+
+
+export const AltOrderStep = memo(AltOrderStepWithout)
