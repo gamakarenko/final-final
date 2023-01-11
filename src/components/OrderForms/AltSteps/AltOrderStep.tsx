@@ -90,7 +90,7 @@ ymaps.ready(init);
     }
 }
 
-}, [])
+}, [isShow])
 
   const { register } = useFormContext();
   const dispatch = useAppDispatch();
@@ -130,7 +130,7 @@ ymaps.ready(init);
         />
         <div>Вас забрать из аэропорта?</div>
       </div>
-      {!isShow && <div id="map" style={{width: "100%", height: "400px"}}></div>}
+      {isShow && <div id="map" style={{width: "100%", height: "400px"}}></div>}
       <div>
         <div className="step">
           <div>Откуда тебя забрать?</div>
