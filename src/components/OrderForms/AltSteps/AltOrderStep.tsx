@@ -13,6 +13,8 @@ interface OrderStepProps {}
 
 const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
   const [start, setStart] = useState('')
+  const [isShow, setIsShow] = useState(false)
+
 //@ts-ignore
 const ymaps = window.ymaps
 function onLoad (ymaps: any) {
@@ -128,13 +130,13 @@ ymaps.ready(init);
         />
         <div>Вас забрать из аэропорта?</div>
       </div>
-      <div id="map" style={{width: "100%", height: "400px"}}></div>
+      {!isShow && <div id="map" style={{width: "100%", height: "400px"}}></div>}
       <div>
         <div className="step">
           <div>Откуда тебя забрать?</div>
-          <Button  sx={button}>Выбрать на карте</Button>
+          <Button onClick={() => setIsShow((prev) => !prev)} sx={button}>Выбрать на карте</Button>
         </div>
-        <Input id="suggest" sx={input} value={start} type="text" {...register('order.start')} required/>
+        <Input id="suggest" sx={input} value={start} type="text" {...register('order.start',{onChange: (e) => setStart(e.target.value)})} required/>
       </div>
       <div>
         <div className="step">
