@@ -22,6 +22,7 @@ export const MainPage: React.FC<MainPageProps> = () => {
 
   const handleSend = () => {
     tg.sendData('Тупа данные')
+    console.log(tg)
   }
   return (
     <div className="main-page">
