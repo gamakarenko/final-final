@@ -6,29 +6,28 @@ import { AboutIcon, FAQIcon, OrderIcon, SearchIcon, ShareIcon, TransfersIcon } f
 interface MainPageProps {}
 
 export const MainPage: React.FC<MainPageProps> = () => {
+  const [kek, setkek] = React.useState(false)
   const navigate = useNavigate();
   //@ts-ignore
   let tg = window?.Telegram?.WebApp;
   let user = tg?.initDataUnsafe?.user;
-  console.log('Сам объект', tg.initData);
   React.useEffect(() => {
     tg.expand();
     tg.MainButton.show()
     tg.MainButton.setParams({
       text: 'Отправить данные'
   })
-  tg?.WebApp?.onEvent('mainButtonClicked', () => {
-    tg.sendData("kek"); 
-    //при клике на основную кнопку отправляем данные в строковом виде
-  });
+  
   }, []);
 
-  //@ts-ignore
-  const back = tg.BackButton;
-  back.hide();
+  React.useEffect(() => {
+    tg.onEvent('mainButtonClicked', () => {
+      tg.sendData("kek"); 
+    });
+  }, [kek])
 
   const handleSend = () => {
-    tg.sendData('Тупа данные')
+   setkek((prev) => !prev)
     console.log(tg)
   }
   return (
