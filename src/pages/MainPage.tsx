@@ -13,17 +13,16 @@ export const MainPage: React.FC<MainPageProps> = () => {
   console.log('Сам объект', tg.initData);
   React.useEffect(() => {
     tg.expand();
-    
-    tg.WebApp.onEvent('mainButtonClicked', function(){
-      tg.sendData("kek"); 
-      //при клике на основную кнопку отправляем данные в строковом виде
-    });
+    tg.MainButton.show()
   }, []);
 
   //@ts-ignore
   const back = tg.BackButton;
   back.hide();
-  tg.MainButton.show()
+  tg?.WebApp?.onEvent('mainButtonClicked', function(){
+    tg.sendData("kek"); 
+    //при клике на основную кнопку отправляем данные в строковом виде
+  });
 
   const handleSend = () => {
     tg.sendData('Тупа данные')
