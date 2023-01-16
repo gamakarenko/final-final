@@ -17,7 +17,7 @@ export const MainPage: React.FC<MainPageProps> = () => {
     tg.MainButton.setParams({
       text: 'Отправить данные'
   })
-  tg?.WebApp?.onEvent('mainButtonClicked', function(){
+  tg?.WebApp?.onEvent('mainButtonClicked', () => {
     tg.sendData("kek"); 
     //при клике на основную кнопку отправляем данные в строковом виде
   });
