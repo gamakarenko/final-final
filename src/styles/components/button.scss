@@ -32,7 +32,9 @@
 
 body {
     font-family: 'SF Pro Display';
-    background: #F2F2F2;
+    background-color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+    // background: #F2F2F2;
     max-width: 375px;
     margin: 0 auto;
 }
