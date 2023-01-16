@@ -11,14 +11,19 @@ export const MainPage: React.FC<MainPageProps> = () => {
   let tg = window?.Telegram?.WebApp;
   let user = tg?.initDataUnsafe?.user;
   console.log('Сам объект', tg.initData);
-
   React.useEffect(() => {
     tg.expand();
+    
+    tg.WebApp.onEvent('mainButtonClicked', function(){
+      tg.sendData("kek"); 
+      //при клике на основную кнопку отправляем данные в строковом виде
+    });
   }, []);
 
   //@ts-ignore
   const back = tg.BackButton;
   back.hide();
+  tg.MainButton.show()
 
   const handleSend = () => {
     tg.sendData('Тупа данные')
