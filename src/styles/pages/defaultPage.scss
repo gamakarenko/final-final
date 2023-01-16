@@ -1,0 +1,81 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 15px 16px;
+    &__title {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    &__title-15 {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 15px;
+    }
+    &__title-20 {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+    &__title-30 {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 30px;
+    }
+}
+
+
+.page-long {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 16px;
+    &__title {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    &__title-15 {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 15px;
+    }
+    &__title-20 {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+    &__title-30 {
+        font-style: normal;
+        font-weight: 510;
+        font-size: 30px;
+        line-height: 36px;
+        color: #333333;
+        margin-bottom: 30px;
+    }
+}

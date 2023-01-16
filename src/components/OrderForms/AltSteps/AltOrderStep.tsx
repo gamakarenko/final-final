@@ -1,94 +1,56 @@
-import { Button, Checkbox, FormGroup, Input, Radio, RadioGroup, SxProps } from '@mui/material';
-import { usePlacesWidget } from 'react-google-autocomplete';
+import { Button, Checkbox, Input, Radio, RadioGroup } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { fromAirport, setCarType } from '../../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { button, input } from '../../../styles/styles';
 import { CheckboxActive, CheckboxChecked } from '../../CheckboxStatus';
 import { sedanIcon, vitoIcon } from '../../images';
-import Autocomplete from "react-google-autocomplete";
 import { memo, useEffect, useState } from 'react';
+import { useYmaps } from '../../../hooks/useYmaps';
 
 interface OrderStepProps {}
 
 const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
-  const [start, setStart] = useState('')
+// const [message, setMessage] = useState([])
+// console.log(message)
   const [isShow, setIsShow] = useState(false)
+  const {onLoad, ymaps, init, start, setStart} = useYmaps()
 
-//@ts-ignore
-const ymaps = window.ymaps
-function onLoad (ymaps: any) {
-  var suggestView = new ymaps.SuggestView('suggest', {results: 5})
-  var suggestView = new ymaps.SuggestView('suggest2', {results: 5});
-}
-
+  
 useEffect(() => {
-onLoad(ymaps)
-ymaps.ready(init);
-    function init(){
-      var myPlacemark: any
-        // Создание карты.
-        var myMap = new ymaps.Map("map", {
-            // Координаты центра карты.
-            // Порядок по умолчанию: «широта, долгота».
-            // Чтобы не определять координаты центра карты вручную,
-            // воспользуйтесь инструментом Определение координат.
-            center: [55.76, 37.64],
-            // Уровень масштабирования. Допустимые значения:
-            // от 0 (весь мир) до 19.
-            zoom: 7
-        });
-        // Слушаем клик на карте.
-    myMap.events.add('click', function (e: any) {
-      var coords = e.get('coords');
+ymaps.ready(() => onLoad(ymaps))
+ymaps.ready(() => init('map'));
+ymaps.ready(() => init('map2'));
 
-      // Если метка уже создана – просто передвигаем ее.
-      if (myPlacemark) {
-          myPlacemark.geometry.setCoordinates(coords);
-      }
-      // Если нет – создаем.
-      else {
-          myPlacemark = createPlacemark(coords);
-          myMap.geoObjects.add(myPlacemark);
-          // Слушаем событие окончания перетаскивания на метке.
-          myPlacemark.events.add('dragend', function () {
-              getAddress(myPlacemark.geometry.getCoordinates());
-          });
-      }
-      getAddress(coords);
-  });
+// let socket = new WebSocket('wss://ws.bitmex.com/realtimePlatform')
 
-  // Создание метки.
-  function createPlacemark(coords: any) {
-      return new ymaps.Placemark(coords, {
-          iconCaption: 'поиск...'
-      }, {
-          preset: 'islands#violetDotIconWithCaption',
-          draggable: true
-      });
-  }
-      // Определяем адрес по координатам (обратное геокодирование).
-      function getAddress(coords: any) {
-        myPlacemark.properties.set('iconCaption', 'поиск...');
-        ymaps.geocode(coords).then(function (res: any) {
-            var firstGeoObject = res.geoObjects.get(0);
+// socket.onopen = function() {
+//   console.log("Соединение установлено.");
+//   //@ts-ignore
+// socket.send(`{"op": "subscribe", "args": ["chat"]}`)
+// };
 
-            myPlacemark.properties
-                .set({
-                    // Формируем строку с данными об объекте.
-                    iconCaption: [
-                        // Название населенного пункта или вышестоящее административно-территориальное образование.
-                        firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
-                        // Получаем путь до топонима, если метод вернул null, запрашиваем наименование здания.
-                        firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
-                    ].filter(Boolean).join(', '),
-                    // В качестве контента балуна задаем строку с адресом объекта.
-                    balloonContent: firstGeoObject.getAddressLine(),
-                });
-                setStart(firstGeoObject.getAddressLine())
-        });
-    }
-}
+// socket.onclose = function(event) {
+//   if (event.wasClean) {
+//     console.log('Соединение закрыто чисто');
+//   } else {
+//     console.log('Обрыв соединения'); // например, "убит" процесс сервера
+//   }
+//   console.log('Код: ' + event.code + ' причина: ' + event.reason);
+// };
+
+// socket.onmessage = function(event) {
+//   const data = JSON.parse(event?.data)
+//   const next = {
+//     nick: data?.data[0]?.user,
+//     message: data?.data[0]?.message
+//   }
+//   setMessage((prev) => [...prev, next])
+// };
+
+// socket.onerror = function() {
+//   console.log("Ошибка ");
+// };
 
 }, [isShow])
 
@@ -97,6 +59,13 @@ ymaps.ready(init);
   const { isAirport, carType } = useAppSelector((state) => state.user);
   return (
     <>
+    {/* <h3>Окошко в одно сообщение)</h3>
+    <div id='box' style={{height: '200px', overflow: 'auto'}}>
+      {message.map((el) => <div key={el.message} style={{ display: 'flex', gap: '10px', marginTop: "10px",}}>
+        <div style={{fontWeight: '700'}}>{el?.nick}</div>
+        <div>{el?.message}</div>
+      </div>)}
+      </div> */}
       <p className="order__description">
         Здесь ты можешь заказ трансфер :)
         <br />
@@ -134,9 +103,9 @@ ymaps.ready(init);
       <div>
         <div className="step">
           <div>Откуда тебя забрать?</div>
-          <Button onClick={() => setIsShow((prev) => !prev)} sx={button}>Выбрать на карте</Button>
+          <Button onClick={() => setIsShow((prev) => !prev)} sx={button}>{isShow ?"Скрыть":"Выбрать на карте"}</Button>
         </div>
-        <Input id="suggest" sx={input} value={start} type="text" {...register('order.start',{onChange: (e) => setStart(e.target.value)})} required/>
+        <Input id="suggest" sx={input} value={start} type="text" {...register('order.start',{onChange: (e) => setStart(e.target.value)})}/>
       </div>
       <div>
         <div className="step">

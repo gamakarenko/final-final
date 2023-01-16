@@ -21,9 +21,9 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
   // back.show();
   // back.onClick(() => navigate('/transfers'));
   return (
-    <div className="transfers-page" style={{ height: '100vh', justifyContent: 'space-between' }}>
+    <div className="page">
       <div>
-        <div className="transfers-page__title-s">Заказанные поездки</div>
+        <div className="page__title-20">Заказанные поездки</div>
         <p>
           Чтобы изменить личную информацию, дату, <br />
           время поездки и другие данные - нажмите на <br />

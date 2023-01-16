@@ -31,15 +31,10 @@ const ButtonStyle: SxProps = {
 
 export const MyTransfersPage: React.FunctionComponent<MyTransfersPageProps> = () => {
   const navigate = useNavigate();
-  //@ts-ignore
-  // let tg = window?.Telegram?.WebApp;
-  // const back = tg.BackButton;
-  // back.show();
-  // back.onClick(() => navigate('/'));
   return (
-    <div className="transfers-page" style={{ height: '100vh', justifyContent: 'space-between' }}>
+    <div className="page">
       <div>
-        <div className="transfers-page__title">Мои поездки</div>
+        <div className="page__title-30">Мои поездки</div>
         <Button sx={ButtonStyle} onClick={() => navigate('/transfers/ordered')}>
           Заказанные поездки
         </Button>

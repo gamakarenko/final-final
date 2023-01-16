@@ -87,9 +87,9 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   console.log(order);
 
   return (
-    <form className="order-page" onSubmit={methods.handleSubmit((d) => setData(d))}>
+    <form className="page-long" onSubmit={methods.handleSubmit((d) => setData(d))}>
       <FormProvider {...methods}>
-        <h1 className="order-title">Заказать трансфер</h1>
+        <h1 className="page-long__title">Заказать трансфер</h1>
         <div>{steps[activeStep].description}</div>
         <Stepper activeStep={activeStep} connector={null}>
           {steps.map((_, index) => (

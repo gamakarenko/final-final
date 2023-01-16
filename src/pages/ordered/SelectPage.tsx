@@ -21,9 +21,9 @@ const button: SxProps = {
 const SelectPage: React.FunctionComponent<SelectPageProps> = () => {
   const navigate = useNavigate();
   return (
-    <div className="transfers-page">
+    <div className="page">
       <div>
-        <div className="transfers-page__title-s">Заказанные поездки</div>
+        <div className="page__title-15">Заказанные поездки</div>
         <hr />
         <br />
         <Button sx={button} onClick={() => navigate('/transfers/ordered/11/change/age')}>

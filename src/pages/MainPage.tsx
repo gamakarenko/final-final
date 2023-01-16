@@ -11,10 +11,10 @@ export const MainPage: React.FC<MainPageProps> = () => {
   let tg = window?.Telegram?.WebApp;
   let user = tg?.initDataUnsafe?.user;
   console.log('Сам объект', tg.initData);
-  console.log('user', tg.initDataUnsafe);
 
   React.useEffect(() => {
     tg.expand();
+    console.log('user', tg.sendData(JSON.stringify({kek: 'lul'})));
   }, []);
 
   //@ts-ignore
