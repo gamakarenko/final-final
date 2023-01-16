@@ -13,18 +13,14 @@ export const MainPage: React.FC<MainPageProps> = () => {
   let user = tg?.initDataUnsafe?.user;
   React.useEffect(() => {
     tg.expand();
-    tg.MainButton.show()
+    tg.MainButton.show()    
     tg.MainButton.setParams({
       text: 'Отправить данные'
   })
+  tg.MainButton.onClick(() => tg.sendData('noim'))
   
   }, []);
 
-  React.useEffect(() => {
-    tg.onEvent('mainButtonClicked', () => {
-      tg.sendData("kek"); 
-    });
-  }, [kek])
 
   const handleSend = () => {
    setkek((prev) => !prev)
