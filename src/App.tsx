@@ -4,6 +4,7 @@ import { AboutPage } from './pages/AboutPage/AboutPage';
 import InfoPage from './pages/AboutPage/InfoPage';
 import ReviewPage from './pages/AboutPage/ReviewPage';
 import FAQPage from './pages/FAQPage';
+import Form from './pages/for';
 import { MainPage } from './pages/MainPage';
 import { MyTransfersPage } from './pages/MyTransfersPage';
 import AgeInfo from './pages/ordered/AgeInfoPage';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/transfers/ordered/11/change/age" element={<AgeInfo />} />
         <Route path="/transfers/ordered/11/change/date" element={<DateTime />} />
         <Route path="/transfers/ordered/11/final" element={<FinalPage />} />
+        <Route path="/kek" element={<Form />} />
 
       </Routes>
     </BrowserRouter>
