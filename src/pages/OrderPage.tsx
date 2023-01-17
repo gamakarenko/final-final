@@ -57,7 +57,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
     transferTime: yup.string().required('Обязательное поле'),
     adults: yup.string().required('Обязательное поле'),
     childrenUnder5: yup.string().required('Обязательное поле'),
-    childrenAbove5: yup.boolean().required('Обязательное поле'),
+    childrenAbove5: yup.string().required('Обязательное поле'),
   })
   });
 
