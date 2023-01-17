@@ -52,7 +52,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
     carType: yup.string().required('Обязательное поле'),
     end: yup.string().required('Обязательное поле'),
     pickYouUpFromAirPort: yup.boolean().required('Обязательное поле'),
-    start: yup.string().required('Обязательное поле'),
+    start: yup.string(),
     transferDate: yup.string().required('Обязательное поле'),
     transferTime: yup.string().required('Обязательное поле'),
     adults: yup.string().required('Обязательное поле'),
