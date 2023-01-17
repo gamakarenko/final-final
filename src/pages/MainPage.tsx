@@ -14,7 +14,7 @@ export const MainPage: React.FC<MainPageProps> = () => {
 
   React.useEffect(() => {
     tg.expand();
-    tg.sendData(JSON.stringify({kek: 'lul'}))
+    // tg.sendData(JSON.stringify({kek: 'lul'}))
   }, []);
 
   //@ts-ignore
