@@ -1,7 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import { useTelegram } from '../hooks/useTelegram';
+import { createTransfer } from '../store/slices/userSlice';
+import { useAppDispatch } from '../store/store';
 
 const Form = () => {
+    const dispatch = useAppDispatch()
     const [country, setCountry] = useState('');
     const [street, setStreet] = useState('');
     const [subject, setSubject] = useState('physical');
@@ -13,7 +16,72 @@ const Form = () => {
             street,
             subject
         }
-        tg.sendData(JSON.stringify(data));
+        tg.sendData(JSON.stringify({
+            "order": {
+                "adults": "1",
+                "childrenAbove5": "1",
+                "childrenUnder5": "1",
+                "transferDate": "2022-11-2",
+                "transferTime": "11:31",
+                "end": "координаты",
+                "start": "координаты",
+                "carType": "sedan",
+                "pickYouUpFromAirPort": "true",
+                "passengers": [
+                    {
+                        "transferComment": "Со мной поедже",
+                        "telegramId": "petrov",
+                        "phoneNumber": 79005553535,
+                        "passportId": "FFGHGHF2332NJ",
+                        "fullName": "Иванов Иван Иванович",
+                        "departureDate": "2222",
+                        "departureTime": "2222"
+                    },
+                    {
+                        "transferComment": "Со мной не собака",
+                        "telegramId": "petrof",
+                        "phoneNumber": 790055535335,
+                        "passportId": "FFGHGHF32NJ",
+                        "fullName": "Иванов Петр Иванович",
+                        "departureDate": "2222",
+                        "departureTime": "2222"
+                    }
+                ]
+            }
+        }));
+        dispatch(createTransfer({
+            "order": {
+                "adults": "1",
+                "childrenAbove5": "1",
+                "childrenUnder5": "1",
+                "transferDate": "2022-11-2",
+                "transferTime": "11:31",
+                "end": "координаты",
+                "start": "координаты",
+                "carType": "sedan",
+                "pickYouUpFromAirPort": "true",
+                "passengers": [
+                    {
+                        "transferComment": "Со мной поедже",
+                        "telegramId": "petrov",
+                        "phoneNumber": 79005553535,
+                        "passportId": "FFGHGHF2332NJ",
+                        "fullName": "Иванов Иван Иванович",
+                        "departureDate": "2222",
+                        "departureTime": "2222"
+                    },
+                    {
+                        "transferComment": "Со мной не собака",
+                        "telegramId": "petrof",
+                        "phoneNumber": 790055535335,
+                        "passportId": "FFGHGHF32NJ",
+                        "fullName": "Иванов Петр Иванович",
+                        "departureDate": "2222",
+                        "departureTime": "2222"
+                    }
+                ]
+            }
+        }))
     }, [country, street, subject])
 
     useEffect(() => {
