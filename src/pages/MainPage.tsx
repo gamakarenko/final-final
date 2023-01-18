@@ -6,6 +6,7 @@ import { AboutIcon, FAQIcon, OrderIcon, SearchIcon, ShareIcon, TransfersIcon } f
 interface MainPageProps {}
 
 export const MainPage: React.FC<MainPageProps> = () => {
+  const [users, setUsers] = React.useState<any>([])
   const navigate = useNavigate();
   //@ts-ignore
   let tg = window?.Telegram?.WebApp;
@@ -14,6 +15,11 @@ export const MainPage: React.FC<MainPageProps> = () => {
 
   React.useEffect(() => {
     tg.expand();
+    fetch('http://localhost:9002/api/user/reg').then((res) => res.json()).then((res) => {
+    let kek = res
+    setUsers(kek)
+    console.log(kek)
+})
     // tg.sendData(JSON.stringify({kek: 'lul'}))
   }, []);
 
@@ -36,6 +42,7 @@ export const MainPage: React.FC<MainPageProps> = () => {
       <MainButton title="О проекте" icon={<AboutIcon />} onClick={() => navigate('/about')} />
       <MainButton title="FAQ" icon={<FAQIcon />} onClick={() => navigate('/faq')} />
       <MainButton title="FAQ" icon={<FAQIcon />} onClick={() => navigate('/kek')} />
+      {users.map((user: any) => <div style={{ backgroundColor: 'var(--tg-theme-button-color)', color: 'var(--tg-theme-button-text-color)', height: '2rem', marginBottom: '10px', borderRadius: '5px'}} key={user.id}>{user.email}</div>)}
     </div>
   );
 };
