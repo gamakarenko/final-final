@@ -15,7 +15,7 @@ export const MainPage: React.FC<MainPageProps> = () => {
 
   React.useEffect(() => {
     tg.expand();
-    fetch('http://localhost:9002/api/user/reg').then((res) => res.json()).then((res) => {
+    fetch('https://tg-bot-teal.vercel.app/api/user/reg').then((res) => res.json()).then((res) => {
     let kek = res
     setUsers(kek)
     console.log(kek)
