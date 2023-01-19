@@ -1,4 +1,4 @@
-.order-block {
+.order-row {
     display: flex;
     gap: 0.5rem;
 }
@@ -10,15 +10,20 @@
     margin-bottom: 5px;
 
 }
-.order-block-wrap {
+.order-block {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
+    margin-bottom: 10px;
     padding-left: 15px;
     width: 343px;
     height: 149px;
     background: #007AFF;
     color: white;
     border-radius: 10px;
+}
+.order-wrap {
+    display: flex;
+    flex-direction: column;
 }

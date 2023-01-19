@@ -10,29 +10,7 @@ interface IUserState {
 }
 
 const initialState: IUserState = {
-  transfers: [
-    {
-      transferDate: '2022-02-21',
-      transferTime: '16:13',
-      pickYouUpFromAirPort: 'true',
-      start: '',
-      end: '',
-      carType: 'Vito',
-      adults: '3',
-      childrenUnder5: '2',
-      childrenAbove5: '2',
-      passengers: [
-        {
-          fullName: '1111111111111111',
-          passportId: '1111111111',
-          phoneNumber: '111111111',
-          email: '111111111',
-          telegramId: '111111111',
-          transferComment: '1111111',
-        },
-      ],
-    },
-  ],
+  transfers: [],
   isAirport: false,
   isLoading: true,
   errors: '',

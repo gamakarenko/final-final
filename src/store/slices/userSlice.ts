@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 import $api from '../../api';
 import { TAppDispatch } from '../store';
 
@@ -21,7 +20,7 @@ const initialState: IUserState = {
 
 export const createTransfer = (obj: any) => async (dispatch: TAppDispatch) => {
   try {
-    await $api.post(`/api/user/get/1`, obj);
+    await $api.post(`/api/user/create`, obj);
   } catch (e) {
     console.log(e);
   }

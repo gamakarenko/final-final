@@ -29,11 +29,11 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/about/info" element={<InfoPage />} />
         <Route path="/about/review" element={<ReviewPage />} />
-        <Route path="/transfers/ordered/11" element={<CancelChangePage />} />
-        <Route path="/transfers/ordered/11/change" element={<SelectPage />} />
-        <Route path="/transfers/ordered/11/change/age" element={<AgeInfo />} />
-        <Route path="/transfers/ordered/11/change/date" element={<DateTime />} />
-        <Route path="/transfers/ordered/11/final" element={<FinalPage />} />
+        <Route path="/transfers/ordered/:id" element={<CancelChangePage />} />
+        <Route path="/transfers/ordered/:id/change" element={<SelectPage />} />
+        <Route path="/transfers/ordered/:id/change/age" element={<AgeInfo />} />
+        <Route path="/transfers/ordered/:id/change/date" element={<DateTime />} />
+        <Route path="/transfers/ordered/:id/final" element={<FinalPage />} />
         <Route path="/kek" element={<Form />} />
 
       </Routes>

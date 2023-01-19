@@ -1,5 +1,5 @@
 import { Button, SxProps } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PassengerBlock from '../../components/Passenger/PassangerBlock';
 import { useAppSelector } from '../../store/store';
 import { backButton } from '../../styles/styles';
@@ -31,6 +31,7 @@ const buttonComplete: SxProps = {
 };
 
 const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
+  const {id} = useParams()
   const { transfers } = useAppSelector((state) => state.transfers);
   const navigate = useNavigate();
   return (
@@ -43,19 +44,19 @@ const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
       <br />
       <hr />
       <br />
-      {transfers.map((transfer: any) => {
+      {transfers.filter((transfer: any) => {
         return (
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <PassengerBlock title="Дата поездки" description={transfer?.tripDate?.slice(0, 10)} />
-              <PassengerBlock title="Время поездки" description={transfer?.tripDate?.slice(10)} />
+              <PassengerBlock title="Дата поездки" description={transfer?.transferTime} />
+              <PassengerBlock title="Время поездки" description={transfer?.transferDate} />
             </div>
-            <PassengerBlock title="Откуда тебя забрать?" description={transfer?.startPlace} />
-            <PassengerBlock title="Куда привести?" description={transfer?.endPlace} />
-            <PassengerBlock title="Тип автомобиля" description={transfer?.autoType} />
+            <PassengerBlock title="Откуда тебя забрать?" description={transfer?.start} />
+            <PassengerBlock title="Куда привести?" description={transfer?.end} />
+            <PassengerBlock title="Тип автомобиля" description={transfer?.auto} />
             <br />
             {transfers?.passengers &&
-              transfers?.passengers.map((i: any, index: any) => {
+              transfers?.passengers.filter((i: any, index: any) => {
                 return (
                   <div key={index}>
                     <hr />
