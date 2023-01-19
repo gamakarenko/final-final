@@ -21,7 +21,7 @@ const initialState: IUserState = {
 
 export const createTransfer = (obj: any) => async (dispatch: TAppDispatch) => {
   try {
-    await $api.post(`/users/allTransfers`, obj);
+    await $api.post(`/api/user/get/1`, obj);
   } catch (e) {
     console.log(e);
   }
