@@ -43,7 +43,6 @@ export const MainPage: React.FC<MainPageProps> = () => {
       <MainButton title="Мои поездки" icon={<TransfersIcon />} onClick={() => navigate('/transfers')} />
       <MainButton title="О проекте" icon={<AboutIcon />} onClick={() => navigate('/about')} />
       <MainButton title="FAQ" icon={<FAQIcon />} onClick={() => navigate('/faq')} />
-      <MainButton title="FAQ" icon={<FAQIcon />} onClick={() => navigate('/kek')} />
       {users.map((user: any) => (
         <div
           style={{
