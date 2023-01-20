@@ -12,7 +12,7 @@ interface IUserState {
 const initialState: IUserState = {
   transfers: [],
   isAirport: false,
-  isLoading: false,
+  isLoading: true,
   errors: '',
 };
 

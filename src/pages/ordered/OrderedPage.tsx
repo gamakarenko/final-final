@@ -37,7 +37,7 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
         <br />
         <div className="order-wrap">
           {isLoading ? 
-          <Skeleton variant="rounded" width={343} height={149} sx={{borderRadius: "10px"}}/>
+          <Skeleton variant="rounded" width={343} height={149} sx={{borderRadius: "10px", marginBottom: "10px"}}/>
           :
           transfers.map((transfer: any) => (
             <div
