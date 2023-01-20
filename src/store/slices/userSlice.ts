@@ -8,6 +8,7 @@ interface IUserState {
   errors: string;
   isAirport: boolean;
   carType: string;
+  message: string;
 }
 
 const initialState: IUserState = {
@@ -15,12 +16,14 @@ const initialState: IUserState = {
   isAirport: false,
   carType: '',
   isLoading: true,
+  message: '',
   errors: '',
 };
 
 export const createTransfer = (obj: any, id: any) => async (dispatch: TAppDispatch) => {
   try {
-    await $api.post(`/api/user/create/${id}`, obj);
+    const {data} = await $api.post(`/api/user/create/${id}`, obj);
+    dispatch(usersSlice.actions.setMessage(data))
   } catch (e) {
     console.log(e);
   }
@@ -50,6 +53,9 @@ const usersSlice = createSlice({
     setCarType(state, action: PayloadAction<string>) {
       state.carType = action.payload;
     },
+    setMessage(state, action: PayloadAction<string>) {
+      state.message = action.payload
+    }
   },
 });
 export const { fromAirport, setCarType } = usersSlice.actions;

@@ -10,19 +10,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 interface AgeInfoProps {}
 
-// const button: SxProps = {
-//   width: '343px',
-//   height: '40px',
-//   background: '#007AFF',
-//   borderRadius: '8px',
-//   color: 'white',
-//   fontSize: '15px',
-//   textTransform: 'none',
-//   '&:hover': {
-//     backgroundColor: '#007AFF',
-//   },
-// };
-
 const buttonBack: SxProps = {
   width: '343px',
   height: '40px',

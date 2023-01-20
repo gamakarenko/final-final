@@ -63,7 +63,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   const dispatch = useAppDispatch();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
-  const {userId} = useTelegram()
+  const {userId, tg} = useTelegram()
 
   const methods = useForm<any>({ resolver: yupResolver(validationSchema) });
   const { isValid } = methods.formState;
@@ -108,7 +108,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
         ) : activeStep === 3 ? (
           <></>
         ) : (
-          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={handleNext}>
+          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={() => {handleNext(); tg.showAlert()}}>
             Далее
           </Button>
         )}
