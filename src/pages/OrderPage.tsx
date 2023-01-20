@@ -7,6 +7,7 @@ import { useAppDispatch } from '../store/store';
 import { createTransfer } from '../store/slices/userSlice';
 import { defaultButton } from '../styles/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTelegram } from '../hooks/useTelegram'
 import * as yup from 'yup';
 
 interface OrderPageProps {}
@@ -62,6 +63,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   const dispatch = useAppDispatch();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
+  const {userId} = useTelegram()
 
   const methods = useForm<any>({ resolver: yupResolver(validationSchema) });
   const { isValid } = methods.formState;
@@ -77,7 +79,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
 
   const sentPost = () => {
     if (activeStep === 2) {
-      dispatch(createTransfer(data));
+      dispatch(createTransfer(data, userId));
     }
   };
 

@@ -20,7 +20,7 @@ export const fetchTransfers = () => async (dispatch: TAppDispatch) => {
   try {
     // fetch('https://tg-bot-teal.vercel.app/api/user/get/1').then((res) => res.json()).then((res) => {
     // let kek = res
-    const { data } = await $api.get(`/api/user/get/1`);
+    const { data } = await $api.get(`/api/user/transfer/1`);
     dispatch(transfersSlice.actions.transfersFetchingSuccess(data));
   } catch (e) {
     console.log(e);
