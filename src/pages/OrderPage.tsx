@@ -109,7 +109,9 @@ const OrderPage: React.FC<OrderPageProps> = () => {
         ) : activeStep === 3 ? (
           <></>
         ) : (
-          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={() => {handleNext(); tg.showAlert(message)}}>
+          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={() => {
+            tg.showAlert(message)
+            handleNext()}}>
             Далее
           </Button>
         )}
