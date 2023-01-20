@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTelegram } from '../../hooks/useTelegram';
 import { fetchTransfers } from '../../store/slices/transferSlice';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { backButton } from '../../styles/styles';
@@ -11,9 +12,10 @@ interface OrderedPageProps {}
 export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
   const { transfers } = useAppSelector((state) => state.transfers);
   const dispatch = useAppDispatch();
+  const {userId} = useTelegram()
   console.log(transfers);
   useEffect(() => {
-    dispatch(fetchTransfers());
+    dispatch(fetchTransfers(userId));
   }, []);
   const navigate = useNavigate();
   //@ts-ignore
