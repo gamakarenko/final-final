@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Stepper, Step, Button, SxProps } from '@mui/material';
 import { CompleteStep, ConfirmationStep } from '../components/OrderForms/Steps';
 import { AltOrderStep, AltPassengerInfoStep } from '../components/OrderForms/AltSteps';
-import { useAppDispatch } from '../store/store';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import { createTransfer } from '../store/slices/userSlice';
 import { defaultButton } from '../styles/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -84,6 +84,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   };
 
   const { order } = methods.getValues();
+  const {message} = useAppSelector(state => state.user)
   console.log(order);
 
   return (
@@ -108,7 +109,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
         ) : activeStep === 3 ? (
           <></>
         ) : (
-          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={() => {handleNext(); tg.showAlert()}}>
+          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={() => {handleNext(); tg.showAlert(message)}}>
             Далее
           </Button>
         )}
