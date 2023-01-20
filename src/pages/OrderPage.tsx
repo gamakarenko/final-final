@@ -72,6 +72,11 @@ const OrderPage: React.FC<OrderPageProps> = () => {
     setActiveStep((prevActiveStep) => (prevActiveStep !== steps.length - 1 ? prevActiveStep + 1 : prevActiveStep));
     sentPost();
   };
+  const handleNextAlert = () => {
+    setActiveStep((prevActiveStep) => (prevActiveStep !== steps.length - 1 ? prevActiveStep + 1 : prevActiveStep));
+    sentPost();
+    tg.showAlert(message)
+  };
   const [data, setData] = React.useState({});
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -109,9 +114,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
         ) : activeStep === 3 ? (
           <></>
         ) : (
-          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={() => {
-            tg.showAlert(message)
-            handleNext()}}>
+          <Button disabled={!isValid} sx={defaultButton} type="submit" onClick={handleNextAlert}>
             Далее
           </Button>
         )}
