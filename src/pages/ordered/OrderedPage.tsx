@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Skeleton } from '@mui/material';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { backButton } from '../../styles/styles';
 interface OrderedPageProps {}
 
 export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
-  const { transfers } = useAppSelector((state) => state.transfers);
+  const { transfers, isLoading } = useAppSelector((state) => state.transfers);
   const dispatch = useAppDispatch();
   const {userId} = useTelegram()
   console.log(transfers);
@@ -36,7 +36,10 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
         <hr />
         <br />
         <div className="order-wrap">
-          {transfers.map((transfer: any) => (
+          {isLoading ? 
+          <Skeleton variant="rounded" width={343} height={149} sx={{borderRadius: "10px"}}/>
+          :
+          transfers.map((transfer: any) => (
             <div
               key={transfer.id}
               className="order-block"

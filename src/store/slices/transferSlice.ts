@@ -12,7 +12,7 @@ interface IUserState {
 const initialState: IUserState = {
   transfers: [],
   isAirport: false,
-  isLoading: true,
+  isLoading: false,
   errors: '',
 };
 
@@ -20,6 +20,7 @@ export const fetchTransfers = (id:any) => async (dispatch: TAppDispatch) => {
   try {
     // fetch('https://tg-bot-teal.vercel.app/api/user/get/1').then((res) => res.json()).then((res) => {
     // let kek = res
+    dispatch(transfersSlice.actions.transfersFetching)
     const { data } = await $api.get(`/api/user/transfers/${id}`);
     dispatch(transfersSlice.actions.transfersFetchingSuccess(data));
   } catch (e) {
@@ -31,7 +32,7 @@ const transfersSlice = createSlice({
   name: 'transfers',
   initialState,
   reducers: {
-    usersFetching(state) {
+    transfersFetching(state) {
       state.isLoading = true;
     },
     transfersFetchingSuccess(state, action: PayloadAction<IUserState>) {
