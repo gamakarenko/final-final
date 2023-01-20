@@ -5,9 +5,8 @@ import { useState } from 'react';
 import AgeStep from './steps/AgeStep';
 import InfoStep from './steps/InfoStep';
 import { backButton, defaultButton } from '../../../styles/styles';
-import * as yup from "yup";
+import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
 
 interface AgeInfoProps {}
 
@@ -50,7 +49,6 @@ const steps = [
 ];
 
 const AgeInfo: React.FunctionComponent<AgeInfoProps> = () => {
-
   const validationSchema = yup.object({
     adults: yup.string().required('Обязательное поле'),
     childrenUnder5: yup.string().required('Обязательное поле'),
@@ -59,8 +57,8 @@ const AgeInfo: React.FunctionComponent<AgeInfoProps> = () => {
 
   const navigate = useNavigate();
   const methods = useForm<any>({ resolver: yupResolver(validationSchema) });
-  const {isValid} = methods.formState;
-  console.log(isValid)
+  const { isValid } = methods.formState;
+  console.log(isValid);
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
     if (activeStep !== 1) {

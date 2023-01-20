@@ -7,8 +7,7 @@ import { useAppDispatch } from '../store/store';
 import { createTransfer } from '../store/slices/userSlice';
 import { defaultButton } from '../styles/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-
+import * as yup from 'yup';
 
 interface OrderPageProps {}
 
@@ -46,19 +45,18 @@ const buttonBack: SxProps = {
 };
 
 const OrderPage: React.FC<OrderPageProps> = () => {
-
   const validationSchema = yup.object({
     order: yup.object({
-    carType: yup.string().required('Обязательное поле'),
-    end: yup.string().required('Обязательное поле'),
-    pickYouUpFromAirPort: yup.boolean().required('Обязательное поле'),
-    start: yup.string(),
-    transferDate: yup.string().required('Обязательное поле'),
-    transferTime: yup.string().required('Обязательное поле'),
-    adults: yup.string().required('Обязательное поле'),
-    childrenUnder5: yup.string().required('Обязательное поле'),
-    childrenAbove5: yup.string().required('Обязательное поле'),
-  })
+      carType: yup.string().required('Обязательное поле'),
+      end: yup.string().required('Обязательное поле'),
+      pickYouUpFromAirPort: yup.boolean().required('Обязательное поле'),
+      start: yup.string(),
+      transferDate: yup.string().required('Обязательное поле'),
+      transferTime: yup.string().required('Обязательное поле'),
+      adults: yup.string().required('Обязательное поле'),
+      childrenUnder5: yup.string().required('Обязательное поле'),
+      childrenAbove5: yup.string().required('Обязательное поле'),
+    }),
   });
 
   const dispatch = useAppDispatch();
@@ -66,7 +64,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   const maxSteps = steps.length;
 
   const methods = useForm<any>({ resolver: yupResolver(validationSchema) });
-  const {isValid} = methods.formState;
+  const { isValid } = methods.formState;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => (prevActiveStep !== steps.length - 1 ? prevActiveStep + 1 : prevActiveStep));

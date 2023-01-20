@@ -35,7 +35,6 @@ function App() {
         <Route path="/transfers/ordered/:id/change/date" element={<DateTime />} />
         <Route path="/transfers/ordered/:id/final" element={<FinalPage />} />
         <Route path="/kek" element={<Form />} />
-
       </Routes>
     </BrowserRouter>
   );

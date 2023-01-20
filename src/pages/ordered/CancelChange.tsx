@@ -31,7 +31,7 @@ const buttonComplete: SxProps = {
 };
 
 const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
-  const {id} = useParams()
+  const { id } = useParams();
   const { transfers } = useAppSelector((state) => state.transfers);
   const navigate = useNavigate();
   return (
@@ -44,7 +44,7 @@ const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
       <br />
       <hr />
       <br />
-      {transfers.filter((transfer: any) => {
+      {transfers.map((transfer: any) => {
         return (
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>

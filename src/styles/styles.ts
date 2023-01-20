@@ -25,7 +25,7 @@ export const defaultButton: SxProps = {
   },
   '&:disabled': {
     backgroundColor: '#AFAFAF',
-  }
+  },
 };
 
 export const button: SxProps = {

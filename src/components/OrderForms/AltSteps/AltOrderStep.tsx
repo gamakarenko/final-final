@@ -11,55 +11,53 @@ import { useYmaps } from '../../../hooks/useYmaps';
 interface OrderStepProps {}
 
 const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
-// const [message, setMessage] = useState([])
-// console.log(message)
-  const [isShow, setIsShow] = useState(false)
-  const {onLoad, ymaps, init, start, setStart} = useYmaps()
+  // const [message, setMessage] = useState([])
+  // console.log(message)
+  const [isShow, setIsShow] = useState(false);
+  const { onLoad, ymaps, init, start, setStart } = useYmaps();
 
-  
-useEffect(() => {
-ymaps.ready(() => onLoad(ymaps))
-ymaps.ready(() => init('map'));
-ymaps.ready(() => init('map2'));
+  useEffect(() => {
+    ymaps.ready(() => onLoad(ymaps));
+    ymaps.ready(() => init('map'));
+    ymaps.ready(() => init('map2'));
 
-// let socket = new WebSocket('wss://ws.bitmex.com/realtimePlatform')
+    // let socket = new WebSocket('wss://ws.bitmex.com/realtimePlatform')
 
-// socket.onopen = function() {
-//   console.log("Соединение установлено.");
-//   //@ts-ignore
-// socket.send(`{"op": "subscribe", "args": ["chat"]}`)
-// };
+    // socket.onopen = function() {
+    //   console.log("Соединение установлено.");
+    //   //@ts-ignore
+    // socket.send(`{"op": "subscribe", "args": ["chat"]}`)
+    // };
 
-// socket.onclose = function(event) {
-//   if (event.wasClean) {
-//     console.log('Соединение закрыто чисто');
-//   } else {
-//     console.log('Обрыв соединения'); // например, "убит" процесс сервера
-//   }
-//   console.log('Код: ' + event.code + ' причина: ' + event.reason);
-// };
+    // socket.onclose = function(event) {
+    //   if (event.wasClean) {
+    //     console.log('Соединение закрыто чисто');
+    //   } else {
+    //     console.log('Обрыв соединения'); // например, "убит" процесс сервера
+    //   }
+    //   console.log('Код: ' + event.code + ' причина: ' + event.reason);
+    // };
 
-// socket.onmessage = function(event) {
-//   const data = JSON.parse(event?.data)
-//   const next = {
-//     nick: data?.data[0]?.user,
-//     message: data?.data[0]?.message
-//   }
-//   setMessage((prev) => [...prev, next])
-// };
+    // socket.onmessage = function(event) {
+    //   const data = JSON.parse(event?.data)
+    //   const next = {
+    //     nick: data?.data[0]?.user,
+    //     message: data?.data[0]?.message
+    //   }
+    //   setMessage((prev) => [...prev, next])
+    // };
 
-// socket.onerror = function() {
-//   console.log("Ошибка ");
-// };
-
-}, [isShow])
+    // socket.onerror = function() {
+    //   console.log("Ошибка ");
+    // };
+  }, [isShow]);
 
   const { register } = useFormContext();
   const dispatch = useAppDispatch();
   const { isAirport, carType } = useAppSelector((state) => state.user);
   return (
     <>
-    {/* <h3>Окошко в одно сообщение)</h3>
+      {/* <h3>Окошко в одно сообщение)</h3>
     <div id='box' style={{height: '200px', overflow: 'auto'}}>
       {message.map((el) => <div key={el.message} style={{ display: 'flex', gap: '10px', marginTop: "10px",}}>
         <div style={{fontWeight: '700'}}>{el?.nick}</div>
@@ -99,13 +97,21 @@ ymaps.ready(() => init('map2'));
         />
         <div>Вас забрать из аэропорта?</div>
       </div>
-      {isShow && <div id="map" style={{width: "100%", height: "400px"}}></div>}
+      {isShow && <div id="map" style={{ width: '100%', height: '400px' }}></div>}
       <div>
         <div className="step">
           <div>Откуда тебя забрать?</div>
-          <Button onClick={() => setIsShow((prev) => !prev)} sx={button}>{isShow ?"Скрыть":"Выбрать на карте"}</Button>
+          <Button onClick={() => setIsShow((prev) => !prev)} sx={button}>
+            {isShow ? 'Скрыть' : 'Выбрать на карте'}
+          </Button>
         </div>
-        <Input id="suggest" sx={input} value={start} type="text" {...register('order.start',{onChange: (e) => setStart(e.target.value)})}/>
+        <Input
+          id="suggest"
+          sx={input}
+          value={start}
+          type="text"
+          {...register('order.start', { onChange: (e) => setStart(e.target.value) })}
+        />
       </div>
       <div>
         <div className="step">
@@ -159,5 +165,4 @@ ymaps.ready(() => init('map2'));
   );
 };
 
-
-export const AltOrderStep = memo(AltOrderStepWithout)
+export const AltOrderStep = memo(AltOrderStepWithout);

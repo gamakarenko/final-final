@@ -11,7 +11,7 @@ interface OrderedPageProps {}
 export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
   const { transfers } = useAppSelector((state) => state.transfers);
   const dispatch = useAppDispatch();
-  console.log(transfers)
+  console.log(transfers);
   useEffect(() => {
     dispatch(fetchTransfers());
   }, []);
@@ -34,31 +34,35 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
         <hr />
         <br />
         <div className="order-wrap">
-        {transfers.map((transfer: any) => (
-          <div key={transfer.id} className="order-block" onClick={() => navigate(`/transfers/ordered/${transfer.id}`)}>
-            <div className="order-block-title">{`Забронированная поездка #${transfer?.id}`}</div>
+          {transfers.map((transfer: any) => (
+            <div
+              key={transfer.id}
+              className="order-block"
+              onClick={() => navigate(`/transfers/ordered/${transfer.id}`)}
+            >
+              <div className="order-block-title">{`Забронированная поездка #${transfer?.id}`}</div>
 
-            <div className="order-row">
-              <div>Откуда:</div>
-              <div>{transfer?.start}</div>
-            </div>
+              <div className="order-row">
+                <div>Откуда:</div>
+                <div>{transfer?.start}</div>
+              </div>
 
-            <div className="order-row">
-              <div>Куда:</div>
-              <div>{transfer?.end}</div>
-            </div>
+              <div className="order-row">
+                <div>Куда:</div>
+                <div>{transfer?.end}</div>
+              </div>
 
-            <div className="order-row">
-              <div>Дата:</div>
-              <div>{transfer?.transferTime}</div>
-            </div>
+              <div className="order-row">
+                <div>Дата:</div>
+                <div>{transfer?.transferTime}</div>
+              </div>
 
-            <div className="order-row">
-              <div>Время:</div>
-              <div>{transfer?.transferDate}</div>
+              <div className="order-row">
+                <div>Время:</div>
+                <div>{transfer?.transferDate}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
         </div>
       </div>
       <Button sx={backButton} onClick={() => navigate('/transfers')}>
