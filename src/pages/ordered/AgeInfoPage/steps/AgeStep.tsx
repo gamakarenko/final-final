@@ -1,6 +1,7 @@
 import { Input, SxProps } from '@mui/material';
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useTelegram } from '../../../../hooks/useTelegram';
 import { fetchTransfers } from '../../../../store/slices/transferSlice';
 import { useAppDispatch, useAppSelector } from '../../../../store/store';
 
@@ -21,10 +22,11 @@ const input: SxProps = {
 };
 
 const AgeStep: React.FunctionComponent<AgeStepProps> = () => {
+  const {userId} = useTelegram()
   const { register } = useFormContext();
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchTransfers());
+    dispatch(fetchTransfers(userId));
   }, []);
   const { transfers } = useAppSelector((state) => state.transfers);
   console.log(transfers);
