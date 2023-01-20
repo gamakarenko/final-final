@@ -7,13 +7,13 @@ const $api = axios.create({
   baseURL: API_URL,
 });
 
-$api.interceptors.request.use((config: AxiosRequestConfig) => {
-  //@ts-ignore
-  let tg = window?.Telegram?.WebApp;
-  let user = tg?.initDataUnsafe?.user;
-  config.headers!.id = 11111;
-  return config;
-});
+// $api.interceptors.request.use((config: AxiosRequestConfig) => {
+//   //@ts-ignore
+//   let tg = window?.Telegram?.WebApp;
+//   let user = tg?.initDataUnsafe?.user;
+//   config.headers!.id = 11111;
+//   return config;
+// });
 
 export default $api;
 
