@@ -4,6 +4,7 @@ import { TAppDispatch } from '../store';
 
 interface IUserState {
   transfers: any;
+  transfer: any;
   isLoading: boolean;
   errors: string;
   isAirport: boolean;
@@ -11,6 +12,7 @@ interface IUserState {
 
 const initialState: IUserState = {
   transfers: [],
+  transfer: {},
   isAirport: false,
   isLoading: true,
   errors: '',
@@ -18,8 +20,6 @@ const initialState: IUserState = {
 
 export const fetchTransfers = (id:any) => async (dispatch: TAppDispatch) => {
   try {
-    // fetch('https://tg-bot-teal.vercel.app/api/user/get/1').then((res) => res.json()).then((res) => {
-    // let kek = res
     dispatch(transfersSlice.actions.transfersFetching)
     const { data } = await $api.get(`/api/user/transfers/${id}`);
     dispatch(transfersSlice.actions.transfersFetchingSuccess(data));
@@ -27,6 +27,16 @@ export const fetchTransfers = (id:any) => async (dispatch: TAppDispatch) => {
     console.log(e);
   }
 };
+export const fetchTransferById = (id:any) => async (dispatch: TAppDispatch) => {
+  try {
+    dispatch(transfersSlice.actions.transfersFetching)
+    const { data } = await $api.get(`/api/user/transfer/${id}`);
+    dispatch(transfersSlice.actions.setTransfer(data));
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 
 const transfersSlice = createSlice({
   name: 'transfers',
@@ -40,12 +50,16 @@ const transfersSlice = createSlice({
       state.transfers = action.payload;
     },
     usersFetchingError(state, action: PayloadAction<string>) {
-      state.isLoading = false;
       state.errors = action.payload;
+      state.isLoading = false;
     },
     fromAirport(state, action: PayloadAction<boolean>) {
       state.isAirport = action.payload;
     },
+    setTransfer(state, action: PayloadAction<string>) {
+      state.transfer = action.payload;
+      state.isLoading = false;
+    }
   },
 });
 export const { fromAirport } = transfersSlice.actions;

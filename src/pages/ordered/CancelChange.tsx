@@ -1,7 +1,9 @@
 import { Button, SxProps } from '@mui/material';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PassengerBlock from '../../components/Passenger/PassangerBlock';
-import { useAppSelector } from '../../store/store';
+import { fetchTransferById } from '../../store/slices/transferSlice';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import { backButton } from '../../styles/styles';
 
 interface CancelChangePageProps {}
@@ -32,7 +34,12 @@ const buttonComplete: SxProps = {
 
 const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
   const { id } = useParams();
-  const { transfers } = useAppSelector((state) => state.transfers);
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchTransferById(id))
+  }, [])
+
+  const { transfer } = useAppSelector((state) => state.transfers);
   const navigate = useNavigate();
   return (
     <div
@@ -44,21 +51,19 @@ const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
       <br />
       <hr />
       <br />
-      {transfers.map((transfer: any) => {
-        return (
+      {
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <PassengerBlock title="Дата поездки" description={transfer?.transferTime} />
-              <PassengerBlock title="Время поездки" description={transfer?.transferDate} />
+              <PassengerBlock title="Дата поездки" description={transfer?.transferDate} />
+              <PassengerBlock title="Время поездки" description={transfer?.transferTime} />
             </div>
             <PassengerBlock title="Откуда тебя забрать?" description={transfer?.start} />
             <PassengerBlock title="Куда привести?" description={transfer?.end} />
-            <PassengerBlock title="Тип автомобиля" description={transfer?.auto} />
+            <PassengerBlock title="Тип автомобиля" description={transfer?.carType} />
             <br />
-            {transfers?.passengers &&
-              transfers?.passengers.filter((i: any, index: any) => {
+            {transfer.passengers && transfer.passengers.map((i: any, index: any) => {
                 return (
-                  <div key={index}>
+                  <div key={i.id}>
                     <hr />
                     <br />
                     <h3 className="passss">{`Пассажир ${index + 1}`}</h3>
@@ -82,8 +87,7 @@ const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
                 );
               })}
           </>
-        );
-      })}
+      }
       <div className="" style={{ marginTop: 'auto' }}>
         <Button sx={buttonComplete} onClick={() => navigate('/transfers/ordered/11/change')}>
           Изменить данные
