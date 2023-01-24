@@ -15,7 +15,7 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
   const {userId} = useTelegram()
   console.log(transfers);
   useEffect(() => {
-    dispatch(fetchTransfers(210230408));
+    dispatch(fetchTransfers(userId));
   }, []);
   const navigate = useNavigate();
   //@ts-ignore
