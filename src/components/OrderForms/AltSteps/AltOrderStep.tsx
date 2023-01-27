@@ -1,4 +1,4 @@
-import { Button, Checkbox, Input, Radio, RadioGroup } from '@mui/material';
+import { Button, Checkbox, Input, Radio, RadioGroup, TextField } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { fromAirport, setCarType } from '../../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
@@ -82,11 +82,11 @@ const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
       <div style={{ display: 'flex', gap: '15px' }}>
         <div>
           <div className="label">Дата поездки</div>
-          <Input type="date" sx={{ ...input, width: '164px' }} {...register('order.transferDate')} />
+          <input className='input-date' type="date" min={ new Date(Date.now() + 28 * (60 * 60 * 1000) ).toLocaleDateString('en-ca')} style={{ width: '164px' }} {...register('order.transferDate')} />
         </div>
         <div>
           <div className="label">Время поездки</div>
-          <Input type="time" sx={{ ...input, width: '164px' }} {...register('order.transferTime')} />
+          <input className='input-date' type="time" {...register('order.transferTime')} />
         </div>
       </div>
       <div className="pick">
@@ -150,7 +150,7 @@ const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
             <br />
             (0-5 лет)
           </div>
-          <Input type="number" sx={input} {...register('order.childrenUnder5')} />
+          <Input defaultValue={0} type="number" sx={input} {...register('order.childrenUnder5')} />
         </div>
         <div>
           <div className="label">
@@ -158,7 +158,7 @@ const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
             <br />
             (6-12 лет)
           </div>
-          <Input type="number" sx={input} {...register('order.childrenAbove5')} />
+          <Input defaultValue={0} type="number" sx={input} {...register('order.childrenAbove5')} />
         </div>
       </div>
     </>

@@ -48,3 +48,22 @@ body {
     padding-right: 10px;
     padding-left: 10px;
 }
+
+.input-date {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    width: 164px;
+    min-height: 45px;
+    background: #E9E9E9;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    &:before {
+        border-bottom: none;
+    }
+}

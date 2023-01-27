@@ -56,7 +56,8 @@ export const AltPassengerInfoStep: React.FunctionComponent<PassengerInfoStepProp
               <div key={number}>
                 <br />
                 <hr />
-                <div className="label">{`Пассажир ${number + 1}`}</div>
+                <br />
+                <div className="passss">{`Пассажир ${number + 1}`}</div>
                 <div className="fullname">ФИО</div>
                 <Input sx={input} type="text" {...register(`order.passengers[${number}].fullName`)} />
                 <div className="label">Номер загранпаспорта</div>

@@ -8,6 +8,9 @@ interface IUserState {
   isLoading: boolean;
   errors: string;
   isAirport: boolean;
+  form: number;
+  form2: number;
+  summ: number;
 }
 
 const initialState: IUserState = {
@@ -16,6 +19,9 @@ const initialState: IUserState = {
   isAirport: false,
   isLoading: true,
   errors: '',
+  form: 1,
+  form2: 1,
+  summ: 0
 };
 
 export const fetchTransfers = (id:any) => async (dispatch: TAppDispatch) => {
@@ -59,9 +65,15 @@ const transfersSlice = createSlice({
     setTransfer(state, action: PayloadAction<string>) {
       state.transfer = action.payload;
       state.isLoading = false;
+    },
+    summ(state) {
+      state.summ = state.form + state.form2
+    },
+    addPassengers(state,action: PayloadAction<any>) {
+      state.transfer.adults = action.payload.adults
     }
   },
 });
-export const { fromAirport } = transfersSlice.actions;
+export const { fromAirport , summ, addPassengers} = transfersSlice.actions;
 
 export default transfersSlice.reducer;
