@@ -1,33 +1,9 @@
-import { Button, SxProps } from '@mui/material';
-import { textAlign } from '@mui/system';
+import { Button } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { backButton } from '../styles/styles';
+import { backButton, ButtonStyle } from '../styles/styles';
 
 interface MyTransfersPageProps {}
-
-const ButtonStyle: SxProps = {
-  width: '343px',
-  height: '47px',
-  background: '#007AFF',
-  borderRadius: '10px',
-  fontStyle: 'normal',
-  fontWeight: '510',
-  fontSize: '14px',
-  lineHeight: '17px',
-  color: 'white',
-  textTransform: 'none',
-  textAlign: 'start',
-  display: 'block',
-  padding: '15px',
-  marginBottom: '15px',
-  '&:hover': {
-    backgroundColor: '#007AFF',
-  },
-  '&:disabled': {
-    backgroundColor: '#AFAFAF',
-  },
-};
 
 export const MyTransfersPage: React.FunctionComponent<MyTransfersPageProps> = () => {
   const navigate = useNavigate();

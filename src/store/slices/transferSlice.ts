@@ -43,6 +43,14 @@ export const fetchTransferById = (id:any) => async (dispatch: TAppDispatch) => {
   }
 };
 
+export const editTransfer = (id:any, obj: any) => async (dispatch: TAppDispatch) => {
+  try {
+    await $api.post(`/api/user/transfer/${id}`, obj)
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 
 const transfersSlice = createSlice({
   name: 'transfers',
@@ -70,7 +78,7 @@ const transfersSlice = createSlice({
       state.summ = state.form + state.form2
     },
     addPassengers(state,action: PayloadAction<any>) {
-      state.transfer.adults = action.payload.adults
+      state.transfer = {...state.transfer, ...action.payload}
     }
   },
 });

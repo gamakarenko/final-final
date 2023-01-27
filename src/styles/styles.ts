@@ -12,6 +12,21 @@ export const backButton: SxProps = {
   lineHeight: '18px',
   textTransform: 'none',
 };
+
+export const buttonBack2: SxProps = {
+  width: '343px',
+  height: '40px',
+  background: '#F2F2F2',
+  border: '1px solid #007AFF',
+  borderRadius: '8px',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '15px',
+  lineHeight: '18px',
+  textTransform: 'none',
+  marginBottom: '20px',
+};
+
 export const defaultButton: SxProps = {
   width: '343px',
   height: '40px',
@@ -49,5 +64,28 @@ export const input: SxProps = {
   paddingRight: '1rem',
   '&:before': {
     borderBottom: 'none',
+  },
+};
+
+export const ButtonStyle: SxProps = {
+  width: '343px',
+  height: '47px',
+  background: '#007AFF',
+  borderRadius: '10px',
+  fontStyle: 'normal',
+  fontWeight: '510',
+  fontSize: '14px',
+  lineHeight: '17px',
+  color: 'white',
+  textTransform: 'none',
+  textAlign: 'start',
+  display: 'block',
+  padding: '15px',
+  marginBottom: '15px',
+  '&:hover': {
+    backgroundColor: '#007AFF',
+  },
+  '&:disabled': {
+    backgroundColor: '#AFAFAF',
   },
 };

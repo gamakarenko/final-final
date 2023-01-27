@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-export const API_URL = 'https://tg-bot-teal.vercel.app';
-
+export const API_URL = 'http://localhost:9002';
+//'https://tg-bot-teal.vercel.app';
 const $api = axios.create({
   // withCredentials: true,
   baseURL: API_URL,

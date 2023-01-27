@@ -5,7 +5,7 @@ import ReviewPage from './pages/AboutPage/ReviewPage';
 import FAQPage from './pages/FAQPage';
 import { MainPage } from './pages/MainPage';
 import { MyTransfersPage } from './pages/MyTransfersPage';
-import AgeInfo from './pages/ordered/AgeInfoPage';
+import AgeStep from './pages/ordered/AgeInfoPage/steps/AgeStep';
 import CancelChangePage from './pages/ordered/CancelChange';
 import DateTime from './pages/ordered/DateTime';
 import FinalPage from './pages/ordered/FinalPage';
@@ -29,9 +29,9 @@ function App() {
         <Route path="/about/review" element={<ReviewPage />} />
         <Route path="/transfers/ordered/:id" element={<CancelChangePage />} />
         <Route path="/transfers/ordered/:id/change" element={<SelectPage />} />
-        <Route path="/transfers/ordered/:id/change/age" element={<AgeInfo />} />
+        <Route path="/transfers/ordered/:id/change/age" element={<AgeStep />} />
         <Route path="/transfers/ordered/:id/change/date" element={<DateTime />} />
-        <Route path="/transfers/ordered/:id/final" element={<FinalPage />} />
+        <Route path="/transfers/ordered/final" element={<FinalPage />} />
       </Routes>
     </BrowserRouter>
   );

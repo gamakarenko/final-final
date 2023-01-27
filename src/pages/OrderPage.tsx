@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Stepper, Step, Button, SxProps } from '@mui/material';
+import { Stepper, Step, Button } from '@mui/material';
 import { CompleteStep, ConfirmationStep } from '../components/OrderForms/Steps';
 import { AltOrderStep, AltPassengerInfoStep } from '../components/OrderForms/AltSteps';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { createTransfer } from '../store/slices/userSlice';
-import { defaultButton } from '../styles/styles';
+import { buttonBack2, defaultButton } from '../styles/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTelegram } from '../hooks/useTelegram'
 import * as yup from 'yup';
@@ -30,20 +30,6 @@ const steps = [
     description: <CompleteStep />,
   },
 ];
-
-const buttonBack: SxProps = {
-  width: '343px',
-  height: '40px',
-  background: '#F2F2F2',
-  border: '1px solid #007AFF',
-  borderRadius: '8px',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '15px',
-  lineHeight: '18px',
-  textTransform: 'none',
-  marginBottom: '20px',
-};
 
 const OrderPage: React.FC<OrderPageProps> = () => {
   const validationSchema = yup.object({
@@ -100,7 +86,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
         </Stepper>
         {activeStep > 0 && activeStep < maxSteps - 1 ? (
           <div style={{ display: 'flex', gap: '15px' }}>
-            <Button sx={buttonBack} onClick={handleBack}>
+            <Button sx={buttonBack2} onClick={handleBack}>
               Назад
             </Button>
             <Button sx={defaultButton} type="submit" onClick={handleNext}>

@@ -8,13 +8,19 @@ import { button, backButton, input, defaultButton } from '../../../styles/styles
 import { fromAirport, setCarType } from '../../../store/slices/userSlice';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { addPassengers, editTransfer } from '../../../store/slices/transferSlice';
 
 interface DateTimeProps {}
 
 const DateTime: React.FunctionComponent<DateTimeProps> = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isAirport, carType } = useAppSelector((state) => state.user);
+  const sentData = (d:any, id: number) => {
+    dispatch(addPassengers(d))
+    dispatch(editTransfer(id, {...transfer, ...d}))
+    navigate('/transfers/ordered/final')
+  }
+  const {transfer} = useAppSelector(state => state.transfers)
   //const { register, handleSubmit } = useForm()
   const validationSchema = yup.object({
     carType: yup.string().required('Обязательное поле'),
@@ -32,7 +38,7 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
   console.log(errors, isValid);
 
   return (
-    <form className="transfers-page" style={{ height: '100%' }} onSubmit={handleSubmit((d) => console.log(d))}>
+    <form className="transfers-page" style={{ height: '100%' }} onSubmit={handleSubmit((d) => sentData(d, transfer.id))}>
       <div>
         <h1 className="order-title">Заказанные поездки</h1>
         <p>Изменить данные возможно не менее чем за 28 часов</p>
@@ -40,17 +46,17 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
         <div style={{ display: 'flex', gap: '15px' }}>
           <div>
             <div className="label">Дата поездки</div>
-            <Input type="date" sx={{ ...input, width: '164px' }} {...register('transferDate')} />
+            <Input defaultValue={transfer.transferDate} type="date" sx={{ ...input, width: '164px' }} {...register('transferDate')} />
           </div>
           <div>
             <div className="label">Время поездки</div>
-            <Input type="time" sx={{ ...input, width: '164px' }} {...register('transferTime')} />
+            <Input defaultValue={transfer.transferTime} type="time" sx={{ ...input, width: '164px' }} {...register('transferTime')} />
           </div>
         </div>
         <div className="pick">
           <Checkbox
             onClick={(e: any) => dispatch(fromAirport(e.target.checked))}
-            defaultChecked={isAirport}
+            defaultChecked={transfer.isAirport}
             {...register('pickYouUpFromAirPort')}
           />
           <div>Вас забрать из аэропорта?</div>
@@ -60,7 +66,7 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
             <div>Откуда тебя забрать?</div>
             <Button sx={button}>Выбрать на карте</Button>
           </div>
-          <Input sx={input} type="text" {...register('start')} />
+          <Input defaultValue={transfer.start} sx={input} type="text" {...register('start')} />
           <p className="error">{errors.start?.message as any}</p>
         </div>
         <div>
@@ -68,9 +74,9 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
             <div>Куда тебя привести?</div>
             <Button sx={button}>Выбрать на карте</Button>
           </div>
-          <Input sx={input} type="text" {...register('end')} />
+          <Input defaultValue={transfer.end} sx={input} type="text" {...register('end')} />
         </div>
-        <RadioGroup defaultValue={carType}>
+        <RadioGroup defaultValue={transfer.carType}>
           <div className="label">Тип автомобиля</div>
           <div className="type-block">
             <Radio

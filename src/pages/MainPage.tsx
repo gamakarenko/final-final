@@ -2,34 +2,21 @@ import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
 import MainButton from '../components/MainButton.tsx';
 import { AboutIcon, FAQIcon, OrderIcon, SearchIcon, ShareIcon, TransfersIcon } from '../components/svg';
+import { useTelegram } from '../hooks/useTelegram';
 
 interface MainPageProps {}
 
 export const MainPage: React.FC<MainPageProps> = () => {
   const [users, setUsers] = React.useState<any>([]);
   const navigate = useNavigate();
-  //@ts-ignore
-  let tg = window?.Telegram?.WebApp;
-  let user = tg?.initDataUnsafe?.user;
-  console.log('Сам объект', tg.initData);
+  const {tg} = useTelegram()
 
   React.useEffect(() => {
     tg.expand();
-    // tg.sendData(JSON.stringify({kek: 'lul'}))
   }, []);
-
-  //@ts-ignore
-  const back = tg.BackButton;
-  back.hide();
 
   return (
     <div className="main-page">
-      {/* <span>Тестирование получения данных</span>
-            <span>{"Username" +" "+ user?.username}</span>
-            <span>{"Имя" + " " + user?.first_name}</span>
-            <span>{"ID" + " " + user?.id}</span>
-            <span>{"Фамилия"+" "+user?.last_name}</span>
-            <span>{"Язык"+ " " +user?.language_code}</span> */}
       <MainButton title="Заказать трансфер" icon={<OrderIcon />} onClick={() => navigate('/order')} />
       <MainButton disabled={true} title="Пошерить трансфер" icon={<ShareIcon />} onClick={() => navigate('/share')} />
       <MainButton disabled title="Найти попутчиков к своей поездке" icon={<SearchIcon />} />
