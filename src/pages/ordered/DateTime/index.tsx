@@ -56,7 +56,7 @@ const DateTime: React.FunctionComponent<DateTimeProps> = () => {
         <div className="pick">
           <Checkbox
             onClick={(e: any) => dispatch(fromAirport(e.target.checked))}
-            defaultChecked={transfer.isAirport}
+            defaultChecked={transfer.pickYouUpFromAirPort}
             {...register('pickYouUpFromAirPort')}
           />
           <div>Вас забрать из аэропорта?</div>

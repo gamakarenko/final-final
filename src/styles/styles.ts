@@ -89,3 +89,17 @@ export const ButtonStyle: SxProps = {
     backgroundColor: '#AFAFAF',
   },
 };
+
+export const passButton: SxProps = {
+  width: '343px',
+  height: '40px',
+  background: '#F2F2F2',
+  border: '1px solid #007AFF',
+  borderRadius: '8px',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '15px',
+  lineHeight: '18px',
+  textTransform: 'none',
+  marginTop: '20px',
+};

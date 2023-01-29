@@ -102,7 +102,7 @@ const CancelChangePage: React.FunctionComponent<CancelChangePageProps> = () => {
           </>
       }
       <div className="" style={{ marginTop: 'auto' }}>
-        <Button sx={buttonComplete} onClick={() => navigate('/transfers/ordered/11/change')}>
+        <Button sx={buttonComplete} onClick={() => navigate(`/transfers/ordered/${id}/change`)}>
           Изменить данные
         </Button>
         <Button sx={button}>Отменить поездку</Button>

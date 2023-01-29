@@ -1,5 +1,5 @@
 import { Button, SxProps } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { backButton } from '../../styles/styles';
 
 interface SelectPageProps {}
@@ -19,6 +19,7 @@ const button: SxProps = {
 };
 
 const SelectPage: React.FunctionComponent<SelectPageProps> = () => {
+  const {id} = useParams()
   const navigate = useNavigate();
   return (
     <div className="page">
@@ -26,10 +27,10 @@ const SelectPage: React.FunctionComponent<SelectPageProps> = () => {
         <div className="page__title-15">Заказанные поездки</div>
         <hr />
         <br />
-        <Button sx={button} onClick={() => navigate('/transfers/ordered/11/change/age')}>
+        <Button sx={button} onClick={() => navigate(`/transfers/ordered/${id}/change/age`)}>
           Личные данные / Количество пассажиров
         </Button>
-        <Button sx={button} onClick={() => navigate('/transfers/ordered/11/change/date')}>
+        <Button sx={button} onClick={() => navigate(`/transfers/ordered/${id}/change/date`)}>
           Дата / Время / Направление поездки
         </Button>
       </div>

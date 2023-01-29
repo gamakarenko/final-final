@@ -45,16 +45,17 @@ const AgeStep: React.FunctionComponent<AgeStepProps> = () => {
     resolver: yupResolver(validationSchema),
   });
   const { isValid, errors } = formState;
-  console.log(errors, isValid);
 
   const sentData = (d:any, id: number) => {
     dispatch(addPassengers(d))
     dispatch(editTransfer(id, {...transfer, ...d}))
-    navigate('/transfers/ordered/final')
+    navigate(`/transfers/ordered/${id}/change/passenger`)
   }
   return (
     <>
-    <form onSubmit={handleSubmit((d) => sentData(d, transfer.id))}>
+    <form className='page' onSubmit={handleSubmit((d) => sentData(d, transfer.id))}>
+    <div>
+      <h1 className='page__title'>Заказанные поездки</h1>
       <p className="order__description">
         Внимание! Изменение количества <br />
         пассажиров может повлиять на стоимость поездки.
@@ -80,6 +81,7 @@ const AgeStep: React.FunctionComponent<AgeStepProps> = () => {
           </div>
           <Input type="number" defaultValue={transfer.childrenAbove5} sx={input} {...register('childrenAbove5')} />
         </div>
+      </div>
       </div>
       <div style={{ display: 'flex', gap: '15px' }}>
           <Button sx={backButton} onClick={() => navigate(-1)}>
