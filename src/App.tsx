@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AboutPage } from './pages/AboutPage/AboutPage';
 import InfoPage from './pages/AboutPage/InfoPage';
 import ReviewPage from './pages/AboutPage/ReviewPage';
+import { Example } from './pages/Example';
 import FAQPage from './pages/FAQPage';
 import { MainPage } from './pages/MainPage';
 import { MyTransfersPage } from './pages/MyTransfersPage';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/transfers/ordered/:id/change/passenger" element={<InfoStep/>} />
         <Route path="/transfers/ordered/:id/change/date" element={<DateTime />} />
         <Route path="/transfers/ordered/final" element={<FinalPage />} />
+        <Route path="/example" element={<Example />} />
       </Routes>
     </BrowserRouter>
   );

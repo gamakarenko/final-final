@@ -15,55 +15,18 @@ const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
   // console.log(message)
   const [isShow, setIsShow] = useState(false);
   const { onLoad, ymaps, init, start, setStart } = useYmaps();
-
+  const { isAirport, carType } = useAppSelector((state) => state.user);
   useEffect(() => {
     ymaps.ready(() => onLoad(ymaps));
     ymaps.ready(() => init('map'));
     ymaps.ready(() => init('map2'));
-
-    // let socket = new WebSocket('wss://ws.bitmex.com/realtimePlatform')
-
-    // socket.onopen = function() {
-    //   console.log("Соединение установлено.");
-    //   //@ts-ignore
-    // socket.send(`{"op": "subscribe", "args": ["chat"]}`)
-    // };
-
-    // socket.onclose = function(event) {
-    //   if (event.wasClean) {
-    //     console.log('Соединение закрыто чисто');
-    //   } else {
-    //     console.log('Обрыв соединения'); // например, "убит" процесс сервера
-    //   }
-    //   console.log('Код: ' + event.code + ' причина: ' + event.reason);
-    // };
-
-    // socket.onmessage = function(event) {
-    //   const data = JSON.parse(event?.data)
-    //   const next = {
-    //     nick: data?.data[0]?.user,
-    //     message: data?.data[0]?.message
-    //   }
-    //   setMessage((prev) => [...prev, next])
-    // };
-
-    // socket.onerror = function() {
-    //   console.log("Ошибка ");
-    // };
   }, [isShow]);
 
   const { register } = useFormContext();
   const dispatch = useAppDispatch();
-  const { isAirport, carType } = useAppSelector((state) => state.user);
+
   return (
     <>
-      {/* <h3>Окошко в одно сообщение)</h3>
-    <div id='box' style={{height: '200px', overflow: 'auto'}}>
-      {message.map((el) => <div key={el.message} style={{ display: 'flex', gap: '10px', marginTop: "10px",}}>
-        <div style={{fontWeight: '700'}}>{el?.nick}</div>
-        <div>{el?.message}</div>
-      </div>)}
-      </div> */}
       <p className="order__description">
         Здесь ты можешь заказ трансфер :)
         <br />
@@ -89,16 +52,49 @@ const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
           <input className='input-date' type="time" {...register('order.transferTime')} />
         </div>
       </div>
-      <div className="pick">
-        <Checkbox
-          onClick={(e: any) => dispatch(fromAirport(e.target.checked))}
-          checked={isAirport}
-          {...register('order.pickYouUpFromAirPort')}
-        />
+      
+      
+      <RadioGroup value={isAirport}>
+      <div className='step-airport'>
+        <Radio value={true} {...register('order.pickYouUpFromAirPort')} onChange={(e: any) => dispatch(fromAirport(JSON.parse(e.target.value)))}/>
         <div>Вас забрать из аэропорта?</div>
       </div>
+      
+      {isAirport && <RadioGroup sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        <div className='step-airport'>
+          <Radio value='Анталья' {...register('order.start')}/>
+          <div>Анталья</div>
+        </div>
+
+
+        <div className='step-airport'>
+          <Radio value='Даламан' {...register('order.start')}/>
+          <div>Даламан</div>
+        </div>
+      </RadioGroup>}
+
+      <div className='step-airport'>
+        <Radio value={false} {...register('order.pickYouUpFromAirPort')} onChange={(e: any) => dispatch(fromAirport(JSON.parse(e.target.value)))}/>
+        <div>Вас отвезти в аэропорт?</div>
+      </div>
+
+      {!isAirport && <RadioGroup sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        <div className='step-airport'>
+          <Radio value={'Анталья'} {...register('order.end')}/>
+          <div>Анталья</div>
+        </div>
+
+
+        <div className='step-airport'>
+          <Radio value={'Даламан'} {...register('order.end')}/>
+          <div>Даламан</div>
+        </div>
+      </RadioGroup>}
+
+      </RadioGroup>
+      
       {isShow && <div id="map" style={{ width: '100%', height: '400px' }}></div>}
-      <div>
+      {!isAirport && <div>
         <div className="step">
           <div>Откуда тебя забрать?</div>
           <Button onClick={() => setIsShow((prev) => !prev)} sx={button}>
@@ -112,32 +108,38 @@ const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
           type="text"
           {...register('order.start', { onChange: (e) => setStart(e.target.value) })}
         />
-      </div>
-      <div>
+      </div>}
+
+
+      {isAirport && <div>
         <div className="step">
           <div>Куда тебя привести?</div>
           <Button sx={button}>Выбрать на карте</Button>
         </div>
-        <Input id="suggest2" sx={input} type="text" {...register('order.end')} />
-      </div>
+        <Input id="suggest" sx={input} value={start} type="text" {...register('order.end', { onChange: (e) => setStart(e.target.value) })} />
+      </div>}
+      
+
+
+      
       <RadioGroup value={carType}>
         <div className="label">Тип автомобиля</div>
         <div className="type-block">
           <Radio
             sx={{ padding: 0, margin: 0 }}
-            onClick={(e: any) => dispatch(setCarType(e.target.value))}
             value={'Vito'}
             icon={<CheckboxActive icon={vitoIcon} title="Vito" info="До 8 человек" />}
             checkedIcon={<CheckboxChecked icon={vitoIcon} title="Vito" info="До 8 человек" />}
             {...register('order.carType')}
+            onClick={(e: any) => dispatch(setCarType(e.target.value))}
           />
           <Radio
             sx={{ padding: 0, margin: 0 }}
-            onClick={(e: any) => dispatch(setCarType(e.target.value))}
             value={'Sedan'}
             icon={<CheckboxActive icon={sedanIcon} title="Sedan" info="До 4 человек" />}
             checkedIcon={<CheckboxChecked icon={sedanIcon} title="Sedan" info="До 4 человек" />}
             {...register('order.carType')}
+            onClick={(e: any) => dispatch(setCarType(e.target.value))}
           />
         </div>
       </RadioGroup>

@@ -51,8 +51,11 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   const maxSteps = steps.length;
   const {userId, tg} = useTelegram()
 
-  const methods = useForm<any>({ resolver: yupResolver(validationSchema) });
-  const { isValid } = methods.formState;
+  const methods = useForm<any>({ 
+    mode: 'onChange',
+    resolver: yupResolver(validationSchema) 
+  });
+  const { isValid, errors } = methods.formState;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => (prevActiveStep !== steps.length - 1 ? prevActiveStep + 1 : prevActiveStep));
@@ -73,6 +76,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   const { order } = methods.getValues();
   const {message} = useAppSelector(state => state.user)
   console.log(order);
+  console.log(isValid, errors)
 
   return (
     <form className="page-long" onSubmit={methods.handleSubmit((d) => setData(d))}>

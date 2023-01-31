@@ -13,7 +13,7 @@ interface IUserState {
 
 const initialState: IUserState = {
   users: [],
-  isAirport: false,
+  isAirport: true,
   carType: '',
   isLoading: true,
   message: '',
