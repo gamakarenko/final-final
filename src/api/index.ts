@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-export const API_URL = 'https://tg-bot-teal.vercel.app';
+export const API_URL = 'https://tg-bot-lemon.vercel.app/';
 //'https://tg-bot-teal.vercel.app';
 const $api = axios.create({
   // withCredentials: true,
