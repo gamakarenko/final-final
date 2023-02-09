@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import $api from '../../api';
 import { TAppDispatch } from '../store';
+import { createTransferThunk } from './transferThunk';
 
 interface IUserState {
   transfers: any;
@@ -21,21 +22,21 @@ const initialState: IUserState = {
   errors: '',
   form: 1,
   form2: 1,
-  summ: 0
+  summ: 0,
 };
 
-export const fetchTransfers = (id:any) => async (dispatch: TAppDispatch) => {
+export const fetchTransfers = (id: any) => async (dispatch: TAppDispatch) => {
   try {
-    dispatch(transfersSlice.actions.transfersFetching)
+    dispatch(transfersSlice.actions.transfersFetching);
     const { data } = await $api.get(`/api/user/transfers/${id}`);
     dispatch(transfersSlice.actions.transfersFetchingSuccess(data));
   } catch (e) {
     console.log(e);
   }
 };
-export const fetchTransferById = (id:any) => async (dispatch: TAppDispatch) => {
+export const fetchTransferById = (id: any) => async (dispatch: TAppDispatch) => {
   try {
-    dispatch(transfersSlice.actions.transfersFetching)
+    dispatch(transfersSlice.actions.transfersFetching);
     const { data } = await $api.get(`/api/user/transfer/${id}`);
     dispatch(transfersSlice.actions.setTransfer(data));
   } catch (e) {
@@ -43,14 +44,13 @@ export const fetchTransferById = (id:any) => async (dispatch: TAppDispatch) => {
   }
 };
 
-export const editTransfer = (id:any, obj: any) => async (dispatch: TAppDispatch) => {
+export const editTransfer = (id: any, obj: any) => async (dispatch: TAppDispatch) => {
   try {
-    await $api.post(`/api/user/transfer/${id}`, obj)
+    await $api.post(`/api/user/transfer/${id}`, obj);
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-}
-
+};
 
 const transfersSlice = createSlice({
   name: 'transfers',
@@ -75,13 +75,20 @@ const transfersSlice = createSlice({
       state.isLoading = false;
     },
     summ(state) {
-      state.summ = state.form + state.form2
+      state.summ = state.form + state.form2;
     },
-    addPassengers(state,action: PayloadAction<any>) {
-      state.transfer = {...state.transfer, ...action.payload}
-    }
+    addPassengers(state, action: PayloadAction<any>) {
+      state.transfer = { ...state.transfer, ...action.payload };
+    },
   },
+
+  extraReducers: (builder) => {
+    builder.addCase(createTransferThunk.fulfilled, (state, action) => {
+      console.log('create transfer: DONE');
+    });
+  },  
 });
-export const { fromAirport , summ, addPassengers} = transfersSlice.actions;
+
+export const { fromAirport, summ, addPassengers } = transfersSlice.actions;
 
 export default transfersSlice.reducer;
