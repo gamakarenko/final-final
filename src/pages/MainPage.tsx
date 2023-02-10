@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../store/store';
+import { createTransferThunk } from '../store/slices/transferThunk';
 import { useTelegram } from '../hooks/useTelegram';
 
 import MainButton from '../components/MainButton.tsx';
-
 import { AboutIcon, FAQIcon, OrderIcon, SearchIcon, ShareIcon, TransfersIcon } from '../components/svg';
-import { createTransferThunk } from '../store/slices/transferThunk';
 
 interface MainPageProps {}
 
-export const MainPage: React.FC<MainPageProps> = () => {
+export const MainPage: FC<MainPageProps> = () => {
   const [users, setUsers] = useState<any>([]);
   const navigate = useNavigate();
   const {tg} = useTelegram()

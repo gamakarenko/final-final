@@ -1,16 +1,19 @@
-import * as React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FC, useState } from 'react';
+
 import { Stepper, Step, Button } from '@mui/material';
-import { CompleteStep, ConfirmationStep } from '../components/OrderForms/Steps';
-import { AltOrderStep, AltPassengerInfoStep } from '../components/OrderForms/AltSteps';
+import { FormProvider, useForm } from 'react-hook-form';
+
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { createTransfer } from '../store/slices/userSlice';
-import { buttonBack2, defaultButton } from '../styles/styles';
+import { useTelegram } from '../hooks/useTelegram';
+
+import { CompleteStep, ConfirmationStep } from '../components/OrderForms/Steps';
+import { AltOrderStep, AltPassengerInfoStep } from '../components/OrderForms/AltSteps';
+
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useTelegram } from '../hooks/useTelegram'
 import * as yup from 'yup';
 
-interface OrderPageProps {}
+import { buttonBack2, defaultButton } from '../styles/styles';
 
 const steps = [
   {
@@ -31,37 +34,43 @@ const steps = [
   },
 ];
 
-const OrderPage: React.FC<OrderPageProps> = () => {
-  const validationSchema = yup.object({
-    order: yup.object({
-      carType: yup.string().required('Обязательное поле'),
-      end: yup.string().required('Обязательное поле'),
-      pickYouUpFromAirPort: yup.boolean().required('Обязательное поле'),
-      start: yup.string(),
-      transferDate: yup.string().required('Обязательное поле'),
-      transferTime: yup.string().required('Обязательное поле'),
-      adults: yup.string().required('Обязательное поле'),
-      childrenUnder5: yup.string().required('Обязательное поле'),
-      childrenAbove5: yup.string().required('Обязательное поле'),
-    }),
-  });
+const validationSchema = yup.object({
+  order: yup.object({
+    carType: yup.string().required('Обязательное поле'),
+    end: yup.string().required('Обязательное поле'),
+    pickYouUpFromAirPort: yup.boolean().required('Обязательное поле'),
+    start: yup.string(),
+    transferDate: yup.string().required('Обязательное поле'),
+    transferTime: yup.string().required('Обязательное поле'),
+    adults: yup.string().required('Обязательное поле'),
+    childrenUnder5: yup.string().required('Обязательное поле'),
+    childrenAbove5: yup.string().required('Обязательное поле'),
+  }),
+});
 
+interface OrderPageProps {}
+
+const OrderPage: FC<OrderPageProps> = () => {
   const dispatch = useAppDispatch();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = steps.length;
-  const {userId, tg} = useTelegram()
 
-  const methods = useForm<any>({ 
+  const [data, setData] = useState({});
+  const [activeStep, setActiveStep] = useState(0);
+  const maxSteps = steps.length;
+
+  const { userId, tg } = useTelegram();
+
+  const methods = useForm<any>({
     mode: 'onChange',
-    resolver: yupResolver(validationSchema) 
+    resolver: yupResolver(validationSchema),
   });
+
   const { isValid, errors } = methods.formState;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => (prevActiveStep !== steps.length - 1 ? prevActiveStep + 1 : prevActiveStep));
     sentPost();
   };
-  const [data, setData] = React.useState({});
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -69,25 +78,26 @@ const OrderPage: React.FC<OrderPageProps> = () => {
   const sentPost = () => {
     if (activeStep === 2) {
       dispatch(createTransfer(data, userId));
-      tg.showAlert(message)
+      tg.showAlert(message);
     }
   };
 
   const { order } = methods.getValues();
-  const {message} = useAppSelector(state => state.user)
-  console.log(order);
-  console.log(isValid, errors)
+  const { message } = useAppSelector((state) => state.user);
 
   return (
     <form className="page-long" onSubmit={methods.handleSubmit((d) => setData(d))}>
       <FormProvider {...methods}>
         <h1 className="page-long__title">Заказать трансфер</h1>
+        {/* Наш текуший степ */}
         <div>{steps[activeStep].description}</div>
-        <Stepper activeStep={activeStep} connector={null}>
+
+        {/* <Stepper activeStep={activeStep} connector={null}>
           {steps.map((_, index) => (
             <Step key={index} />
           ))}
-        </Stepper>
+        </Stepper> */}
+
         {activeStep > 0 && activeStep < maxSteps - 1 ? (
           <div style={{ display: 'flex', gap: '15px' }}>
             <Button sx={buttonBack2} onClick={handleBack}>
@@ -104,6 +114,7 @@ const OrderPage: React.FC<OrderPageProps> = () => {
             Далее
           </Button>
         )}
+
       </FormProvider>
     </form>
   );
