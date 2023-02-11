@@ -12,4 +12,19 @@
 @import './pages/orderPage.scss';
 @import './pages/myTransferPage.scss';
 @import './pages/orderedPage.scss';
-@import './pages/defaultPage.scss'
+@import './pages/defaultPage.scss';
+
+body {
+  font-family: 'SF Pro Display' , sans-serif;
+  color: #333;
+}
+
+* {
+  font-family: inherit;
+  color: inherit;
+}
+
+:root {
+  --primary-color: #007AFF;
+  --bgc: #f2f2f2;
+}

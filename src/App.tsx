@@ -15,13 +15,14 @@ import { OrderedPage } from './pages/ordered/OrderedPage';
 import SelectPage from './pages/ordered/SelectPage';
 import OrderPage from './pages/OrderPage';
 import SharePage from './pages/SharePage';
+import TransferCreation from './pages/TransferCreation/TransferCreation';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/order" element={<OrderPage />} />
+        <Route path="/order" element={<TransferCreation />} />
         <Route path="/share" element={<SharePage />} />
         <Route path="/transfers" element={<MyTransfersPage />} />
         <Route path="/faq" element={<FAQPage />} />

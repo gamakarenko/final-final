@@ -14,7 +14,7 @@ import { useYmaps } from '../../../../hooks/useYmaps';
 import { sedanIcon, vitoIcon } from '../../../images';
 import { button, input } from '../../../../styles/styles';
 import { StyledTripDirection } from './AltOrderStep.styles';
-import RadioButton from '../../../ui/RadioButton/RadioButton';
+import AppRadioButton from '../../../ui/RadioButton/RadioButton';
 
 interface OrderStepProps {}
 
@@ -83,22 +83,22 @@ const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
       <StyledTripDirection>
         <legend>Я отправляюсь:</legend>
         <div className="trip-direction__radio-group">
-          <RadioButton
+          <AppRadioButton
             name="direction"
             value="fromAirport"
             checked={tripDirection === 'fromAirport'}
             onChange={() => setTripDirection('fromAirport')}
           >
             из аэропорта
-          </RadioButton>
-          <RadioButton
+          </AppRadioButton>
+          <AppRadioButton
             name="direction"
             value="toAirport"
             checked={tripDirection === 'toAirport'}
             onChange={() => setTripDirection('toAirport')}
           >
             в аэропорт
-          </RadioButton>
+          </AppRadioButton>
         </div>
       </StyledTripDirection>
 
@@ -106,12 +106,12 @@ const AltOrderStepWithout: React.FC<OrderStepProps> = () => {
         {tripDirection === 'fromAirport' ? 'Из какого?' : 'В какой?'}
 
         <RadioGroup sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-          <RadioButton value="Анталья" {...getStartOrEndRegistry()}>
+          <AppRadioButton value="Анталья" {...getStartOrEndRegistry()}>
             Анталья
-          </RadioButton>
-          <RadioButton value="Даламан" {...getStartOrEndRegistry()}>
+          </AppRadioButton>
+          <AppRadioButton value="Даламан" {...getStartOrEndRegistry()}>
             Даламан
-          </RadioButton>
+          </AppRadioButton>
         </RadioGroup>
       </div>
 

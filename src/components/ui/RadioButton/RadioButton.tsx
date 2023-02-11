@@ -1,20 +1,18 @@
-import { FC, ReactNode } from 'react';
+import { FC, InputHTMLAttributes } from 'react';
 
-import { Radio, RadioProps } from '@mui/material';
+import { StyledAppRadioBtn } from './RadioButton.styles';
 
-import { StyledLabel } from './RadioButton.styles';
-
-interface IRadioButton extends RadioProps {
-  children?: ReactNode;
+interface IAppRadioBtn extends InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
 }
 
-const RadioButton: FC<IRadioButton> = ({ children, className, ...rest }) => {
+const AppRadioButton: FC<IAppRadioBtn> = ({ children, ...rest }) => {
   return (
-    <StyledLabel className={className}>
-      <Radio {...rest} />
+    <StyledAppRadioBtn className='app-radio-btn'>
+      <input type="radio" className="radio-btn__input" {...rest} />
       {children}
-    </StyledLabel>
+    </StyledAppRadioBtn>
   );
 };
 
-export default RadioButton;
+export default AppRadioButton;
