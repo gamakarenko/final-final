@@ -18,6 +18,10 @@ export const StyledAppInput = styled.label`
       outline: none;
       padding: 10px 1em;
 
+      &:focus-visible {
+        border: 1px solid var(--primary-color);
+      }
+
       &:before {
         border-bottom: none;
       }

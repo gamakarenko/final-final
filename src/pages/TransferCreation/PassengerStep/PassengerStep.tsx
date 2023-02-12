@@ -1,13 +1,14 @@
 import { FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { addNewPassenger } from '../../../store/order/order';
 
 import PassengerFieldset from '../../../components/PassengerFieldset/PassengerFieldset';
 import PageText from '../../../components/ui/PageText/PageText';
+import PageParagraph from '../../../components/ui/PageParagraph/PageParagraph';
+import AppButton from '../../../components/ui/AppButton/AppButton';
 
 import { StyledPassengerStep } from './PassengerStep.styles';
-import AppButton from '../../../components/ui/AppButton/AppButton';
-import { addNewPassenger } from '../../../store/order/order';
 
 interface PassengerStepProps {}
 
@@ -17,10 +18,10 @@ const PassengerStep: FC<PassengerStepProps> = () => {
   
   return (
     <StyledPassengerStep className='passenger-step'>
-      <PageText className="transfer-creation__bottom-paragraph">
+      <PageParagraph underlined={true}>
         Отлично! Мы почти у цели:) Для оформления трансфера нам потребуются некоторые данные о тебе. Пожалуйста, заполни
         форму на каждого пассажира.
-      </PageText>
+      </PageParagraph>
 
       {passengers.map((passenger) => (
         <PassengerFieldset key={passenger.id} {...passenger} />

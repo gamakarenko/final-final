@@ -1,10 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 
 import CarRadioBtn from '../../../components/CarRadioBtn/CarRadioBtn';
 import AppButton from '../../../components/ui/AppButton/AppButton';
 import AppInput from '../../../components/ui/AppInput/AppInput';
 import AppTextArea from '../../../components/ui/AppTextArea/AppTextArea';
-import PageText from '../../../components/ui/PageText/PageText';
 import AppRadioBtn from '../../../components/ui/RadioButton/AppRadioBtn';
 import YaMap from '../../../components/YaMap/YaMap';
 
@@ -13,38 +12,46 @@ import { sedanIcon, vitoIcon } from '../../../components/images';
 import { StyledMainInfoStep } from './MainInfoStep.styles';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { editOrderInfo } from '../../../store/order/order';
+import PageParagraph from '../../../components/ui/PageParagraph/PageParagraph';
 
 interface MainInfoStepProps {}
 
 const MainInfoStep: FC<MainInfoStepProps> = () => {
   const { order } = useAppSelector(({ order }) => order);
   const dispatch = useAppDispatch();
-  const setLocation = (location: string) => dispatch(editOrderInfo({ location }));
+  const setLocation = (location: string) =>
+    dispatch(editOrderInfo({ location }));
 
   const [isCardVisible, setIsCardVisible] = useState(false);
 
   return (
     <StyledMainInfoStep>
-      <PageText className="transfer-creation__paragraph">
+      <PageParagraph>
         Здесь ты можешь заказ трансфер :)
         <br />
-        Водитель встретит тебя в указанном месте и отвезёт туда, куда необходимо.
-      </PageText>
+        Водитель встретит тебя в указанном месте и отвезёт туда, куда
+        необходимо.
+      </PageParagraph>
 
-      <PageText className="transfer-creation__bottom-paragraph">
-        Водитель встретит тебя в указанном месте и отвезёт туда, куда необходимо. Забронировать, а также отменить
-        трансфер можно не позднее, чем за 28 часов до поездки. Только так мы можем быть уверены, что машина и водитель
-        будут свободны для вас :)
-      </PageText>
+      <PageParagraph underlined>
+        Водитель встретит тебя в указанном месте и отвезёт туда, куда
+        необходимо. Забронировать, а также отменить трансфер можно не позднее,
+        чем за 28 часов до поездки. Только так мы можем быть уверены, что машина
+        и водитель будут свободны для вас :)
+      </PageParagraph>
 
       <fieldset className="transfer-fieldset">
         <div className="transfer-fieldset__two-columns-box">
           <AppInput
             label="Дата поездки"
             type="date"
-            min={new Date(Date.now() + 28 * (60 * 60 * 1000)).toLocaleDateString('en-ca')}
+            min={new Date(
+              Date.now() + 28 * (60 * 60 * 1000),
+            ).toLocaleDateString('en-ca')}
             value={order.transferDate}
-            onChange={(e) => dispatch(editOrderInfo({ transferDate: e.target.value }))}
+            onChange={(e) =>
+              dispatch(editOrderInfo({ transferDate: e.target.value }))
+            }
           />
 
           {/* TODO не время, а начало поездки? */}
@@ -52,7 +59,9 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
             label="Время поездки"
             type="time"
             value={order.transferTime}
-            onChange={(e) => dispatch(editOrderInfo({ transferTime: e.target.value }))}
+            onChange={(e) =>
+              dispatch(editOrderInfo({ transferTime: e.target.value }))
+            }
           />
         </div>
 
@@ -63,7 +72,9 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
               name="direction"
               value="fromAirport"
               checked={order.direction === 'fromAirport'}
-              onChange={() => dispatch(editOrderInfo({ direction: 'fromAirport' }))}
+              onChange={() =>
+                dispatch(editOrderInfo({ direction: 'fromAirport' }))
+              }
             >
               из аэропорта
             </AppRadioBtn>
@@ -71,7 +82,9 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
               name="direction"
               value="toAirport"
               checked={order.direction === 'toAirport'}
-              onChange={() => dispatch(editOrderInfo({ direction: 'toAirport' }))}
+              onChange={() =>
+                dispatch(editOrderInfo({ direction: 'toAirport' }))
+              }
             >
               в аэропорт
             </AppRadioBtn>
@@ -80,14 +93,18 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
 
         <>
           <div>
-            <p className="transfer-fieldset__label">{order.direction === 'fromAirport' ? 'Из какого?' : 'В какой?'}</p>
+            <p className="transfer-fieldset__label">
+              {order.direction === 'fromAirport' ? 'Из какого?' : 'В какой?'}
+            </p>
 
             <div className="transfer-fieldset__radio-group">
               <AppRadioBtn
                 value="Анталья"
                 name="airport"
                 checked={order.airport === 'Анталья'}
-                onChange={(e) => dispatch(editOrderInfo({ airport: 'Анталья' }))}
+                onChange={(e) =>
+                  dispatch(editOrderInfo({ airport: 'Анталья' }))
+                }
               >
                 Анталья
               </AppRadioBtn>
@@ -95,7 +112,9 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
                 value="Даламан"
                 name="airport"
                 checked={order.airport === 'Даламан'}
-                onChange={(e) => dispatch(editOrderInfo({ airport: 'Даламан' }))}
+                onChange={(e) =>
+                  dispatch(editOrderInfo({ airport: 'Даламан' }))
+                }
               >
                 Даламан
               </AppRadioBtn>
@@ -117,10 +136,16 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
             <AppTextArea
               id="suggest"
               value={order.location}
-              onChange={(e) => dispatch(editOrderInfo({ location: e.target.value }))}
+              onChange={(e) =>
+                dispatch(editOrderInfo({ location: e.target.value }))
+              }
             />
 
-            <YaMap isVisible={isCardVisible} location={order.location} setLocation={setLocation} />
+            <YaMap
+              isVisible={isCardVisible}
+              location={order.location}
+              setLocation={setLocation}
+            />
           </div>
         </>
 
@@ -150,7 +175,11 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
           type="number"
           min={1}
           value={order.adults}
-          onChange={(e) => dispatch(editOrderInfo({ adults: e.target.value as unknown as number }))}
+          onChange={(e) =>
+            dispatch(
+              editOrderInfo({ adults: e.target.value as unknown as number }),
+            )
+          }
         />
 
         <div className="transfer-fieldset__two-columns-box">
@@ -158,7 +187,13 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
             type="number"
             min={0}
             value={order.childrenUnder5}
-            onChange={(e) => dispatch(editOrderInfo({ childrenUnder5: e.target.value as unknown as number }))}
+            onChange={(e) =>
+              dispatch(
+                editOrderInfo({
+                  childrenUnder5: e.target.value as unknown as number,
+                }),
+              )
+            }
           >
             Количество детей
             <br />
@@ -168,7 +203,13 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
             type="number"
             min={0}
             value={order.childrenAbove5}
-            onChange={(e) => dispatch(editOrderInfo({ childrenAbove5: e.target.value as unknown as number }))}
+            onChange={(e) =>
+              dispatch(
+                editOrderInfo({
+                  childrenAbove5: e.target.value as unknown as number,
+                }),
+              )
+            }
           >
             Количество детей
             <br />

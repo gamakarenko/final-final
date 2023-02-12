@@ -8,7 +8,13 @@ export interface IAppButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-const AppButton: FC<IAppButton> = ({ children, isFilled = true, className = '', isUppercase = false, ...rest }) => {
+const AppButton: FC<IAppButton> = ({
+  children,
+  isFilled = true,
+  className = '',
+  isUppercase = false,
+  ...rest
+}) => {
   return (
     <StyledAppButton
       isFilled={isFilled}

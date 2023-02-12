@@ -25,7 +25,7 @@ const initialState: IOrderState = {
     transferTime: '',
     direction: 'fromAirport',
     airport: 'Анталья',
-    location: 'улица',
+    location: '',
     carType: 'vito',
     adults: 1,
     childrenUnder5: 0,
@@ -47,7 +47,7 @@ const orderSlice = createSlice({
     },
 
     addNewPassenger: (state) => {
-      const maxId = state.order.passengers.reduce(
+      const maxId: number = state.order.passengers.reduce(
         (result: number, passenger) =>
           passenger.id > result ? passenger.id : result,
         0,
@@ -72,6 +72,7 @@ const orderSlice = createSlice({
 
     clearOrderInfo: () => initialState,
   },
+  
   extraReducers: (builder) => {
     builder.addCase(createOrderThunk.pending, (state) => {
       state.isSendingOrder = true;
@@ -80,8 +81,8 @@ const orderSlice = createSlice({
       state.isSendingOrder = false;
     });
     builder.addCase(createOrderThunk.fulfilled, (state, action) => {
-      state.isSendingOrder = false;
-      console.log('create transfer: DONE');
+      state = initialState;
+
     });
   },
 });

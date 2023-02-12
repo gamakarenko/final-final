@@ -1,8 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../store/store';
-import { createOrderThunk } from '../store/order/orderThunks';
 import { useTelegram } from '../hooks/useTelegram';
 
 import MainButton from '../components/MainButton.tsx';
@@ -15,36 +13,8 @@ export const MainPage: FC<MainPageProps> = () => {
   const navigate = useNavigate();
   const { tg } = useTelegram();
 
-  const dispatch = useAppDispatch();
-
   useEffect(() => {
     tg.expand();
-
-    //TODO убрать тестовый диспатч
-    // dispatch(
-    //   createOrderThunk({
-    //     transferDate: '',
-    //     transferTime: '',
-    //     pickYouUpFromAirPort: true,
-    //     start: '',
-    //     end: '',
-    //     carType: 'sedan',
-    //     adults: 1,
-    //     childrenUnder5: 0,
-    //     childrenAbove5: 0,
-    //     passengers: [
-    //       {
-    //         fullName: '',
-    //         passportId: '',
-    //         departureDate: '',
-    //         departureTime: '',
-    //         phoneNumber: '',
-    //         telegramId: '',
-    //         transferComment: '',
-    //       },
-    //     ],
-    //   }),
-    // );
   }, []);
 
   return (

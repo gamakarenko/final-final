@@ -11,4 +11,11 @@ export const StyledAppButton = styled.button<Pick<IAppButton, 'isFilled' | 'isUp
   text-transform: ${(props) => (props.isUppercase ? 'uppercase' : 'none')};
   line-height: 1;
   cursor: pointer;
+
+  &:disabled {
+    background-color: var(--disabled-color);
+    border: 1px var(--disabled-color) solid;
+    color: #fff;
+    pointer-events: none;
+  }
 `;
