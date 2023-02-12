@@ -14,6 +14,7 @@ const AppButton: FC<IAppButton> = ({ children, isFilled = true, className = '', 
       isFilled={isFilled}
       isUppercase={isUppercase}
       className={`app-button${className ? ' ' + className : ''}`}
+      type="button"
       {...rest}
     >
       {children}

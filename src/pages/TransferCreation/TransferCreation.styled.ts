@@ -15,6 +15,21 @@ export const StyledTransferCreation = styled.div`
       margin-bottom: 20px;
       border-bottom: 1px solid #adadad;
     }
+
+    &__steps-btns-box {
+      padding: 20px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    &__btn-left {
+      grid-column: 1;
+    }
+
+    &__btn-right {
+      grid-column: -2;
+    }
   }
 
   .transfer-fieldset {

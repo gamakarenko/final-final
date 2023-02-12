@@ -1,3 +1,5 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-export const StyledMainInfoStep = styled.div``
+export const StyledMainInfoStep = styled.fieldset`
+  border: none;
+`;

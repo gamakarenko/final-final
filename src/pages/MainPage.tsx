@@ -21,30 +21,30 @@ export const MainPage: FC<MainPageProps> = () => {
     tg.expand();
 
     //TODO убрать тестовый диспатч
-    dispatch(
-      createOrderThunk({
-        transferDate: '',
-        transferTime: '',
-        pickYouUpFromAirPort: true,
-        start: '',
-        end: '',
-        carType: 'sedan',
-        adults: 1,
-        childrenUnder5: 0,
-        childrenAbove5: 0,
-        passengers: [
-          {
-            fullName: '',
-            passportId: '',
-            departureDate: '',
-            departureTime: '',
-            phoneNumber: '',
-            telegramId: '',
-            transferComment: '',
-          },
-        ],
-      }),
-    );
+    // dispatch(
+    //   createOrderThunk({
+    //     transferDate: '',
+    //     transferTime: '',
+    //     pickYouUpFromAirPort: true,
+    //     start: '',
+    //     end: '',
+    //     carType: 'sedan',
+    //     adults: 1,
+    //     childrenUnder5: 0,
+    //     childrenAbove5: 0,
+    //     passengers: [
+    //       {
+    //         fullName: '',
+    //         passportId: '',
+    //         departureDate: '',
+    //         departureTime: '',
+    //         phoneNumber: '',
+    //         telegramId: '',
+    //         transferComment: '',
+    //       },
+    //     ],
+    //   }),
+    // );
   }, []);
 
   return (
