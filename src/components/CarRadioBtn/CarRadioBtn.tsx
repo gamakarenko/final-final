@@ -1,5 +1,5 @@
 import { FC, InputHTMLAttributes } from 'react';
-import { ICarType } from '../../pages/TransferCreation/TransferCreation.types';
+import { ICarType } from '../../types/order';
 
 import { StyledCarRadioBtn } from './CarRadioBtn.styles';
 

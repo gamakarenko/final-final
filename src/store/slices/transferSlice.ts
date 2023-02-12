@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import $api from '../../api';
 import { TAppDispatch } from '../store';
-import { createTransferThunk } from './transferThunk';
 
 interface IUserState {
   transfers: any;
@@ -81,12 +80,6 @@ const transfersSlice = createSlice({
       state.transfer = { ...state.transfer, ...action.payload };
     },
   },
-
-  extraReducers: (builder) => {
-    builder.addCase(createTransferThunk.fulfilled, (state, action) => {
-      console.log('create transfer: DONE');
-    });
-  },  
 });
 
 export const { fromAirport, summ, addPassengers } = transfersSlice.actions;

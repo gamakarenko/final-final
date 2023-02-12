@@ -1,5 +1,5 @@
 import $api from '.';
 
-export const createTransfer = (order: any) => {
+export const createOrder = (order: any) => {
   return $api.post('transfers/create-transfer', order);
 };

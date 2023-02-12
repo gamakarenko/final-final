@@ -14,7 +14,7 @@ import { useYmaps } from '../../../../hooks/useYmaps';
 import { sedanIcon, vitoIcon } from '../../../images';
 import { button, input } from '../../../../styles/styles';
 import { StyledTripDirection } from './AltOrderStep.styles';
-import AppRadioButton from '../../../ui/RadioButton/RadioButton';
+import AppRadioButton from '../../../ui/RadioButton/AppRadioBtn';
 
 interface OrderStepProps {}
 
