@@ -17,8 +17,8 @@ const PassengerSummary: FC<PassengerSummaryProps> = ({
       <InfoCell className="passenger-summary__info" heading="ФИО" data={passenger.fullName} />
       <InfoCell className="passenger-summary__info" heading="Номер загранпаспорта" data={passenger.passportId} />
       <InfoCell className="passenger-summary__info" heading="Логин в телеграмме" data={passenger.telegramId} />
-      <InfoCell className="passenger-summary__info" heading="Номер телефона" data={passenger.phoneNumber || '—'} />
-      <InfoCell className="passenger-summary__info" heading="Комментарий" data={passenger.transferComment || '—'} />
+      <InfoCell className="passenger-summary__info" heading="Номер телефона" data={passenger.phoneNumber} />
+      <InfoCell className="passenger-summary__info" heading="Комментарий" data={passenger.transferComment} />
     </StyledPassengerSummary>
   );
 };
