@@ -2,10 +2,12 @@ import { useAppSelector } from '../../../store/store';
 
 import InfoCell from '../../../components/InfoCell/InfoCell';
 import PageParagraph from '../../../components/ui/PageParagraph/PageParagraph';
+import PassengerSummary from '../../../components/PassengerSummary/PassengerSummary';
+
+import { convertDateFormat } from '../../../utils/convertDateFormat';
 
 import { StyledTwoColumnBox } from '../../../styles/StyledTwoColumnBox';
 import { StyledSummaryStep } from './SummaryStep.styled';
-import PassengerSummary from '../../../components/PassengerSummary/PassengerSummary';
 
 const SummaryStep = () => {
   const { order } = useAppSelector(({ order }) => order);
@@ -17,7 +19,7 @@ const SummaryStep = () => {
       </PageParagraph>
       <div className="summary-step__info-box summary-step__info-box_bottom-lined">
         <StyledTwoColumnBox>
-          <InfoCell heading="Дата поездки" data={order.transferDate} />
+          <InfoCell heading="Дата поездки" data={convertDateFormat(order.transferDate)} />
           <InfoCell heading="Время поездки" data={order.transferTime} />
         </StyledTwoColumnBox>
         <InfoCell
