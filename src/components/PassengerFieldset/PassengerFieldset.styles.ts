@@ -14,5 +14,9 @@ export const StyledPassengerFieldset = styled.div`
       justify-self: end;
       margin-top: 10px;
     }
+
+    &__input-box:not(:last-of-type) {
+      margin-bottom: 15px;
+    }
   }
 `;

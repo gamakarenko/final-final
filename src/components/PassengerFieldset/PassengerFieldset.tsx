@@ -28,6 +28,7 @@ const PassengerFieldset: FC<IPassenger> = ({
   return (
     <StyledPassengerFieldset className="passenger-field">
       <AppInput
+        className="passenger-field__input-box"
         label="ФИО"
         autoComplete="name"
         value={fullName}
@@ -36,6 +37,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         }
       />
       <AppInput
+        className="passenger-field__input-box"
         label="Номер загранпаспорта"
         value={passportId}
         onChange={(e) =>
@@ -43,6 +45,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         }
       />
       <AppInput
+        className="passenger-field__input-box"
         label="Дата отправки"
         value={departureDate}
         onChange={(e) =>
@@ -50,6 +53,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         }
       />
       <AppInput
+        className="passenger-field__input-box"
         label="Время отправки"
         value={departureTime}
         onChange={(e) =>
@@ -57,6 +61,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         }
       />
       <AppInput
+        className="passenger-field__input-box"
         label="Номер телефона"
         autoComplete="tel"
         value={phoneNumber}
@@ -65,6 +70,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         }
       />
       <AppInput
+        className="passenger-field__input-box"
         label="Логин в телеграмме"
         value={telegramId}
         onChange={(e) =>
@@ -72,6 +78,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         }
       />
       <AppTextArea
+        className="passenger-field__input-box"
         label="Комментарий к поездке"
         value={transferComment}
         onChange={(e) =>

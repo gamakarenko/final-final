@@ -15,21 +15,31 @@ interface PassengerStepProps {}
 const PassengerStep: FC<PassengerStepProps> = () => {
   const { passengers } = useAppSelector(({ order }) => order.order);
   const dispatch = useAppDispatch();
-  
+
   return (
-    <StyledPassengerStep className='passenger-step'>
+    <StyledPassengerStep className="passenger-step">
       <PageParagraph underlined={true}>
-        Отлично! Мы почти у цели:) Для оформления трансфера нам потребуются некоторые данные о тебе. Пожалуйста, заполни
-        форму на каждого пассажира.
+        Отлично! Мы&nbsp;почти у&nbsp;цели:) Для оформления трансфера нам
+        потребуются некоторые данные о&nbsp;тебе. Пожалуйста, заполни форму
+        на&nbsp;каждого пассажира.
       </PageParagraph>
 
       {passengers.map((passenger) => (
         <PassengerFieldset key={passenger.id} {...passenger} />
       ))}
 
-      <PageText className='passenger-step__hint'>При возникновении вопросов на этапе бронирования, пожалуйста, обратитесь к ассистенту @...</PageText>
+      <PageText className="passenger-step__hint">
+        При возникновении вопросов на&nbsp;этапе бронирования, пожалуйста,
+        обратитесь к&nbsp;ассистенту @...
+      </PageText>
 
-      <AppButton  className='passenger-step__add-btn' isFilled={false} onClick={() => dispatch(addNewPassenger())}>Добавить пассажира</AppButton>
+      <AppButton
+        className="passenger-step__add-btn"
+        isFilled={false}
+        onClick={() => dispatch(addNewPassenger())}
+      >
+        Добавить пассажира
+      </AppButton>
     </StyledPassengerStep>
   );
 };

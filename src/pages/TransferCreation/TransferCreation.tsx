@@ -43,6 +43,7 @@ const TransferCreation: FC = () => {
             <AppButton
               className="transfer-creation__btn-left"
               disabled={isSendingOrder}
+              isFilled={false}
               onClick={() => goPrevStep()}
             >
               Назад

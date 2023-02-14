@@ -47,11 +47,11 @@ const orderSlice = createSlice({
     },
 
     addNewPassenger: (state) => {
-      const maxId: number = state.order.passengers.reduce(
+      const maxId = state.order.passengers.reduce(
         (result: number, passenger) =>
           passenger.id > result ? passenger.id : result,
         0,
-      );
+      ) as unknown as number;
 
       state.order.passengers.push({ ...newPassenger, id: maxId + 1 });
     },
@@ -72,7 +72,7 @@ const orderSlice = createSlice({
 
     clearOrderInfo: () => initialState,
   },
-  
+
   extraReducers: (builder) => {
     builder.addCase(createOrderThunk.pending, (state) => {
       state.isSendingOrder = true;
@@ -82,7 +82,6 @@ const orderSlice = createSlice({
     });
     builder.addCase(createOrderThunk.fulfilled, (state, action) => {
       state = initialState;
-
     });
   },
 });

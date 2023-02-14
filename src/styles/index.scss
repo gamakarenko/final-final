@@ -24,7 +24,14 @@ body {
   color: inherit;
 }
 
+*:focus-visible {
+  outline: 2px var(--primary-color) solid;
+  outline-offset: 2px;
+}
+
 :root {
+  scroll-behavior: smooth;
+
   --primary-color: #007AFF;
   --bgc: #f2f2f2;
   --line-color: #adadad;

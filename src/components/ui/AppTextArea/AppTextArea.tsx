@@ -6,11 +6,21 @@ interface IAppTextArea extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
 }
 
-const AppTextArea: FC<IAppTextArea> = ({ label, children, ...rest }) => {
+const AppTextArea: FC<IAppTextArea> = ({
+  label,
+  children,
+  className,
+  ...rest
+}) => {
   return (
-    <StyledAppTextArea className="app-input">
+    <StyledAppTextArea
+      className={`app-input${className ? ' ' + className : ''}`}
+    >
       {label || children}
-      <textarea className="app-input__input app-input__input_text-area" {...rest} />
+      <textarea
+        className="app-input__input app-input__input_text-area"
+        {...rest}
+      />
     </StyledAppTextArea>
   );
 };

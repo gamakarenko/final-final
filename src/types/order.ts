@@ -14,10 +14,6 @@ export interface IPassenger {
   transferComment: string;
 }
 
-export interface IPassengerEl extends IPassenger {
-  id: number;
-}
-
 export interface IOrder {
   transferDate: string;
   transferTime: string;
