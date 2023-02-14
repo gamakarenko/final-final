@@ -35,20 +35,10 @@ const YaMap: FC<YaMapProps> = ({ isVisible, location, setLocation }) => {
 
     var myMap = new yaMap.Map(id, {
       center: [36.887763, 30.702574],
-      zoom: 12,
+      zoom: 7,
 
       options: { autoFitToViewport: 'always' },
     });
-
-    yaMap.geolocation
-      .get({
-        provider: 'auto',
-        mapStateAutoApply: true,
-        autoReverseGeocode: true,
-      })
-      .then(function (result: any) {
-        myMap.geoObjects.add(result.geoObjects);
-      });
 
     myMap.events.add('click', function (e: any) {
       var coords = e.get('coords');
