@@ -19,7 +19,10 @@ const SummaryStep = () => {
       </PageParagraph>
       <div className="summary-step__info-box summary-step__info-box_bottom-lined">
         <StyledTwoColumnBox>
-          <InfoCell heading="Дата поездки" data={convertDateFormat(order.transferDate)} />
+          <InfoCell
+            heading="Дата поездки"
+            data={convertDateFormat(order.transferDate)}
+          />
           <InfoCell heading="Время поездки" data={order.transferTime} />
         </StyledTwoColumnBox>
         <InfoCell
@@ -41,11 +44,8 @@ const SummaryStep = () => {
         {/* TODO сделать описание типа автомобиля, подумать откуда брать */}
         <InfoCell
           heading="Тип автомобиля"
-          data={
-            order.carType === 'sedan'
-              ? 'Седан (до 4 человек)'
-              : 'Vito (до 8 человек)'
-          }
+          data={order.carType === 'sedan' ? 'Седан' : 'Vito'}
+          caption={order.carType === 'sedan' ? 'до 4 человек' : 'до 8 человек'}
         />
         <StyledTwoColumnBox>
           <InfoCell heading="Количество взрослых" data={String(order.adults)} />

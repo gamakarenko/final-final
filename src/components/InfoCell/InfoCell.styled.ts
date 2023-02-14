@@ -14,5 +14,11 @@ export const StyledInfoCell = styled.div`
       font-size: 15px;
       line-height: 1.2;
     }
+
+    &__caption {
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 400;
+    }
   }
 `;
