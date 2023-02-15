@@ -32,6 +32,11 @@ export const StyledTransferCreation = styled.div`
     &__btn-right {
       grid-column: -2;
     }
+
+    &__spinner {
+      grid-column: 1/-1;
+      align-self: center;
+    }
   }
 
   .transfer-fieldset {

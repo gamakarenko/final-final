@@ -10,8 +10,8 @@ interface IOrderState {
 
 const newPassenger: IPassenger = {
   id: 0,
-  fullName: '',
-  passportId: '',
+  fullName: 'qqq',
+  passportId: '111',
   departureDate: '',
   departureTime: '',
   phoneNumber: '',
@@ -21,11 +21,11 @@ const newPassenger: IPassenger = {
 
 const initialState: IOrderState = {
   order: {
-    transferDate: '',
-    transferTime: '',
+    transferDate: '2024-11-11',
+    transferTime: '11:11',
     direction: 'fromAirport',
     airport: 'Анталья',
-    location: '',
+    location: 'qwe',
     carType: 'vito',
     adults: 1,
     childrenUnder5: 0,
