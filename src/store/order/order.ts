@@ -81,7 +81,6 @@ const orderSlice = createSlice({
       state.isSendingOrder = false;
     });
     builder.addCase(createOrderThunk.fulfilled, (state) => {
-      //TODO не выставляет state.isSendingOrder = false, почему?
       state = initialState;
     });
   },

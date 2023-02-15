@@ -16,8 +16,11 @@ import SelectPage from './pages/ordered/SelectPage';
 import OrderPage from './pages/OrderPage';
 import SharePage from './pages/SharePage';
 import TransferCreation from './pages/TransferCreation/TransferCreation';
+import { getUsersOrders } from 'api/usersOrders';
+import { useEffect } from 'react';
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -33,8 +36,14 @@ function App() {
         <Route path="/transfers/ordered/:id" element={<CancelChangePage />} />
         <Route path="/transfers/ordered/:id/change" element={<SelectPage />} />
         <Route path="/transfers/ordered/:id/change/age" element={<AgeStep />} />
-        <Route path="/transfers/ordered/:id/change/passenger" element={<InfoStep/>} />
-        <Route path="/transfers/ordered/:id/change/date" element={<DateTime />} />
+        <Route
+          path="/transfers/ordered/:id/change/passenger"
+          element={<InfoStep />}
+        />
+        <Route
+          path="/transfers/ordered/:id/change/date"
+          element={<DateTime />}
+        />
         <Route path="/transfers/ordered/final" element={<FinalPage />} />
         <Route path="/example" element={<Example />} />
       </Routes>

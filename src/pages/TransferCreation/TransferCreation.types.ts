@@ -1,2 +1,2 @@
-export type ITripDirection = 'fromAirport' | 'toAirport' | null;
+export type ITripDirection = 'fromAirport' | 'toAirport';
 
