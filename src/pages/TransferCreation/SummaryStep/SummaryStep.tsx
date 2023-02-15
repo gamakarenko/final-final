@@ -59,7 +59,7 @@ const SummaryStep = () => {
 
       <div className="summary-step__info-box">
         {order.passengers.map((passenger, i) => (
-          <PassengerSummary index={i + 1} {...passenger} />
+          <PassengerSummary key={i} index={i + 1} {...passenger} />
         ))}
       </div>
     </StyledSummaryStep>
