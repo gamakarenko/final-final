@@ -27,7 +27,7 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
 
     const options = {method: 'GET', headers: {id: '1'}};
 
-    fetch('https://9946-37-20-208-79.eu.ngrok.io/api/v1/users/all-transfers', options)
+    fetch('https://a2e2-37-20-208-79.eu.ngrok.io/api/v1/users/all-transfers', options)
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));

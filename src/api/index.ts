@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-export const API_URL = 'https://9946-37-20-208-79.eu.ngrok.io/api/v1/';
+export const API_URL = 'https://a2e2-37-20-208-79.eu.ngrok.io/api/v1/';
 
 const $api = axios.create({
   withCredentials: true,
