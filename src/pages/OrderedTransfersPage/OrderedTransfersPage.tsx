@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import AppButton from 'components/ui/AppButton/AppButton';
 import PageHeading from 'components/ui/PageHeading/PageHeading';
 import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
+import Spinner from 'components/ui/Spinner/Spinner';
 
 import { StyledOrderedTransfersPage } from './OrderedTransfersPage.styled';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { useEffect } from 'react';
 import { getUsersOrdersThunk } from 'store/usersOrders/userOrdersThunk';
-import Spinner from 'components/ui/Spinner/Spinner';
-import { IUsersOrder } from 'store/usersOrders/usersOrders';
+
+import { tempData } from './tempData';
 
 interface OrderedPageProps {}
 
@@ -22,7 +23,14 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getUsersOrdersThunk());
+    // dispatch(getUsersOrdersThunk());
+
+    const options = {method: 'GET', headers: {id: '1'}};
+
+    fetch('https://6587-82-179-72-69.eu.ngrok.io/api/v1/users/all-transfers', options)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
   }, []);
 
   return (
@@ -39,10 +47,12 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
       {isOrdersFetching ? (
         <Spinner />
       ) : (
-        orders.map((order) => (
+        tempData.map((order) => (
           <AppButton
+            key={order.id}
             disabled={order.isEnded}
             size="big"
+            textAlign="left"
             onClick={() => navigate('/')}
           >
             <PageParagraph>Забронированная поездка #{order.id} </PageParagraph>
