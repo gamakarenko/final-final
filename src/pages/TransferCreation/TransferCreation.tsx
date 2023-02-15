@@ -5,13 +5,13 @@ import PageHeading from '../../components/ui/PageHeading/PageHeading';
 import MainInfoStep from './MainInfoStep/MainInfoStep';
 import PassengerStep from './PassengerStep/PassengerStep';
 import SummaryStep from './SummaryStep/SummaryStep';
+import Spinner from 'components/ui/Spinner/Spinner';
 
 import { useMultiStepForm } from '../../hooks/useMultiStepForm';
 import { createOrderThunk } from '../../store/order/orderThunks';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 
 import { StyledTransferCreation } from './TransferCreation.styled';
-import Spinner from 'components/ui/Spinner/Spinner';
 
 const TransferCreation: FC = () => {
   const { order, isSendingOrder } = useAppSelector(({ order }) => order);

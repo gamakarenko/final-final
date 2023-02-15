@@ -80,7 +80,8 @@ const orderSlice = createSlice({
     builder.addCase(createOrderThunk.rejected, (state) => {
       state.isSendingOrder = false;
     });
-    builder.addCase(createOrderThunk.fulfilled, (state, action) => {
+    builder.addCase(createOrderThunk.fulfilled, (state) => {
+      //TODO не выставляет state.isSendingOrder = false, почему?
       state = initialState;
     });
   },
@@ -93,4 +94,5 @@ export const {
   addNewPassenger,
   editPassengerById,
 } = orderSlice.actions;
+
 export default orderSlice.reducer;
