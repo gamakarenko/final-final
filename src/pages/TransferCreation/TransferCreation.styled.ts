@@ -1,8 +1,6 @@
 import styled from '@emotion/styled/macro';
 
 export const StyledTransferCreation = styled.div`
-  padding: 16px;
-
   .transfer-creation {
     &__heading {
       margin-bottom: 10px;

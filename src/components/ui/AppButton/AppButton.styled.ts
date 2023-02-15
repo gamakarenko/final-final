@@ -4,12 +4,15 @@ import { css } from '@emotion/react';
 import { IAppButton } from './AppButton';
 
 export const StyledAppButton = styled.button<
-  Pick<IAppButton, 'isFilled' | 'isUppercase'>
+  Pick<IAppButton, 'isFilled' | 'isUppercase' | 'textAlign' | 'size'>
 >`
-  padding: 11px 22px;
+  width: 100%;
+  padding: ${({ size }) => (size === 'normal' ? '11px 22px' : '15px')};
   border-radius: 5px;
   border: 1px var(--primary-color) solid;
-  text-transform: ${(props) => (props.isUppercase ? 'uppercase' : 'none')};
+  text-transform: ${({ isUppercase }) => (isUppercase ? 'uppercase' : 'none')};
+  text-align: ${({ textAlign }) => textAlign};
+  font-size: 15px;
   line-height: 1;
   cursor: pointer;
 

@@ -7,7 +7,7 @@ import AppTextArea from '../../../components/ui/AppTextArea/AppTextArea';
 import AppRadioBtn from '../../../components/ui/RadioButton/AppRadioBtn';
 import YaMap from '../../../components/YaMap/YaMap';
 
-import { sedanIcon, vitoIcon } from '../../../components/images';
+import { sedanIcon, vitoIcon } from '../../../images/index';
 
 import { StyledMainInfoStep } from './MainInfoStep.styles';
 import { useAppDispatch, useAppSelector } from '../../../store/store';

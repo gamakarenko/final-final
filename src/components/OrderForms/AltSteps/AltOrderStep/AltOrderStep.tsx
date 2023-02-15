@@ -11,7 +11,7 @@ import { setCarType } from '../../../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../../../store/store';
 import { useYmaps } from '../../../../hooks/useYmaps';
 
-import { sedanIcon, vitoIcon } from '../../../images';
+import { sedanIcon, vitoIcon } from '../../../../images/index';
 import { button, input } from '../../../../styles/styles';
 import { StyledTripDirection } from './AltOrderStep.styles';
 import AppRadioButton from '../../../ui/RadioButton/AppRadioBtn';

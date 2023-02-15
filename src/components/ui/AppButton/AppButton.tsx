@@ -6,6 +6,8 @@ export interface IAppButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   isFilled?: boolean;
   isUppercase?: boolean;
   className?: string;
+  textAlign?: 'left' | 'center';
+  size?: 'normal' | 'big'; 
 }
 
 const AppButton: FC<IAppButton> = ({
@@ -13,6 +15,8 @@ const AppButton: FC<IAppButton> = ({
   isFilled = true,
   className = '',
   isUppercase = false,
+  textAlign = 'center',
+  size = 'normal',
   ...rest
 }) => {
   return (
@@ -21,6 +25,8 @@ const AppButton: FC<IAppButton> = ({
       isUppercase={isUppercase}
       className={`app-button${className ? ' ' + className : ''}`}
       type="button"
+      textAlign={textAlign}
+      size={size}
       {...rest}
     >
       {children}

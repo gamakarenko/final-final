@@ -2,7 +2,7 @@ import { Button, Checkbox, Input, Radio, RadioGroup } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { CheckboxActive, CheckboxChecked } from '../../../components/CheckboxStatus';
-import { sedanIcon, vitoIcon } from '../../../components/images';
+import { sedanIcon, vitoIcon } from '../../../images/index';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { button, backButton, input, defaultButton } from '../../../styles/styles';
 import { fromAirport, setCarType } from '../../../store/slices/userSlice';
