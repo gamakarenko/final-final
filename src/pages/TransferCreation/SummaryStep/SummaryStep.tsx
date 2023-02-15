@@ -12,6 +12,10 @@ import { StyledSummaryStep } from './SummaryStep.styled';
 const SummaryStep = () => {
   const { order } = useAppSelector(({ order }) => order);
 
+  const childrenNumber =
+    Number(order.childrenUnder5) + Number(order.childrenAbove5);
+  const childrenNumberString = childrenNumber ? String(childrenNumber) : '';
+
   return (
     <StyledSummaryStep className="summary-step">
       <PageParagraph underlined>
@@ -49,10 +53,7 @@ const SummaryStep = () => {
         />
         <StyledTwoColumnBox>
           <InfoCell heading="Количество взрослых" data={String(order.adults)} />
-          <InfoCell
-            heading="Количество детей"
-            data={String(order.childrenUnder5 + order.childrenAbove5)}
-          />
+          <InfoCell heading="Количество детей" data={childrenNumberString} />
         </StyledTwoColumnBox>
       </div>
 

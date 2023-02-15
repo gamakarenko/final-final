@@ -16,7 +16,7 @@ const TransferCreation: FC = () => {
   const { order, isSendingOrder } = useAppSelector(({ order }) => order);
   const dispatch = useAppDispatch();
 
-  const { currentStep, goNextStep, goPrevStep, isFirstStep, isLastStep } =
+  const { currentStepFieldset, goNextStep, goPrevStep, isFirstStep, isLastStep } =
     useMultiStepForm([<MainInfoStep />, <PassengerStep />, <SummaryStep />]);
 
   const handleNextClick: FormEventHandler<HTMLFormElement> = (e) => {
@@ -36,7 +36,7 @@ const TransferCreation: FC = () => {
           Заказать трансфер
         </PageHeading>
 
-        {currentStep}
+        {currentStepFieldset}
 
         <div className="transfer-creation__steps-btns-box">
           {!isFirstStep && (

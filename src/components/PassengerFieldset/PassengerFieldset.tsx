@@ -31,6 +31,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         className="passenger-field__input-box"
         label="ФИО"
         autoComplete="name"
+        required
         value={fullName}
         onChange={(e) =>
           dispatch(editPassengerById({ id, fullName: e.target.value }))
@@ -40,6 +41,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         className="passenger-field__input-box"
         label="Номер загранпаспорта"
         value={passportId}
+        required
         onChange={(e) =>
           dispatch(editPassengerById({ id, passportId: e.target.value }))
         }

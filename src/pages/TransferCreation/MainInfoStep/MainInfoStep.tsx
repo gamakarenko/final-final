@@ -14,9 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { editOrderInfo } from '../../../store/order/order';
 import PageParagraph from '../../../components/ui/PageParagraph/PageParagraph';
 
-interface MainInfoStepProps {}
-
-const MainInfoStep: FC<MainInfoStepProps> = () => {
+const MainInfoStep: FC = () => {
   const { order } = useAppSelector(({ order }) => order);
   const dispatch = useAppDispatch();
   const setLocation = (location: string) =>
@@ -46,6 +44,7 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
           <AppInput
             label="Дата поездки"
             type="date"
+            required
             min={new Date(
               Date.now() + 28 * (60 * 60 * 1000),
             ).toLocaleDateString('en-ca')}
@@ -59,6 +58,7 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
           <AppInput
             label="Время поездки"
             type="time"
+            required
             value={order.transferTime}
             onChange={(e) =>
               dispatch(editOrderInfo({ transferTime: e.target.value }))
@@ -136,6 +136,7 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
             </div>
             <AppTextArea
               id="suggest"
+              required
               value={order.location}
               onChange={(e) =>
                 dispatch(editOrderInfo({ location: e.target.value }))
@@ -174,6 +175,7 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
         <AppInput
           label="Количество взрослых"
           type="number"
+          required
           min={1}
           value={order.adults}
           onChange={(e) =>
@@ -186,6 +188,7 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
         <div className="transfer-fieldset__two-columns-box">
           <AppInput
             type="number"
+            required
             min={0}
             value={order.childrenUnder5}
             onChange={(e) =>
@@ -202,6 +205,7 @@ const MainInfoStep: FC<MainInfoStepProps> = () => {
           </AppInput>
           <AppInput
             type="number"
+            required
             min={0}
             value={order.childrenAbove5}
             onChange={(e) =>
