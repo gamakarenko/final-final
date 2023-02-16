@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import PageWrapperWithHeading from 'components/PageWrapperWithHeading/PageWrapperWithHeading';
 
-export const StyledOrderedTransfersPage = styled.div`
+export const StyledOrderedTransfersPage = styled(PageWrapperWithHeading)`
   .ordered-transfers-page {
     &__heading {
       margin-bottom: 15px;

@@ -4,7 +4,7 @@ import AppButton from '../../components/ui/AppButton/AppButton';
 import PageHeading from '../../components/ui/PageHeading/PageHeading';
 import MainInfoStep from './MainInfoStep/MainInfoStep';
 import PassengerStep from './PassengerStep/PassengerStep';
-import SummaryStep from './SummaryStep/SummaryStep';
+import OrderSummary from './OrderSummary/OrderSummary';
 import Spinner from 'components/ui/Spinner/Spinner';
 
 import { useMultiStepForm } from '../../hooks/useMultiStepForm';
@@ -23,7 +23,11 @@ const TransferCreation: FC = () => {
     goPrevStep,
     isFirstStep,
     isLastStep,
-  } = useMultiStepForm([<MainInfoStep />, <PassengerStep />, <SummaryStep {...order} />]);
+  } = useMultiStepForm([
+    <MainInfoStep />,
+    <PassengerStep />,
+    <OrderSummary heading="Подтверждение введённой информации" {...order} />,
+  ]);
 
   const handleNextClick: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();

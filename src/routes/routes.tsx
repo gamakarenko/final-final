@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import App from 'App';
-
+//TODO не удалять неактивные импорты, потом почистить лишние компоненты
 import TransferCreation from 'pages/TransferCreation/TransferCreation';
 import SharePage from 'pages/SharePage';
 import FAQPage from 'pages/FAQPage';
@@ -12,12 +12,13 @@ import SelectPage from 'pages/ordered/SelectPage';
 import AgeStep from 'pages/ordered/AgeInfoPage/steps/AgeStep';
 import DateTime from 'pages/ordered/DateTime/index';
 import FinalPage from 'pages/ordered/FinalPage';
+import OrderedPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
 import { MainPage } from 'pages/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
-import { OrderedPage } from 'pages/OrderedTransfersPage/OrderedTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
 import { Example } from 'pages/Example';
 import { InfoStep } from 'pages/ordered/AgeInfoPage/steps/InfoStep';
+import OrderByIdPage from 'pages/OrderByIdPage/OrderByIdPage';
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'transfers/ordered/:id',
-        element: <CancelChangePage />,
+        element: <OrderByIdPage />,
       },
       {
         path: 'transfers/ordered/:id/change',

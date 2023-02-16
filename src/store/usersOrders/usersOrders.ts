@@ -50,7 +50,7 @@ const usersOrdersSlice = createSlice({
     builder.addCase(getUsersOrdersThunk.pending, (state) => {
       state.isOrdersFetching = true;
     });
-    builder.addCase(getUsersOrdersThunk.rejected, (state) => {
+    builder.addCase(getUsersOrdersThunk.rejected, (state) => { 
       state.isOrdersFetching = false;
     });
     builder.addCase(getUsersOrdersThunk.fulfilled, (state, action) => {

@@ -8,9 +8,9 @@ import { convertDateFormat } from '../../../utils/convertDateFormat';
 import { IOrder } from 'types/order';
 
 import { StyledTwoColumnBox } from '../../../styles/StyledTwoColumnBox';
-import { StyledSummaryStep } from './SummaryStep.styled';
+import { StyledOrderSummary } from './OrderSummary.styled';
 
-type SummaryStepProps = Pick<
+interface OrderSummaryProps extends Pick<
   IOrder,
   | 'transferDate'
   | 'transferTime'
@@ -22,9 +22,11 @@ type SummaryStepProps = Pick<
   | 'carType'
   | 'adults'
   | 'passengers'
->;
+> {
+  heading: string;
+}
 
-const SummaryStep: FC<SummaryStepProps> = ({
+const OrderSummary: FC<OrderSummaryProps> = ({
   transferDate,
   transferTime,
   direction,
@@ -34,15 +36,16 @@ const SummaryStep: FC<SummaryStepProps> = ({
   location,
   carType,
   adults,
-  passengers
+  passengers,
+  heading
 }) => {
   const childrenNumber = Number(childrenUnder5) + Number(childrenAbove5);
   const childrenNumberString = childrenNumber ? String(childrenNumber) : '';
 
   return (
-    <StyledSummaryStep className="summary-step">
+    <StyledOrderSummary className="summary-step">
       <PageParagraph underlined>
-        Подтверждение введённой информации
+        {heading}
       </PageParagraph>
       <div className="summary-step__info-box summary-step__info-box_bottom-lined">
         <StyledTwoColumnBox>
@@ -77,8 +80,8 @@ const SummaryStep: FC<SummaryStepProps> = ({
           <PassengerSummary key={i} index={i + 1} {...passenger} />
         ))}
       </div>
-    </StyledSummaryStep>
+    </StyledOrderSummary>
   );
 };
 
-export default SummaryStep;
+export default OrderSummary;

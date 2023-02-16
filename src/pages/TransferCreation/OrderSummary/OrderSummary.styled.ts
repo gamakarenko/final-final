@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const StyledSummaryStep = styled.div`
+export const StyledOrderSummary = styled.div`
   .summary-step {
     &__info-box {
       display: grid;
