@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
-
 import { IUsersOrder } from 'store/usersOrders/usersOrders';
 
 import { StyledShortOrderCard } from './ShortOrderCard.styles';
@@ -15,17 +13,32 @@ const ShortOrderCard: FC<Partial<IUsersOrder>> = ({
 }) => {
   return (
     <StyledShortOrderCard className="short-order-card">
-      <PageParagraph>Забронированная поездка #{id} </PageParagraph>
+      <p className="short-order-card__heading">Забронированная поездка #{id}</p>
 
-      <PageParagraph>
-        Откуда: {direction === 'fromAirport' ? airport : location}
-      </PageParagraph>
-      <PageParagraph>
-        Куда: {direction === 'toAirport' ? airport : location}
-      </PageParagraph>
-
-      <PageParagraph>Дата: {tripDate!.slice(0, 10)}</PageParagraph>
-      <PageParagraph>Время: {tripDate!.slice(-5)}</PageParagraph>
+      <p className="short-order-card__item">
+        Откуда:{' '}
+        <span className="short-order-card__item-data">
+          {direction === 'fromAirport' ? airport : location}
+        </span>
+      </p>
+      <p className="short-order-card__item">
+        Куда:{' '}
+        <span className="short-order-card__item-data">
+          {direction === 'toAirport' ? airport : location}
+        </span>
+      </p>
+      <p className="short-order-card__item">
+        Дата:{' '}
+        <span className="short-order-card__item-data">
+          {tripDate!.slice(0, 10)}
+        </span>
+      </p>
+      <p className="short-order-card__item">
+        Время:{' '}
+        <span className="short-order-card__item-data">
+          {tripDate!.slice(-5)}
+        </span>
+      </p>
     </StyledShortOrderCard>
   );
 };

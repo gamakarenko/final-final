@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { getUsersOrdersThunk } from 'store/usersOrders/userOrdersThunk';
 
 import { tempData } from './tempData';
+import ShortOrderCard from './ShortOrderCard/ShortOrderCard';
 
 interface OrderedPageProps {}
 
@@ -24,13 +25,11 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
 
   useEffect(() => {
     // dispatch(getUsersOrdersThunk());
-
-    const options = {method: 'GET', headers: {id: '1'}};
-
-    fetch('https://6587-82-179-72-69.eu.ngrok.io/api/v1/users/all-transfers', options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
+    // const options = {method: 'GET', headers: {id: '1'}};
+    // fetch('https://6587-82-179-72-69.eu.ngrok.io/api/v1/users/all-transfers', options)
+    //   .then(response => response.json())
+    //   .then(response => console.log(response))
+    //   .catch(err => console.error(err));
   }, []);
 
   return (
@@ -53,28 +52,19 @@ export const OrderedPage: React.FunctionComponent<OrderedPageProps> = () => {
             disabled={order.isEnded}
             size="big"
             textAlign="left"
+            className="ordered-transfers-page__order-btn"
             onClick={() => navigate('/')}
           >
-            <PageParagraph>Забронированная поездка #{order.id} </PageParagraph>
-
-            <PageParagraph>
-              Откуда:{' '}
-              {order.direction === 'fromAirport'
-                ? order.airport
-                : order.location}
-            </PageParagraph>
-            <PageParagraph>
-              Куда:{' '}
-              {order.direction === 'toAirport' ? order.airport : order.location}
-            </PageParagraph>
-
-            <PageParagraph>Дата: {order.tripDate.slice(0, 10)}</PageParagraph>
-            <PageParagraph>Время: {order.tripDate.slice(-5)}</PageParagraph>
+            <ShortOrderCard {...order} />
           </AppButton>
         ))
       )}
 
-      <AppButton isFilled={false} onClick={() => navigate('/transfers')}>
+      <AppButton
+        className="ordered-transfers-page__order-btn"
+        isFilled={false}
+        onClick={() => navigate('/transfers')}
+      >
         Назад
       </AppButton>
     </StyledOrderedTransfersPage>

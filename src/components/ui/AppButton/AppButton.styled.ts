@@ -7,6 +7,7 @@ export const StyledAppButton = styled.button<
   Pick<IAppButton, 'isFilled' | 'isUppercase' | 'textAlign' | 'size'>
 >`
   width: 100%;
+  display: block;
   padding: ${({ size }) => (size === 'normal' ? '11px 22px' : '15px')};
   border-radius: 5px;
   border: 1px var(--primary-color) solid;
