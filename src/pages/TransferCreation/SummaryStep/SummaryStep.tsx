@@ -1,19 +1,42 @@
-import { useAppSelector } from '../../../store/store';
+import { FC } from 'react';
 
 import InfoCell from '../../../components/InfoCell/InfoCell';
 import PageParagraph from '../../../components/ui/PageParagraph/PageParagraph';
 import PassengerSummary from '../../../components/PassengerSummary/PassengerSummary';
 
 import { convertDateFormat } from '../../../utils/convertDateFormat';
+import { IOrder } from 'types/order';
 
 import { StyledTwoColumnBox } from '../../../styles/StyledTwoColumnBox';
 import { StyledSummaryStep } from './SummaryStep.styled';
 
-const SummaryStep = () => {
-  const { order } = useAppSelector(({ order }) => order);
+type SummaryStepProps = Pick<
+  IOrder,
+  | 'transferDate'
+  | 'transferTime'
+  | 'direction'
+  | 'childrenAbove5'
+  | 'childrenUnder5'
+  | 'airport'
+  | 'location'
+  | 'carType'
+  | 'adults'
+  | 'passengers'
+>;
 
-  const childrenNumber =
-    Number(order.childrenUnder5) + Number(order.childrenAbove5);
+const SummaryStep: FC<SummaryStepProps> = ({
+  transferDate,
+  transferTime,
+  direction,
+  childrenUnder5,
+  childrenAbove5,
+  airport,
+  location,
+  carType,
+  adults,
+  passengers
+}) => {
+  const childrenNumber = Number(childrenUnder5) + Number(childrenAbove5);
   const childrenNumberString = childrenNumber ? String(childrenNumber) : '';
 
   return (
@@ -25,40 +48,32 @@ const SummaryStep = () => {
         <StyledTwoColumnBox>
           <InfoCell
             heading="Дата поездки"
-            data={convertDateFormat(order.transferDate)}
+            data={convertDateFormat(transferDate)}
           />
-          <InfoCell heading="Время поездки" data={order.transferTime} />
+          <InfoCell heading="Время поездки" data={transferTime} />
         </StyledTwoColumnBox>
         <InfoCell
           heading="Откуда тебя забрать"
-          data={
-            order.direction === 'fromAirport'
-              ? 'Аэропорт ' + order.airport
-              : order.location
-          }
+          data={direction === 'fromAirport' ? 'Аэропорт ' + airport : location}
         />
         <InfoCell
           heading="Куда привезти"
-          data={
-            order.direction === 'toAirport'
-              ? 'Аэропорт ' + order.airport
-              : order.location
-          }
+          data={direction === 'toAirport' ? 'Аэропорт ' + airport : location}
         />
         {/* TODO сделать описание типа автомобиля, подумать откуда брать */}
         <InfoCell
           heading="Тип автомобиля"
-          data={order.carType === 'sedan' ? 'Седан' : 'Vito'}
-          caption={order.carType === 'sedan' ? 'до 4 человек' : 'до 8 человек'}
+          data={carType === 'sedan' ? 'Седан' : 'Vito'}
+          caption={carType === 'sedan' ? 'до 4 человек' : 'до 8 человек'}
         />
         <StyledTwoColumnBox>
-          <InfoCell heading="Количество взрослых" data={String(order.adults)} />
+          <InfoCell heading="Количество взрослых" data={String(adults)} />
           <InfoCell heading="Количество детей" data={childrenNumberString} />
         </StyledTwoColumnBox>
       </div>
 
       <div className="summary-step__info-box">
-        {order.passengers.map((passenger, i) => (
+        {passengers.map((passenger, i) => (
           <PassengerSummary key={i} index={i + 1} {...passenger} />
         ))}
       </div>

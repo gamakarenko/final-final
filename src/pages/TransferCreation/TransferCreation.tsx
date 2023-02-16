@@ -23,7 +23,7 @@ const TransferCreation: FC = () => {
     goPrevStep,
     isFirstStep,
     isLastStep,
-  } = useMultiStepForm([<MainInfoStep />, <PassengerStep />, <SummaryStep />]);
+  } = useMultiStepForm([<MainInfoStep />, <PassengerStep />, <SummaryStep {...order} />]);
 
   const handleNextClick: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
