@@ -12,13 +12,14 @@ import SelectPage from 'pages/ordered/SelectPage';
 import AgeStep from 'pages/ordered/AgeInfoPage/steps/AgeStep';
 import DateTime from 'pages/ordered/DateTime/index';
 import FinalPage from 'pages/ordered/FinalPage';
-import OrderedPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
+import OrderedTransfersPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
 import { MainPage } from 'pages/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
 import { Example } from 'pages/Example';
 import { InfoStep } from 'pages/ordered/AgeInfoPage/steps/InfoStep';
 import OrderByIdPage from 'pages/OrderByIdPage/OrderByIdPage';
+import OrderedTransfersList from 'pages/OrderedTransfersPage/OrderedTransfersList/OrderedTransfersList';
 
 export const router = createBrowserRouter([
   {
@@ -44,11 +45,14 @@ export const router = createBrowserRouter([
       },
       {
         path: 'transfers/ordered',
-        element: <OrderedPage />,
-      },
-      {
-        path: 'transfers/ordered/:id',
-        element: <OrderByIdPage />,
+        element: <OrderedTransfersPage />,
+        children: [
+          { index: true, element: <OrderedTransfersList /> },
+          {
+            path: ':id',
+            element: <OrderByIdPage />,
+          },
+        ],
       },
       {
         path: 'transfers/ordered/:id/change',

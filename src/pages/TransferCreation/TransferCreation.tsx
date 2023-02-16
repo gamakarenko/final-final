@@ -4,7 +4,7 @@ import AppButton from '../../components/ui/AppButton/AppButton';
 import PageHeading from '../../components/ui/PageHeading/PageHeading';
 import MainInfoStep from './MainInfoStep/MainInfoStep';
 import PassengerStep from './PassengerStep/PassengerStep';
-import OrderSummary from './OrderSummary/OrderSummary';
+import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import Spinner from 'components/ui/Spinner/Spinner';
 
 import { useMultiStepForm } from '../../hooks/useMultiStepForm';
@@ -39,9 +39,10 @@ const TransferCreation: FC = () => {
     dispatch(createOrderThunk(order));
   };
 
+  //TODO убрать no-validate
   return (
     <StyledTransferCreation className="transfer-creation">
-      <form onSubmit={handleNextClick}>
+      <form onSubmit={handleNextClick} noValidate>
         <PageHeading className="transfer-creation__heading">
           Заказать трансфер
         </PageHeading>

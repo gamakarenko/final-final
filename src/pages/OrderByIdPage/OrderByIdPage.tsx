@@ -4,7 +4,8 @@ import { useAppSelector } from 'store/store';
 import { IUsersOrder } from 'store/usersOrders/usersOrders';
 import { IOrder } from 'types/order';
 
-import OrderSummary from 'pages/TransferCreation/OrderSummary/OrderSummary';
+import AppButton from 'components/ui/AppButton/AppButton';
+import OrderSummary from 'components/OrderSummary/OrderSummary';
 
 import { StyledOrderByIdPage } from './OrderByIdPage.styled';
 
@@ -50,9 +51,14 @@ const OrderByIdPage = () => {
   const convertedOrder = convertUglyOrderToNormalOrder(currentOrder);
 
   return (
-    <StyledOrderByIdPage className='order-by-id-page'>
-      Поездка: {currentOrder?.id}
-      {convertedOrder ? <OrderSummary heading='Данные поездки' {...convertedOrder} /> : null}
+    <StyledOrderByIdPage className="order-by-id-page">
+      {convertedOrder ? (
+        <OrderSummary heading="Данные поездки" {...convertedOrder} />
+      ) : null}
+      <AppButton className="order-by-id-page__btn">Изменить данные</AppButton>
+      <AppButton className="order-by-id-page__btn" isFilled={false}>
+        Отменить поездку
+      </AppButton>
     </StyledOrderByIdPage>
   );
 };

@@ -5,7 +5,7 @@ export const StyledPageWrapperWithHeading = styled.div`
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   column-gap: 15px;
-  row-gap: 10px;
+  row-gap: 15px;
 
   .page-wrapper-with-heading {
     &__btn-back {

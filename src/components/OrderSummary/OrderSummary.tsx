@@ -1,13 +1,13 @@
 import { FC } from 'react';
 
-import InfoCell from '../../../components/InfoCell/InfoCell';
-import PageParagraph from '../../../components/ui/PageParagraph/PageParagraph';
-import PassengerSummary from '../../../components/PassengerSummary/PassengerSummary';
+import InfoCell from '../InfoCell/InfoCell';
+import PageParagraph from '../ui/PageParagraph/PageParagraph';
+import PassengerSummary from '../PassengerSummary/PassengerSummary';
 
-import { convertDateFormat } from '../../../utils/convertDateFormat';
+import { convertDateFormat } from '../../utils/convertDateFormat';
 import { IOrder } from 'types/order';
 
-import { StyledTwoColumnBox } from '../../../styles/StyledTwoColumnBox';
+import { StyledTwoColumnBox } from '../../styles/StyledTwoColumnBox';
 import { StyledOrderSummary } from './OrderSummary.styled';
 
 interface OrderSummaryProps extends Pick<
