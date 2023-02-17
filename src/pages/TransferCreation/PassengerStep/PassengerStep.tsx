@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { addNewPassenger } from '../../../store/order/order';
@@ -10,19 +10,21 @@ import AppButton from '../../../components/ui/AppButton/AppButton';
 
 import { StyledPassengerStep } from './PassengerStep.styles';
 
-interface PassengerStepProps {}
+interface PassengerStepProps extends PropsWithChildren {
+  heading?: string;
+}
 
-const PassengerStep: FC<PassengerStepProps> = () => {
+const PassengerStep: FC<PassengerStepProps> = ({ children, heading }) => {
   const { passengers } = useAppSelector(({ order }) => order.order);
   const dispatch = useAppDispatch();
 
   return (
     <StyledPassengerStep className="passenger-step">
-      <PageParagraph underlined={true}>
-        Отлично! Мы&nbsp;почти у&nbsp;цели:) Для оформления трансфера нам
-        потребуются некоторые данные о&nbsp;тебе. Пожалуйста, заполни форму
-        на&nbsp;каждого пассажира.
-      </PageParagraph>
+      {children ? (
+        children
+      ) : heading ? (
+        <PageParagraph underlined>{heading}</PageParagraph>
+      ) : null}
 
       {passengers.map((passenger) => (
         <PassengerFieldset key={passenger.id} {...passenger} />

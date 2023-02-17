@@ -1,43 +1,42 @@
-import { FC, useState } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 
-import CarRadioBtn from '../../../components/CarRadioBtn/CarRadioBtn';
-import AppButton from '../../../components/ui/AppButton/AppButton';
-import AppInput from '../../../components/ui/AppInput/AppInput';
-import AppTextArea from '../../../components/ui/AppTextArea/AppTextArea';
-import AppRadioBtn from '../../../components/ui/RadioButton/AppRadioBtn';
-import YaMap from '../../../components/YaMap/YaMap';
+import PageParagraph from '../ui/PageParagraph/PageParagraph';
+import CarRadioBtn from '../CarRadioBtn/CarRadioBtn';
+import AppButton from '../ui/AppButton/AppButton';
+import AppInput from '../ui/AppInput/AppInput';
+import AppTextArea from '../ui/AppTextArea/AppTextArea';
+import AppRadioBtn from '../ui/RadioButton/AppRadioBtn';
+import YaMap from '../YaMap/YaMap';
 
-import { sedanIcon, vitoIcon } from '../../../images/index';
+import { IOrder } from 'types/order';
+
+import { sedanIcon, vitoIcon } from '../../images/index';
 
 import { StyledMainInfoStep } from './MainInfoStep.styles';
-import { useAppDispatch, useAppSelector } from '../../../store/store';
-import { editOrderInfo } from '../../../store/order/order';
-import PageParagraph from '../../../components/ui/PageParagraph/PageParagraph';
 
-const MainInfoStep: FC = () => {
-  const { order } = useAppSelector(({ order }) => order);
-  const dispatch = useAppDispatch();
-  const setLocation = (location: string) =>
-    dispatch(editOrderInfo({ location }));
+interface MainInfoStepProps extends PropsWithChildren {
+  heading?: string;
+  order: Partial<IOrder>;
+  handleChange: (data: Partial<IOrder>) => void;
+}
+
+const MainInfoStep: FC<MainInfoStepProps> = ({
+  heading,
+  children,
+  handleChange,
+  order,
+}) => {
+  const setLocation = (location: string) => handleChange({ location });
 
   const [isCardVisible, setIsCardVisible] = useState(false);
 
   return (
     <StyledMainInfoStep>
-      <PageParagraph>
-        Здесь ты&nbsp;можешь заказ трансфер :)
-        <br />
-        Водитель встретит тебя в&nbsp;указанном месте и&nbsp;отвезёт туда, куда
-        необходимо.
-      </PageParagraph>
-
-      <PageParagraph underlined>
-        Водитель встретит тебя в&nbsp;указанном месте и&nbsp;отвезёт туда, куда
-        необходимо. Забронировать, а&nbsp;также отменить трансфер можно
-        не&nbsp;позднее, чем за&nbsp;28&nbsp;часов до&nbsp;поездки. Только так
-        мы&nbsp;можем быть уверены, что машина и&nbsp;водитель будут свободны
-        для вас :)
-      </PageParagraph>
+      {children ? (
+        children
+      ) : heading ? (
+        <PageParagraph underlined>{heading}</PageParagraph>
+      ) : null}
 
       <fieldset className="transfer-fieldset">
         <div className="transfer-fieldset__two-columns-box">
@@ -49,9 +48,7 @@ const MainInfoStep: FC = () => {
               Date.now() + 28 * (60 * 60 * 1000),
             ).toLocaleDateString('en-ca')}
             value={order.transferDate}
-            onChange={(e) =>
-              dispatch(editOrderInfo({ transferDate: e.target.value }))
-            }
+            onChange={(e) => handleChange({ transferDate: e.target.value })}
           />
 
           {/* TODO не время, а начало поездки? */}
@@ -60,9 +57,7 @@ const MainInfoStep: FC = () => {
             type="time"
             required
             value={order.transferTime}
-            onChange={(e) =>
-              dispatch(editOrderInfo({ transferTime: e.target.value }))
-            }
+            onChange={(e) => handleChange({ transferTime: e.target.value })}
           />
         </div>
 
@@ -73,9 +68,7 @@ const MainInfoStep: FC = () => {
               name="direction"
               value="fromAirport"
               checked={order.direction === 'fromAirport'}
-              onChange={() =>
-                dispatch(editOrderInfo({ direction: 'fromAirport' }))
-              }
+              onChange={() => handleChange({ direction: 'fromAirport' })}
             >
               из аэропорта
             </AppRadioBtn>
@@ -83,9 +76,7 @@ const MainInfoStep: FC = () => {
               name="direction"
               value="toAirport"
               checked={order.direction === 'toAirport'}
-              onChange={() =>
-                dispatch(editOrderInfo({ direction: 'toAirport' }))
-              }
+              onChange={() => handleChange({ direction: 'toAirport' })}
             >
               в аэропорт
             </AppRadioBtn>
@@ -103,9 +94,7 @@ const MainInfoStep: FC = () => {
                 value="Анталья"
                 name="airport"
                 checked={order.airport === 'Анталья'}
-                onChange={(e) =>
-                  dispatch(editOrderInfo({ airport: 'Анталья' }))
-                }
+                onChange={(e) => handleChange({ airport: 'Анталья' })}
               >
                 Анталья
               </AppRadioBtn>
@@ -113,9 +102,7 @@ const MainInfoStep: FC = () => {
                 value="Даламан"
                 name="airport"
                 checked={order.airport === 'Даламан'}
-                onChange={(e) =>
-                  dispatch(editOrderInfo({ airport: 'Даламан' }))
-                }
+                onChange={(e) => handleChange({ airport: 'Даламан' })}
               >
                 Даламан
               </AppRadioBtn>
@@ -138,14 +125,12 @@ const MainInfoStep: FC = () => {
               id="suggest"
               required
               value={order.location}
-              onChange={(e) =>
-                dispatch(editOrderInfo({ location: e.target.value }))
-              }
+              onChange={(e) => handleChange({ location: e.target.value })}
             />
 
             <YaMap
               isVisible={isCardVisible}
-              location={order.location}
+              location={order.location!}
               setLocation={setLocation}
             />
           </div>
@@ -157,7 +142,7 @@ const MainInfoStep: FC = () => {
             name="car-type"
             value="vito"
             checked={order.carType === 'vito'}
-            onChange={(e) => dispatch(editOrderInfo({ carType: 'vito' }))}
+            onChange={() => handleChange({ carType: 'vito' })}
             maxPeople={8}
             img={vitoIcon}
           />
@@ -166,7 +151,7 @@ const MainInfoStep: FC = () => {
             name="car-type"
             value="sedan"
             checked={order.carType === 'sedan'}
-            onChange={(e) => dispatch(editOrderInfo({ carType: 'sedan' }))}
+            onChange={() => handleChange({ carType: 'sedan' })}
             maxPeople={4}
             img={sedanIcon}
           />
@@ -179,9 +164,7 @@ const MainInfoStep: FC = () => {
           min={1}
           value={order.adults}
           onChange={(e) =>
-            dispatch(
-              editOrderInfo({ adults: e.target.value as unknown as number }),
-            )
+            handleChange({ adults: e.target.value as unknown as number })
           }
         />
 
@@ -192,11 +175,9 @@ const MainInfoStep: FC = () => {
             min={0}
             value={order.childrenUnder5}
             onChange={(e) =>
-              dispatch(
-                editOrderInfo({
-                  childrenUnder5: e.target.value as unknown as number,
-                }),
-              )
+              handleChange({
+                childrenUnder5: e.target.value as unknown as number,
+              })
             }
           >
             Количество детей
@@ -209,11 +190,9 @@ const MainInfoStep: FC = () => {
             min={0}
             value={order.childrenAbove5}
             onChange={(e) =>
-              dispatch(
-                editOrderInfo({
-                  childrenAbove5: e.target.value as unknown as number,
-                }),
-              )
+              handleChange({
+                childrenAbove5: e.target.value as unknown as number,
+              })
             }
           >
             Количество детей

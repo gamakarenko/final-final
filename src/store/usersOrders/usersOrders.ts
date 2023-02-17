@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ITripDirection } from 'pages/TransferCreation/TransferCreation.types';
-import { IAirport, ICarType } from 'types/order';
+import { IAirport, ICarType, ITripDirection } from 'types/order';
 
 import { getUsersOrdersThunk, putUsersOrderThunk } from './usersOrdersThunk';
 

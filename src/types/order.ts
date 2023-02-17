@@ -1,7 +1,6 @@
-import { ITripDirection } from "../pages/TransferCreation/TransferCreation.types";
-
 export type ICarType = 'vito' | 'sedan';
 export type IAirport = 'Анталья' | 'Даламан';
+export type ITripDirection = 'fromAirport' | 'toAirport';
 
 export interface IPassenger {
   id: number;

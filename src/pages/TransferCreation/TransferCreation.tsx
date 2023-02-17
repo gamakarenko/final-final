@@ -1,7 +1,7 @@
 import { FC, FormEventHandler } from 'react';
 
 import AppButton from '../../components/ui/AppButton/AppButton';
-import MainInfoStep from './MainInfoStep/MainInfoStep';
+import MainInfoStep from '../../components/MainInfoStep/MainInfoStep';
 import PassengerStep from './PassengerStep/PassengerStep';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import Spinner from 'components/ui/Spinner/Spinner';
@@ -12,6 +12,8 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 
 import { StyledTransferCreation } from './TransferCreation.styled';
 import PageWrapperWithHeading from 'components/PageWrapperWithHeading/PageWrapperWithHeading';
+import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
+import { editOrderInfo } from 'store/order/order';
 
 const TransferCreation: FC = () => {
   const { order, isSendingOrder } = useAppSelector(({ order }) => order);
@@ -24,19 +26,50 @@ const TransferCreation: FC = () => {
     isFirstStep,
     isLastStep,
   } = useMultiStepForm([
-    <MainInfoStep />,
-    <PassengerStep />,
+    <MainInfoStep
+      order={order}
+      handleChange={(data) => dispatch(editOrderInfo(data))}
+    >
+      <PageParagraph>
+        Здесь ты&nbsp;можешь заказ трансфер :)
+        <br />
+        Водитель встретит тебя в&nbsp;указанном месте и&nbsp;отвезёт туда, куда
+        необходимо.
+      </PageParagraph>
+      <PageParagraph underlined>
+        Водитель встретит тебя в&nbsp;указанном месте и&nbsp;отвезёт туда, куда
+        необходимо. Забронировать, а&nbsp;также отменить трансфер можно
+        не&nbsp;позднее, чем за&nbsp;28&nbsp;часов до&nbsp;поездки. Только так
+        мы&nbsp;можем быть уверены, что машина и&nbsp;водитель будут свободны
+        для вас :)
+      </PageParagraph>
+    </MainInfoStep>,
+
+    <PassengerStep>
+      <PageParagraph underlined>
+        Отлично! Мы&nbsp;почти у&nbsp;цели:) Для оформления трансфера нам
+        потребуются некоторые данные о&nbsp;тебе. Пожалуйста, заполни форму
+        на&nbsp;каждого пассажира.
+      </PageParagraph>
+    </PassengerStep>,
+
     <OrderSummary heading="Подтверждение введённой информации" {...order} />,
   ]);
-
+  //TODO Подумать стоит ли скролить вверх формы при переходе вперед и назад. Может сделать, чтобы кнопки вперед и назад всегда были на виду?
   const handleNextClick: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
+    window.scrollTo(0, 0);
     if (!isLastStep) {
       return goNextStep();
     }
 
     dispatch(createOrderThunk(order));
+  };
+
+  const handleBackClick = () => {
+    window.scrollTo(0, 0);
+    goPrevStep();
   };
 
   //TODO убрать no-validate
@@ -56,7 +89,7 @@ const TransferCreation: FC = () => {
                     className="transfer-creation__btn-left"
                     disabled={isSendingOrder}
                     isFilled={false}
-                    onClick={() => goPrevStep()}
+                    onClick={handleBackClick}
                   >
                     Назад
                   </AppButton>
