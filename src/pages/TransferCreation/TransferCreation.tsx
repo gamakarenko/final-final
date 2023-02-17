@@ -2,18 +2,23 @@ import { FC, FormEventHandler } from 'react';
 
 import AppButton from '../../components/ui/AppButton/AppButton';
 import MainInfoStep from '../../components/MainInfoStep/MainInfoStep';
-import PassengerStep from './PassengerStep/PassengerStep';
+import PassengerStep from '../../components/PassengerStep/PassengerStep';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import Spinner from 'components/ui/Spinner/Spinner';
+import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
+import PageWrapperWithHeading from 'components/PageWrapperWithHeading/PageWrapperWithHeading';
 
 import { useMultiStepForm } from '../../hooks/useMultiStepForm';
 import { createOrderThunk } from '../../store/order/orderThunks';
+import {
+  addNewPassenger,
+  deletePassengerById,
+  editOrderInfo,
+  editPassengerById,
+} from 'store/order/order';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 
 import { StyledTransferCreation } from './TransferCreation.styled';
-import PageWrapperWithHeading from 'components/PageWrapperWithHeading/PageWrapperWithHeading';
-import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
-import { editOrderInfo } from 'store/order/order';
 
 const TransferCreation: FC = () => {
   const { order, isSendingOrder } = useAppSelector(({ order }) => order);
@@ -45,7 +50,14 @@ const TransferCreation: FC = () => {
       </PageParagraph>
     </MainInfoStep>,
 
-    <PassengerStep>
+    <PassengerStep
+      passengers={order.passengers}
+      handleAddPassenger={() => dispatch(addNewPassenger())}
+      handleEditPassengerById={(id, data) =>
+        dispatch(editPassengerById({ id, ...data }))
+      }
+      handleDeletePassengerById={(id) => dispatch(deletePassengerById({ id }))}
+    >
       <PageParagraph underlined>
         Отлично! Мы&nbsp;почти у&nbsp;цели:) Для оформления трансфера нам
         потребуются некоторые данные о&nbsp;тебе. Пожалуйста, заполни форму

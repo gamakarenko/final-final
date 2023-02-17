@@ -1,9 +1,4 @@
 import { FC } from 'react';
-import {
-  deletePassengerById,
-  editPassengerById,
-} from '../../store/order/order';
-import { useAppDispatch } from '../../store/store';
 
 import { IPassenger } from '../../types/order';
 
@@ -13,7 +8,12 @@ import AppTextArea from '../ui/AppTextArea/AppTextArea';
 
 import { StyledPassengerFieldset } from './PassengerFieldset.styles';
 
-const PassengerFieldset: FC<IPassenger> = ({
+interface PassengerFieldsetProps extends IPassenger {
+  handleEditPassengerById: (id: number, data: Partial<IPassenger>) => void;
+  handleDeletePassengerById: (id: number) => void;
+}
+
+const PassengerFieldset: FC<PassengerFieldsetProps> = ({
   fullName,
   passportId,
   departureDate,
@@ -22,8 +22,9 @@ const PassengerFieldset: FC<IPassenger> = ({
   telegramId,
   transferComment,
   id,
+  handleEditPassengerById,
+  handleDeletePassengerById,
 }) => {
-  const dispatch = useAppDispatch();
 
   return (
     <StyledPassengerFieldset className="passenger-field">
@@ -34,7 +35,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         required
         value={fullName}
         onChange={(e) =>
-          dispatch(editPassengerById({ id, fullName: e.target.value }))
+          handleEditPassengerById(id, { fullName: e.target.value })
         }
       />
       <AppInput
@@ -43,7 +44,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         value={passportId}
         required
         onChange={(e) =>
-          dispatch(editPassengerById({ id, passportId: e.target.value }))
+          handleEditPassengerById(id, { passportId: e.target.value })
         }
       />
       <AppInput
@@ -51,7 +52,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         label="Дата отправки"
         value={departureDate}
         onChange={(e) =>
-          dispatch(editPassengerById({ id, departureDate: e.target.value }))
+          handleEditPassengerById(id, { departureDate: e.target.value })
         }
       />
       <AppInput
@@ -59,7 +60,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         label="Время отправки"
         value={departureTime}
         onChange={(e) =>
-          dispatch(editPassengerById({ id, departureTime: e.target.value }))
+          handleEditPassengerById(id, { departureTime: e.target.value })
         }
       />
       <AppInput
@@ -68,7 +69,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         autoComplete="tel"
         value={phoneNumber}
         onChange={(e) =>
-          dispatch(editPassengerById({ id, phoneNumber: e.target.value }))
+          handleEditPassengerById(id, { phoneNumber: e.target.value })
         }
       />
       <AppInput
@@ -76,7 +77,7 @@ const PassengerFieldset: FC<IPassenger> = ({
         label="Логин в телеграмме"
         value={telegramId}
         onChange={(e) =>
-          dispatch(editPassengerById({ id, telegramId: e.target.value }))
+          handleEditPassengerById(id, { telegramId: e.target.value })
         }
       />
       <AppTextArea
@@ -84,14 +85,14 @@ const PassengerFieldset: FC<IPassenger> = ({
         label="Комментарий к поездке"
         value={transferComment}
         onChange={(e) =>
-          dispatch(editPassengerById({ id, transferComment: e.target.value }))
+          handleEditPassengerById(id, { transferComment: e.target.value })
         }
       />
 
       <AppButton
         className="passenger-field__del-btn"
         isFilled={false}
-        onClick={() => dispatch(deletePassengerById({ id }))}
+        onClick={() => handleDeletePassengerById(id)}
       >
         Удалить пассажира
       </AppButton>

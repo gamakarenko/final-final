@@ -1,23 +1,30 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../store/store';
-import { addNewPassenger } from '../../../store/order/order';
+import { IOrder, IPassenger } from 'types/order';
 
-import PassengerFieldset from '../../../components/PassengerFieldset/PassengerFieldset';
-import PageText from '../../../components/ui/PageText/PageText';
-import PageParagraph from '../../../components/ui/PageParagraph/PageParagraph';
-import AppButton from '../../../components/ui/AppButton/AppButton';
+import PassengerFieldset from '../PassengerFieldset/PassengerFieldset';
+import PageText from '../ui/PageText/PageText';
+import PageParagraph from '../ui/PageParagraph/PageParagraph';
+import AppButton from '../ui/AppButton/AppButton';
 
 import { StyledPassengerStep } from './PassengerStep.styles';
 
 interface PassengerStepProps extends PropsWithChildren {
   heading?: string;
+  passengers: IPassenger[];
+  handleAddPassenger: () => void;
+  handleEditPassengerById: (id: number, data: Partial<IPassenger>) => void;
+  handleDeletePassengerById: (id: number) => void;
 }
 
-const PassengerStep: FC<PassengerStepProps> = ({ children, heading }) => {
-  const { passengers } = useAppSelector(({ order }) => order.order);
-  const dispatch = useAppDispatch();
-
+const PassengerStep: FC<PassengerStepProps> = ({
+  children,
+  heading,
+  passengers,
+  handleAddPassenger,
+  handleEditPassengerById,
+  handleDeletePassengerById,
+}) => {
   return (
     <StyledPassengerStep className="passenger-step">
       {children ? (
@@ -27,7 +34,12 @@ const PassengerStep: FC<PassengerStepProps> = ({ children, heading }) => {
       ) : null}
 
       {passengers.map((passenger) => (
-        <PassengerFieldset key={passenger.id} {...passenger} />
+        <PassengerFieldset
+          key={passenger.id}
+          {...passenger}
+          handleEditPassengerById={handleEditPassengerById}
+          handleDeletePassengerById={handleDeletePassengerById}
+        />
       ))}
 
       <PageText className="passenger-step__hint">
@@ -38,7 +50,7 @@ const PassengerStep: FC<PassengerStepProps> = ({ children, heading }) => {
       <AppButton
         className="passenger-step__add-btn"
         isFilled={false}
-        onClick={() => dispatch(addNewPassenger())}
+        onClick={handleAddPassenger}
       >
         Добавить пассажира
       </AppButton>
