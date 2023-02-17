@@ -2,27 +2,33 @@ export type ICarType = 'vito' | 'sedan';
 export type IAirport = 'Анталья' | 'Даламан';
 export type ITripDirection = 'fromAirport' | 'toAirport';
 
-export interface IPassenger {
+export interface IUser {
   id: number;
-  fullName: string;
-  passportId: string;
-  departureDate: string;
-  departureTime: string;
+  name: string;
+  arrivalDate: string | null;
+  arrivalTime: string | null;
+  flightNumber: string | null;
   phoneNumber: string;
-  telegramId: string;
-  transferComment: string;
+  email: string | null;
+  passport: string;
+  telegramLogin: string;
+  tripComment: string;
+  identificationNumber: number;
 }
 
 export interface IOrder {
-  id?: number;
-  transferDate: string;
+  id: number;
   transferTime: string;
-  direction: ITripDirection;
-  airport: IAirport;
+  transferDate: string;
   location: string;
+  adultsAmount: 1;
+  childrenUnder5: 0;
+  childrenAbove5: 0;
+  direction: ITripDirection;
+  isEnded: boolean;
   carType: ICarType;
-  adults: number;
-  childrenUnder5: number;
-  childrenAbove5: number;
-  passengers: IPassenger[];
+  airport: IAirport;
+  users: IUser[];
 }
+
+export type INewOrder = Omit<IOrder, 'id' | 'isEnded'>; 

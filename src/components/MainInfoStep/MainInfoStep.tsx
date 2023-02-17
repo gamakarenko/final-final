@@ -38,8 +38,8 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
         <PageParagraph underlined>{heading}</PageParagraph>
       ) : null}
 
-      <fieldset className="transfer-fieldset">
-        <div className="transfer-fieldset__two-columns-box">
+      <fieldset className="main-info-fieldset">
+        <div className="main-info-fieldset__two-columns-box">
           <AppInput
             label="Дата поездки"
             type="date"
@@ -62,8 +62,8 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
         </div>
 
         <div>
-          <legend className="transfer-fieldset__label">Я отправляюсь:</legend>
-          <div className="transfer-fieldset__radio-group">
+          <legend className="main-info-fieldset__label">Я отправляюсь:</legend>
+          <div className="main-info-fieldset__radio-group">
             <AppRadioBtn
               name="direction"
               value="fromAirport"
@@ -85,11 +85,11 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
 
         <>
           <div>
-            <p className="transfer-fieldset__label">
+            <p className="main-info-fieldset__label">
               {order.direction === 'fromAirport' ? 'Из какого?' : 'В какой?'}
             </p>
 
-            <div className="transfer-fieldset__radio-group">
+            <div className="main-info-fieldset__radio-group">
               <AppRadioBtn
                 value="Анталья"
                 name="airport"
@@ -110,10 +110,10 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           </div>
 
           <div>
-            <div className="transfer-fieldset__address-label">
+            <div className="main-info-fieldset__address-label">
               <p>{order.direction === 'toAirport' ? 'Откуда?' : 'Куда?'}</p>
               <AppButton
-                className="transfer-fieldset__card-btn"
+                className="main-info-fieldset__card-btn"
                 isFilled={false}
                 isUppercase
                 onClick={() => setIsCardVisible((prev) => !prev)}
@@ -136,7 +136,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           </div>
         </>
 
-        <div className="transfer-fieldset__rows-box">
+        <div className="main-info-fieldset__rows-box">
           <CarRadioBtn
             car="Vito"
             name="car-type"
@@ -168,7 +168,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           }
         />
 
-        <div className="transfer-fieldset__two-columns-box">
+        <div className="main-info-fieldset__two-columns-box">
           <AppInput
             type="number"
             required

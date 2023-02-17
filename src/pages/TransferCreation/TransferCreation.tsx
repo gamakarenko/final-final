@@ -9,13 +9,13 @@ import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 import PageWrapperWithHeading from 'components/PageWrapperWithHeading/PageWrapperWithHeading';
 
 import { useMultiStepForm } from '../../hooks/useMultiStepForm';
-import { createOrderThunk } from '../../store/order/orderThunks';
+import { createOrderThunk } from '../../store/newOrder/newOrderThunks';
 import {
   addNewPassenger,
   deletePassengerById,
   editOrderInfo,
   editPassengerById,
-} from 'store/order/order';
+} from 'store/newOrder/newOrder';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 
 import { StyledTransferCreation } from './TransferCreation.styled';

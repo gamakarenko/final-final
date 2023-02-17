@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IUsersOrder } from 'store/usersOrders/usersOrders';
+import { IUsersOrder } from 'store/Orders/Orders';
 
 import { StyledShortOrderCard } from './ShortOrderCard.styles';
 
