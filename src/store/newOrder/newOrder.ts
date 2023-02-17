@@ -85,6 +85,7 @@ const newOrderSlice = createSlice({
     });
     builder.addCase(createOrderThunk.fulfilled, (state) => {
       state = initialState;
+      return state;
     });
   },
 });

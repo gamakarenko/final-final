@@ -7,12 +7,12 @@ import SelectPage from 'pages/ordered/SelectPage';
 import { InfoStep } from 'pages/ordered/AgeInfoPage/steps/InfoStep';
 import AgeStep from 'pages/ordered/AgeInfoPage/steps/AgeStep';
 import DateTime from 'pages/ordered/DateTime/index';
+import FinalPage from 'pages/ordered/FinalPage';
 import TransferCreation from 'pages/TransferCreation/TransferCreation';
 import SharePage from 'pages/SharePage';
 import FAQPage from 'pages/FAQPage';
 import InfoPage from 'pages/AboutPage/InfoPage';
 import ReviewPage from 'pages/AboutPage/ReviewPage';
-import FinalPage from 'pages/ordered/FinalPage';
 import OrderedTransfersPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
 import OrderByIdPage from 'pages/OrderByIdPage/OrderByIdPage';
 import OrderedTransfersList from 'pages/OrderedTransfersPage/OrderedTransfersList/OrderedTransfersList';
@@ -23,6 +23,7 @@ import { MainPage } from 'pages/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
 import { Example } from 'pages/Example';
+import TransferCreationComplete from 'pages/TransferCreationComplete/TransferCreationComplete';
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: 'order',
         element: <TransferCreation />,
+      },
+      {
+        path: 'order/complete',
+        element: <TransferCreationComplete />,
       },
       {
         path: 'share',
@@ -69,11 +74,6 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: 'transfers/ordered/final',
-        element: <FinalPage />,
-      },
-
       {
         path: 'about',
         element: <AboutPage />,

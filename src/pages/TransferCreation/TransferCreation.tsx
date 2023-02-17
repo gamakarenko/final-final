@@ -19,10 +19,13 @@ import {
 import { useAppDispatch, useAppSelector } from '../../store/store';
 
 import { StyledTransferCreation } from './TransferCreation.styled';
+import { useNavigate } from 'react-router-dom';
 
 const TransferCreation: FC = () => {
   const { order, isSendingOrder } = useAppSelector(({ newOrder }) => newOrder);
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   const {
     currentStepFieldset,
@@ -76,7 +79,12 @@ const TransferCreation: FC = () => {
       return goNextStep();
     }
 
-    dispatch(createOrderThunk(order));
+    try {
+      dispatch(createOrderThunk(order));
+      navigate('/order/complete');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleBackClick = () => {
@@ -88,7 +96,7 @@ const TransferCreation: FC = () => {
   return (
     <PageWrapperWithHeading heading="Заказать трансфер">
       <StyledTransferCreation className="transfer-creation">
-        <form onSubmit={handleNextClick} noValidate>
+        <form onSubmit={handleNextClick}>
           {currentStepFieldset}
 
           <div className="transfer-creation__steps-btns-box">
