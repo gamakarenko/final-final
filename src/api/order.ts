@@ -1,5 +1,7 @@
 import $api from '.';
 
-export const createOrder = async (order: any) => {
-  return $api.post('transfers/create-transfer', order);
+import { IOrder } from 'types/order';
+
+export const createOrder = async (order: IOrder) => {
+  return $api.post('transfers/create-transfer', { order });
 };

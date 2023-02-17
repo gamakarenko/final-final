@@ -1,7 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { ITripDirection } from 'pages/TransferCreation/TransferCreation.types';
 import { IAirport, ICarType } from 'types/order';
-import { getUsersOrdersThunk } from './userOrdersThunk';
+
+import { getUsersOrdersThunk, putUsersOrderThunk } from './usersOrdersThunk';
 
 interface IUser {
   id: number;
@@ -50,13 +52,30 @@ const usersOrdersSlice = createSlice({
     builder.addCase(getUsersOrdersThunk.pending, (state) => {
       state.isOrdersFetching = true;
     });
-    builder.addCase(getUsersOrdersThunk.rejected, (state) => { 
+    builder.addCase(getUsersOrdersThunk.rejected, (state) => {
       state.isOrdersFetching = false;
     });
     builder.addCase(getUsersOrdersThunk.fulfilled, (state, action) => {
       state.orders = action.payload;
       state.isOrdersFetching = false;
     });
+
+    builder.addCase(putUsersOrderThunk.pending, (state) => {
+      state.isOrdersFetching = true;
+    });
+    builder.addCase(putUsersOrderThunk.rejected, (state) => {
+      state.isOrdersFetching = false;
+    });
+    builder.addCase(
+      putUsersOrderThunk.fulfilled,
+      (state, action: PayloadAction<IUsersOrder>) => {
+        state.orders = state.orders.map((order) =>
+          order.id === action.payload.id ? action.payload : order,
+        );
+
+        state.isOrdersFetching = false;
+      },
+    );
   },
 });
 

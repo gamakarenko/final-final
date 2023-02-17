@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { useAppDispatch } from 'store/store';
-import { getUsersOrdersThunk } from 'store/usersOrders/userOrdersThunk';
+import { getUsersOrdersThunk } from 'store/usersOrders/usersOrdersThunk';
 
 function App() {
   const dispatch = useAppDispatch();

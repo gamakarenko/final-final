@@ -15,6 +15,7 @@ export interface IPassenger {
 }
 
 export interface IOrder {
+  id?: number;
   transferDate: string;
   transferTime: string;
   direction: ITripDirection;
