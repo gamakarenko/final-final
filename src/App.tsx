@@ -1,3 +1,4 @@
+import ScrollToTop from 'components/ScrollToTop/ScrollToTop';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
@@ -11,7 +12,12 @@ function App() {
     dispatch(getUsersOrdersThunk());
   }, []);
 
-  return <Outlet />;
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
 }
 
 export default App;
