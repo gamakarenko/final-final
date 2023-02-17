@@ -1,19 +1,19 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { IOrder, IPassenger } from 'types/order';
-
 import PassengerFieldset from '../PassengerFieldset/PassengerFieldset';
 import PageText from '../ui/PageText/PageText';
 import PageParagraph from '../ui/PageParagraph/PageParagraph';
 import AppButton from '../ui/AppButton/AppButton';
 
+import { IUser } from 'types/order';
+
 import { StyledPassengerStep } from './PassengerStep.styles';
 
 interface PassengerStepProps extends PropsWithChildren {
   heading?: string;
-  passengers: IPassenger[];
+  passengers: IUser[];
   handleAddPassenger: () => void;
-  handleEditPassengerById: (id: number, data: Partial<IPassenger>) => void;
+  handleEditPassengerById: (id: number, data: Partial<IUser>) => void;
   handleDeletePassengerById: (id: number) => void;
 }
 

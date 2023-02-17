@@ -1,6 +1,5 @@
 import { FC } from 'react';
-
-import { IPassenger } from '../../types/order';
+import { IUser } from 'types/order';
 
 import AppButton from '../ui/AppButton/AppButton';
 import AppInput from '../ui/AppInput/AppInput';
@@ -8,24 +7,23 @@ import AppTextArea from '../ui/AppTextArea/AppTextArea';
 
 import { StyledPassengerFieldset } from './PassengerFieldset.styles';
 
-interface PassengerFieldsetProps extends IPassenger {
-  handleEditPassengerById: (id: number, data: Partial<IPassenger>) => void;
+interface PassengerFieldsetProps extends IUser {
+  handleEditPassengerById: (id: number, data: Partial<IUser>) => void;
   handleDeletePassengerById: (id: number) => void;
 }
 
 const PassengerFieldset: FC<PassengerFieldsetProps> = ({
-  fullName,
-  passportId,
-  departureDate,
-  departureTime,
+  name,
+  passport,
+  arrivalDate,
+  arrivalTime,
   phoneNumber,
-  telegramId,
-  transferComment,
+  telegramLogin,
+  tripComment,
   id,
   handleEditPassengerById,
   handleDeletePassengerById,
 }) => {
-
   return (
     <StyledPassengerFieldset className="passenger-field">
       <AppInput
@@ -33,34 +31,34 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
         label="ФИО"
         autoComplete="name"
         required
-        value={fullName}
+        value={name}
         onChange={(e) =>
-          handleEditPassengerById(id, { fullName: e.target.value })
+          handleEditPassengerById(id, { name: e.target.value })
         }
       />
       <AppInput
         className="passenger-field__input-box"
         label="Номер загранпаспорта"
-        value={passportId}
+        value={passport}
         required
         onChange={(e) =>
-          handleEditPassengerById(id, { passportId: e.target.value })
+          handleEditPassengerById(id, { passport: e.target.value })
         }
       />
       <AppInput
         className="passenger-field__input-box"
         label="Дата отправки"
-        value={departureDate}
+        value={arrivalDate || ''}
         onChange={(e) =>
-          handleEditPassengerById(id, { departureDate: e.target.value })
+          handleEditPassengerById(id, { arrivalDate: e.target.value })
         }
       />
       <AppInput
         className="passenger-field__input-box"
         label="Время отправки"
-        value={departureTime}
+        value={arrivalTime || ''}
         onChange={(e) =>
-          handleEditPassengerById(id, { departureTime: e.target.value })
+          handleEditPassengerById(id, { arrivalTime: e.target.value })
         }
       />
       <AppInput
@@ -75,17 +73,17 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
       <AppInput
         className="passenger-field__input-box"
         label="Логин в телеграмме"
-        value={telegramId}
+        value={telegramLogin}
         onChange={(e) =>
-          handleEditPassengerById(id, { telegramId: e.target.value })
+          handleEditPassengerById(id, { telegramLogin: e.target.value })
         }
       />
       <AppTextArea
         className="passenger-field__input-box"
         label="Комментарий к поездке"
-        value={transferComment}
+        value={tripComment}
         onChange={(e) =>
-          handleEditPassengerById(id, { transferComment: e.target.value })
+          handleEditPassengerById(id, { tripComment: e.target.value })
         }
       />
 

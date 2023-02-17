@@ -10,9 +10,7 @@ import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 import { StyledOrderedTransfersList } from './OrderedTransfersList.styles';
 
 const OrderedTransfersList = () => {
-  const { isOrdersFetching, orders } = useAppSelector(
-    ({ usersOrders }) => usersOrders,
-  );
+  const { isOrdersFetching, orders } = useAppSelector(({ orders }) => orders);
 
   const navigate = useNavigate();
 

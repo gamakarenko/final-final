@@ -1,24 +1,44 @@
 import { FC } from 'react';
-import { IPassenger } from '../../types/order';
+
 import InfoCell from '../InfoCell/InfoCell';
+
+import { IUser } from 'types/order';
+
 import { StyledPassengerSummary } from './PassengerSummary.styled';
 
-interface PassengerSummaryProps extends IPassenger {
+interface PassengerSummaryProps extends IUser {
   index: number;
 }
 
-const PassengerSummary: FC<PassengerSummaryProps> = ({
-  index,
-  ...passenger
-}) => {
+const PassengerSummary: FC<PassengerSummaryProps> = ({ index, ...user }) => {
   return (
     <StyledPassengerSummary className="passenger-summary">
       <p className="passenger-summary__heading">Пассажир {index}</p>
-      <InfoCell className="passenger-summary__info" heading="ФИО" data={passenger.fullName} />
-      <InfoCell className="passenger-summary__info" heading="Номер загранпаспорта" data={passenger.passportId} />
-      <InfoCell className="passenger-summary__info" heading="Логин в телеграмме" data={passenger.telegramId} />
-      <InfoCell className="passenger-summary__info" heading="Номер телефона" data={passenger.phoneNumber} />
-      <InfoCell className="passenger-summary__info" heading="Комментарий" data={passenger.transferComment} />
+      <InfoCell
+        className="passenger-summary__info"
+        heading="ФИО"
+        data={user.name}
+      />
+      <InfoCell
+        className="passenger-summary__info"
+        heading="Номер загранпаспорта"
+        data={user.passport}
+      />
+      <InfoCell
+        className="passenger-summary__info"
+        heading="Логин в телеграмме"
+        data={user.telegramLogin}
+      />
+      <InfoCell
+        className="passenger-summary__info"
+        heading="Номер телефона"
+        data={user.phoneNumber}
+      />
+      <InfoCell
+        className="passenger-summary__info"
+        heading="Комментарий"
+        data={user.tripComment}
+      />
     </StyledPassengerSummary>
   );
 };

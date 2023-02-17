@@ -21,7 +21,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import { StyledTransferCreation } from './TransferCreation.styled';
 
 const TransferCreation: FC = () => {
-  const { order, isSendingOrder } = useAppSelector(({ order }) => order);
+  const { order, isSendingOrder } = useAppSelector(({ newOrder }) => newOrder);
   const dispatch = useAppDispatch();
 
   const {
@@ -51,7 +51,7 @@ const TransferCreation: FC = () => {
     </MainInfoStep>,
 
     <PassengerStep
-      passengers={order.passengers}
+      passengers={order.users}
       handleAddPassenger={() => dispatch(addNewPassenger())}
       handleEditPassengerById={(id, data) =>
         dispatch(editPassengerById({ id, ...data }))
@@ -65,7 +65,7 @@ const TransferCreation: FC = () => {
       </PageParagraph>
     </PassengerStep>,
 
-    <OrderSummary heading="Подтверждение введённой информации" {...order} />,
+    <OrderSummary heading="Подтверждение введённой информации" order={order} />,
   ]);
   //TODO Подумать стоит ли скролить вверх формы при переходе вперед и назад. Может сделать, чтобы кнопки вперед и назад всегда были на виду?
   const handleNextClick: FormEventHandler<HTMLFormElement> = (e) => {

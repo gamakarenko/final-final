@@ -1,15 +1,16 @@
 import { FC } from 'react';
 
-import { IUsersOrder } from 'store/Orders/Orders';
+import { IOrder } from 'types/order';
 
 import { StyledShortOrderCard } from './ShortOrderCard.styles';
 
-const ShortOrderCard: FC<Partial<IUsersOrder>> = ({
+const ShortOrderCard: FC<Partial<IOrder>> = ({
   id,
   direction,
   airport,
   location,
-  tripDate,
+  transferTime,
+  transferDate,
 }) => {
   return (
     <StyledShortOrderCard className="short-order-card">
@@ -30,13 +31,13 @@ const ShortOrderCard: FC<Partial<IUsersOrder>> = ({
       <p className="short-order-card__item">
         Дата:{' '}
         <span className="short-order-card__item-data">
-          {tripDate!.slice(0, 10)}
+          {transferDate}
         </span>
       </p>
       <p className="short-order-card__item">
         Время:{' '}
         <span className="short-order-card__item-data">
-          {tripDate!.slice(-5)}
+          {transferTime}
         </span>
       </p>
     </StyledShortOrderCard>

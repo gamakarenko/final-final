@@ -8,7 +8,7 @@ import AppTextArea from '../ui/AppTextArea/AppTextArea';
 import AppRadioBtn from '../ui/RadioButton/AppRadioBtn';
 import YaMap from '../YaMap/YaMap';
 
-import { IOrder } from 'types/order';
+import { INewOrder, IOrder } from 'types/order';
 
 import { sedanIcon, vitoIcon } from '../../images/index';
 
@@ -16,7 +16,7 @@ import { StyledMainInfoStep } from './MainInfoStep.styles';
 
 interface MainInfoStepProps extends PropsWithChildren {
   heading?: string;
-  order: Partial<IOrder>;
+  order: IOrder | INewOrder;
   handleChange: (data: Partial<IOrder>) => void;
 }
 
@@ -162,9 +162,9 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           type="number"
           required
           min={1}
-          value={order.adults}
+          value={order.adultsAmount}
           onChange={(e) =>
-            handleChange({ adults: e.target.value as unknown as number })
+            handleChange({ adultsAmount: e.target.value as unknown as number })
           }
         />
 

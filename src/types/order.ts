@@ -21,9 +21,9 @@ export interface IOrder {
   transferTime: string;
   transferDate: string;
   location: string;
-  adultsAmount: 1;
-  childrenUnder5: 0;
-  childrenAbove5: 0;
+  adultsAmount: number;
+  childrenUnder5: number;
+  childrenAbove5: number;
   direction: ITripDirection;
   isEnded: boolean;
   carType: ICarType;

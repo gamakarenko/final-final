@@ -5,21 +5,23 @@ import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 
 import { useAppDispatch, useAppSelector } from 'store/store';
 
+import { findOrderById } from 'utils/findOrderById';
+
 import { StyledChangeMainInfoPage } from './ChangeMainInfoPage.styles';
-import { convertUglyOrderToNormalOrder } from 'utils/convertUglyOrderToNormalOrder';
 
 const ChangeMainInfoPage = () => {
-  const { orders } = useAppSelector(({ usersOrders }) => usersOrders);
+  const { orders } = useAppSelector(({ orders }) => orders);
   const dispatch = useAppDispatch();
 
   const { id } = useParams();
 
-  const order = id ? orders.find((order) => order.id === Number(id)) : null;
+  const order = findOrderById(orders, id);
 
   return (
     <StyledChangeMainInfoPage>
       <MainInfoStep
-        order={convertUglyOrderToNormalOrder(order) || {}}
+        // TODO ордер может быть пустым?
+        order={order!}
         handleChange={() => null}
       >
         <PageParagraph>

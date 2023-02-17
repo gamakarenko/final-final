@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { useAppDispatch } from 'store/store';
-import { getUsersOrdersThunk } from 'store/Orders/OrdersThunk';
+import { getOrdersThunk } from 'store/Orders/OrdersThunk';
 
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getUsersOrdersThunk());
+    dispatch(getOrdersThunk());
   }, []);
 
   return (

@@ -43,7 +43,7 @@ const newOrderSlice = createSlice({
   name: 'newOrder',
   initialState,
   reducers: {
-    editOrderInfo: (state, action: PayloadAction<Partial<INewOrderState>>) => {
+    editOrderInfo: (state, action: PayloadAction<Partial<INewOrder>>) => {
       state.order = {
         ...state.order,
         ...action.payload,
