@@ -19,11 +19,12 @@ import OrderedTransfersList from 'pages/OrderedTransfersPage/OrderedTransfersLis
 import SelectChangeOptionsPage from 'components/SelectChangeOptionsPage/SelectChangeOptionsPage';
 import ChangePassengersPage from 'components/ChangePassengersPage/ChangePassengersPage';
 import ChangeMainInfoPage from 'components/ChangeMainInfoPage/ChangeMainInfoPage';
+import TransferCreationComplete from 'pages/TransferCreationComplete/TransferCreationComplete';
+import TransferCreationForm from 'pages/TransferCreation/TransferCreationForm/TransferCreationForm';
 import { MainPage } from 'pages/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
 import { Example } from 'pages/Example';
-import TransferCreationComplete from 'pages/TransferCreationComplete/TransferCreationComplete';
 
 export const router = createBrowserRouter([
   {
@@ -37,10 +38,10 @@ export const router = createBrowserRouter([
       {
         path: 'order',
         element: <TransferCreation />,
-      },
-      {
-        path: 'order/complete',
-        element: <TransferCreationComplete />,
+        children: [
+          { index: true, element: <TransferCreationForm /> },
+          { path: 'complete', element: <TransferCreationComplete /> },
+        ],
       },
       {
         path: 'share',

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled/macro';
 
-export const StyledTransferCreation = styled.div`
-  .transfer-creation {
+export const StyledTransferCreationForm = styled.div`
+  .transfer-creation-form {
     &__heading {
       margin-bottom: 10px;
     }

@@ -3,7 +3,7 @@ import $api from '.';
 import { INewOrder } from 'types/order';
 
 export const createOrder = async (order: INewOrder) => {
-  return $api.post('transfers/create-transfer', { order });
+  return $api.post('transfers/create-transfer1', { order });
 };
 //TODO tipisation
 export const getOrders = async (): Promise<any> => {

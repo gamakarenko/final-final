@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
 import AppButton from 'components/ui/AppButton/AppButton';
-import PageHeading from 'components/ui/PageHeading/PageHeading';
 import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 
 import { StyledTransferCreationComplete } from './TransferCreationComplete.styles';
@@ -11,10 +10,6 @@ const TransferCreationComplete = () => {
 
   return (
     <StyledTransferCreationComplete>
-      <PageHeading className="transfer-creation-complete__heading">
-        Заказанные поездки
-      </PageHeading>
-
       <PageParagraph>
         Спасибо! Ваша заявка на&nbsp;трансфер принята. Ассистент свяжется
         с&nbsp;вами в&nbsp;течение за&nbsp;24&nbsp;ч.&nbsp;до&nbsp;отправления
