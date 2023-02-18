@@ -1,7 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import PageHeading from 'components/ui/PageHeading/PageHeading';
+
+import { INavigationState } from 'types/navigation';
 
 import { StyledPageWrapperWithHeading } from './PageWrapperWithHeading.styled';
 
@@ -16,12 +18,22 @@ const PageWrapperWithHeading: FC<PageWrapperWithHeadingProps> = ({
   backTo,
 }) => {
   const navigate = useNavigate();
+  const { state }: { state?: INavigationState } = useLocation();
+
+  const goBack = () => {  
+    if (state && state.stayInSectionWhenClickBack) {
+      navigate(-1);
+      return;
+    }
+
+    navigate(backTo, { replace: true });
+  };
 
   return (
     <StyledPageWrapperWithHeading className="page-wrapper-with-heading">
       <button
         className="page-wrapper-with-heading__btn-back"
-        onClick={() => navigate(backTo, { replace: true })}
+        onClick={() => goBack()}
         aria-label="Кнопка назад"
       >
         <svg

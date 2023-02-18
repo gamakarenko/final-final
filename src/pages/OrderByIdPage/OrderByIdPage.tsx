@@ -28,7 +28,9 @@ const OrderByIdPage = () => {
 
       <AppButton
         className="order-by-id-page__btn"
-        onClick={() => navigate('change')}
+        onClick={() =>
+          navigate('change', { state: { stayInSectionWhenClickBack: true } })
+        }
       >
         Изменить данные
       </AppButton>

@@ -30,7 +30,9 @@ const OrderedTransfersList = () => {
             size="big"
             textAlign="left"
             className="ordered-transfers-list__order-btn"
-            onClick={() => navigate(String(order.id))}
+            onClick={() =>
+              navigate(String(order.id), { state: { stayInSectionWhenClickBack: true } })
+            }
           >
             <ShortOrderCard {...order} />
           </AppButton>

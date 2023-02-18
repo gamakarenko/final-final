@@ -10,7 +10,7 @@ export const MyTransfersPage: FC = () => {
   const navigate = useNavigate();
 
   return (
-    <PageWrapperWithHeading heading="Мои поездки" backTo='/'>
+    <PageWrapperWithHeading heading="Мои поездки" backTo={'/'}>
       <StyledMyTransfersPage className="my-transfers-page">
         <AppButton
           textAlign="left"

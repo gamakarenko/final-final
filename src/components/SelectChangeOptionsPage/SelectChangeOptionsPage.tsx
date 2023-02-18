@@ -9,10 +9,22 @@ const SelectChangeOptionsPage = () => {
 
   return (
     <StyledSelectChangeOptionsPage>
-      <AppButton isFilled={false} onClick={() => navigate('main-info')}>
+      <AppButton
+        isFilled={false}
+        onClick={() =>
+          navigate('main-info', { state: { stayInSectionWhenClickBack: true } })
+        }
+      >
         Общие сведения
       </AppButton>
-      <AppButton isFilled={false} onClick={() => navigate('passengers')}>
+      <AppButton
+        isFilled={false}
+        onClick={() =>
+          navigate('passengers', {
+            state: { stayInSectionWhenClickBack: true },
+          })
+        }
+      >
         Данные пассажиров
       </AppButton>
     </StyledSelectChangeOptionsPage>
