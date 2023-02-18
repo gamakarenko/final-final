@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { toast } from 'react-toastify';
+
 import { IOrder } from 'types/order';
 
 import { getOrdersThunk, putOrderThunk } from './OrdersThunk';
@@ -24,8 +26,10 @@ const ordersSlice = createSlice({
     builder.addCase(getOrdersThunk.pending, (state) => {
       state.isOrdersFetching = true;
     });
-    builder.addCase(getOrdersThunk.rejected, (state) => {
+    builder.addCase(getOrdersThunk.rejected, (state, payload) => {
       state.isOrdersFetching = false;
+        
+      toast.error(payload.error.message);
     });
     builder.addCase(
       getOrdersThunk.fulfilled,

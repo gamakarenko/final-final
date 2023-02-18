@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { toast } from 'react-toastify';
+
 import { INewOrder, IUser } from '../../types/order';
 
 import { createOrderThunk } from './newOrderThunks';
@@ -80,8 +82,9 @@ const newOrderSlice = createSlice({
     builder.addCase(createOrderThunk.pending, (state) => {
       state.isSendingOrder = true;
     });
-    builder.addCase(createOrderThunk.rejected, (state) => {
+    builder.addCase(createOrderThunk.rejected, (state, payload) => {
       state.isSendingOrder = false;
+      toast.error(payload.error.message);
     });
     builder.addCase(createOrderThunk.fulfilled, (state) => {
       state = initialState;

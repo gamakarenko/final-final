@@ -71,20 +71,19 @@ const TransferCreationForm = () => {
     <OrderSummary heading="Подтверждение введённой информации" order={order} />,
   ]);
   //TODO Подумать стоит ли скролить вверх формы при переходе вперед и назад. Может сделать, чтобы кнопки вперед и назад всегда были на виду?
-  const handleNextClick: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleNextClick: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    window.scrollTo(0, 0);
     if (!isLastStep) {
+      window.scrollTo(0, 0);
       return goNextStep();
     }
 
     try {
-      dispatch(createOrderThunk(order)).unwrap();
+      await dispatch(createOrderThunk(order)).unwrap();
+      
       navigate('/order/complete');
-    } catch (err) {
-      console.log(err);
-    }
+    } catch {}
   };
 
   const handleBackClick = () => {

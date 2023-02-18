@@ -7,7 +7,9 @@ import { store } from './store/store';
 
 import './styles/index.scss';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement,
+);
 root.render(
   <Provider store={store}>
     <RouterProvider router={router} />

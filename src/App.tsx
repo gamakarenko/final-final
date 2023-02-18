@@ -2,6 +2,8 @@ import ScrollToTop from 'components/ScrollToTop/ScrollToTop';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import { Slide, ToastContainer } from 'react-toastify';
+
 import { useAppDispatch } from 'store/store';
 import { getOrdersThunk } from 'store/Orders/OrdersThunk';
 
@@ -15,6 +17,19 @@ function App() {
   return (
     <>
       <ScrollToTop />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Slide}
+      />
       <Outlet />
     </>
   );

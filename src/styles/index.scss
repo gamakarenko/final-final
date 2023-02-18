@@ -1,6 +1,8 @@
 @import './base/normalize';
 @import './base/fonts';
 
+@import 'react-toastify/dist/ReactToastify.css';
+
 @import './components/button.scss';
 @import './components/button-complete.scss';
 @import './components/passengerBlock.scss';
