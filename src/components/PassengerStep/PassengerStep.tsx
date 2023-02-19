@@ -15,6 +15,7 @@ interface PassengerStepProps extends PropsWithChildren {
   handleAddPassenger: () => void;
   handleEditPassengerById: (id: number, data: Partial<IUser>) => void;
   handleDeletePassengerById: (id: number) => void;
+  className?: string;
 }
 
 const PassengerStep: FC<PassengerStepProps> = ({
@@ -24,9 +25,12 @@ const PassengerStep: FC<PassengerStepProps> = ({
   handleAddPassenger,
   handleEditPassengerById,
   handleDeletePassengerById,
+  className,
 }) => {
   return (
-    <StyledPassengerStep className="passenger-step">
+    <StyledPassengerStep
+      className={`passenger-step${className ? ' ' + className : ''}`}
+    >
       {children ? (
         children
       ) : heading ? (

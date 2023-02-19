@@ -16,6 +16,7 @@ interface MainInfoStepProps extends PropsWithChildren {
   heading?: string;
   order: IOrder;
   handleChange: (data: Partial<IOrder>) => void;
+  className?: string;
 }
 
 const MainInfoStep: FC<MainInfoStepProps> = ({
@@ -23,6 +24,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
   children,
   handleChange,
   order,
+  className,
 }) => {
   const setStartLocation = (location: string) =>
     handleChange({ startLocation: location });
@@ -30,7 +32,9 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
     handleChange({ endLocation: location });
 
   return (
-    <StyledMainInfoStep>
+    <StyledMainInfoStep
+      className={`main-info-step${className ? ' ' + className : ''}`}
+    >
       {children ? (
         children
       ) : heading ? (

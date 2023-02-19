@@ -63,12 +63,13 @@ const ordersSlice = createSlice({
     });
     builder.addCase(
       putOrderThunk.fulfilled,
-      (state, action: PayloadAction<IOrder>) => {
+      (state, action) => {
         state.orders = state.orders.map((order) =>
-          order.id === action.payload.id ? action.payload : order,
+          order.id === action.payload.body.id ? action.payload.body : order,
         );
 
         state.isOrdersFetching = false;
+        toast.success('Поездка изменена.');
       },
     );
   },
