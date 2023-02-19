@@ -1,14 +1,14 @@
 import { FC } from 'react';
 
 import { IOrder } from 'types/order';
+import { convertDateFormat } from 'utils/convertDateFormat';
 
 import { StyledShortOrderCard } from './ShortOrderCard.styles';
 
 const ShortOrderCard: FC<Partial<IOrder>> = ({
   id,
-  // direction,
-  // airport,
-  // location,
+  startLocation,
+  endLocation,
   transferTime,
   transferDate,
 }) => {
@@ -19,19 +19,19 @@ const ShortOrderCard: FC<Partial<IOrder>> = ({
       <p className="short-order-card__item">
         Откуда:{' '}
         <span className="short-order-card__item-data">
-          {/* {direction === 'fromAirport' ? airport : location} */}
+          {startLocation}
         </span>
       </p>
       <p className="short-order-card__item">
         Куда:{' '}
         <span className="short-order-card__item-data">
-          {/* {direction === 'toAirport' ? airport : location} */}
+          {endLocation}
         </span>
       </p>
       <p className="short-order-card__item">
         Дата:{' '}
         <span className="short-order-card__item-data">
-          {transferDate}
+          {convertDateFormat(transferDate)}
         </span>
       </p>
       <p className="short-order-card__item">
