@@ -9,7 +9,7 @@ interface IAppRadioBtn extends InputHTMLAttributes<HTMLInputElement> {
 const AppRadioBtn: FC<IAppRadioBtn> = ({ children, ...rest }) => {
   return (
     <StyledAppRadioBtn className="app-radio-btn">
-      <input type="radio" className="radio-btn__input" {...rest} />
+      <input type="radio" className="app-radio-btn__input" {...rest} />
       {children}
     </StyledAppRadioBtn>
   );

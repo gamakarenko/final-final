@@ -19,11 +19,11 @@ const OrderSummary: FC<OrderSummaryProps> = ({ order, heading }) => {
   const {
     transferDate,
     transferTime,
-    direction,
+    startLocation,
     childrenUnder5,
     childrenAbove5,
-    airport,
-    location,
+    endLocation,
+    isPickUpFromAirport,
     carType,
     adultsAmount,
     users,
@@ -45,12 +45,13 @@ const OrderSummary: FC<OrderSummaryProps> = ({ order, heading }) => {
         </StyledTwoColumnBox>
         <InfoCell
           heading="Откуда тебя забрать"
-          data={direction === 'fromAirport' ? 'Аэропорт ' + airport : location}
+          data={startLocation}
         />
         <InfoCell
           heading="Куда привезти"
-          data={direction === 'toAirport' ? 'Аэропорт ' + airport : location}
+          data={endLocation}
         />
+        {isPickUpFromAirport && <InfoCell heading='Забрать из аэропорта' data='Да'/>}
         {/* TODO сделать описание типа автомобиля, подумать откуда брать */}
         <InfoCell
           heading="Тип автомобиля"

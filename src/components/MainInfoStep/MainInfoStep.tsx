@@ -1,11 +1,8 @@
-import { FC, PropsWithChildren, useState } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import PageParagraph from '../ui/PageParagraph/PageParagraph';
 import CarRadioBtn from '../CarRadioBtn/CarRadioBtn';
-import AppButton from '../ui/AppButton/AppButton';
 import AppInput from '../ui/AppInput/AppInput';
-import AppTextArea from '../ui/AppTextArea/AppTextArea';
-import AppRadioBtn from '../ui/RadioButton/AppRadioBtn';
 import YaMap from '../YaMap/YaMap';
 
 import { IOrder } from 'types/order';
@@ -13,6 +10,7 @@ import { IOrder } from 'types/order';
 import { sedanIcon, vitoIcon } from '../../images/index';
 
 import { StyledMainInfoStep } from './MainInfoStep.styles';
+import AppCheckbox from 'components/ui/AppCheckbox/AppCheckbox';
 
 interface MainInfoStepProps extends PropsWithChildren {
   heading?: string;
@@ -26,9 +24,10 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
   handleChange,
   order,
 }) => {
-  const setLocation = (location: string) => handleChange({ location });
-
-  const [isCardVisible, setIsCardVisible] = useState(false);
+  const setStartLocation = (location: string) =>
+    handleChange({ startLocation: location });
+  const setEndLocation = (location: string) =>
+    handleChange({ endLocation: location });
 
   return (
     <StyledMainInfoStep>
@@ -61,80 +60,28 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           />
         </div>
 
-        <div>
-          <legend className="main-info-fieldset__label">Я отправляюсь:</legend>
-          <div className="main-info-fieldset__radio-group">
-            <AppRadioBtn
-              name="direction"
-              value="fromAirport"
-              checked={order.direction === 'fromAirport'}
-              onChange={() => handleChange({ direction: 'fromAirport' })}
-            >
-              из аэропорта
-            </AppRadioBtn>
-            <AppRadioBtn
-              name="direction"
-              value="toAirport"
-              checked={order.direction === 'toAirport'}
-              onChange={() => handleChange({ direction: 'toAirport' })}
-            >
-              в аэропорт
-            </AppRadioBtn>
-          </div>
-        </div>
+        <YaMap
+          location={order.startLocation}
+          setLocation={setStartLocation}
+          heading="Откуда тебя забрать?"
+          required
+        />
 
-        <>
-          <div>
-            <p className="main-info-fieldset__label">
-              {order.direction === 'fromAirport' ? 'Из какого?' : 'В какой?'}
-            </p>
+        <YaMap
+          location={order.endLocation}
+          setLocation={setEndLocation}
+          heading="Куда тебя привезти?"
+          required
+        />
 
-            <div className="main-info-fieldset__radio-group">
-              <AppRadioBtn
-                value="Анталья"
-                name="airport"
-                checked={order.airport === 'Анталья'}
-                onChange={(e) => handleChange({ airport: 'Анталья' })}
-              >
-                Анталья
-              </AppRadioBtn>
-              <AppRadioBtn
-                value="Даламан"
-                name="airport"
-                checked={order.airport === 'Даламан'}
-                onChange={(e) => handleChange({ airport: 'Даламан' })}
-              >
-                Даламан
-              </AppRadioBtn>
-            </div>
-          </div>
-
-          <div>
-            <div className="main-info-fieldset__address-label">
-              <p>{order.direction === 'toAirport' ? 'Откуда?' : 'Куда?'}</p>
-              <AppButton
-                className="main-info-fieldset__card-btn"
-                isFilled={false}
-                isUppercase
-                onClick={() => setIsCardVisible((prev) => !prev)}
-              >
-                {isCardVisible ? 'Скрыть карту' : 'Выбрать на карте'}
-              </AppButton>
-            </div>
-            <AppTextArea
-              id="suggest"
-              required
-              value={order.location}
-              onChange={(e) => handleChange({ location: e.target.value })}
-            />
-
-            <YaMap
-              isVisible={isCardVisible}
-              location={order.location!}
-              setLocation={setLocation}
-            />
-          </div>
-        </>
+        <AppCheckbox
+          checked={order.isPickUpFromAirport}
+          onChange={(e) =>
+            handleChange({ isPickUpFromAirport: e.target.checked })
+          }
+        >
+          Вас забрать из аэропорта?
+        </AppCheckbox>
 
         <div className="main-info-fieldset__rows-box">
           <CarRadioBtn

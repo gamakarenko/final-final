@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { createOrder, getOrders, putOrder } from 'api/orders';
+
 import { IOrder } from 'types/order';
 
 export const getOrdersThunk = createAsyncThunk(
@@ -11,7 +12,7 @@ export const getOrdersThunk = createAsyncThunk(
 );
 
 export const createOrderThunk = createAsyncThunk(
-  'newOrder/createOrderThunk',
+  'orders/createOrderThunk',
   async (order: IOrder) => {
     return await createOrder(order);
   },

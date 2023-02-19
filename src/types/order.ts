@@ -20,13 +20,14 @@ export interface IOrder {
   id?: number;
   transferTime: string;
   transferDate: string;
-  location: string;
   adultsAmount: number;
   childrenUnder5: number;
   childrenAbove5: number;
-  direction: ITripDirection;
   isEnded?: boolean;
   carType: ICarType;
-  airport: IAirport;
+  startLocation: string;
+  endLocation: string;
+  isPickUpFromAirport: boolean;
   users: IUser[];
 }
+

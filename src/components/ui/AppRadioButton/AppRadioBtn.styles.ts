@@ -7,7 +7,7 @@ export const StyledAppRadioBtn = styled.label`
   gap: 5px;
   line-height: 1;
 
-  .radio-btn {
+  .app-radio-btn {
     &__input {
       appearance: none;
       width: 1.4em;

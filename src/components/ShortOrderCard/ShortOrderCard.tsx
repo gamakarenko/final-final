@@ -6,9 +6,9 @@ import { StyledShortOrderCard } from './ShortOrderCard.styles';
 
 const ShortOrderCard: FC<Partial<IOrder>> = ({
   id,
-  direction,
-  airport,
-  location,
+  // direction,
+  // airport,
+  // location,
   transferTime,
   transferDate,
 }) => {
@@ -19,13 +19,13 @@ const ShortOrderCard: FC<Partial<IOrder>> = ({
       <p className="short-order-card__item">
         Откуда:{' '}
         <span className="short-order-card__item-data">
-          {direction === 'fromAirport' ? airport : location}
+          {/* {direction === 'fromAirport' ? airport : location} */}
         </span>
       </p>
       <p className="short-order-card__item">
         Куда:{' '}
         <span className="short-order-card__item-data">
-          {direction === 'toAirport' ? airport : location}
+          {/* {direction === 'toAirport' ? airport : location} */}
         </span>
       </p>
       <p className="short-order-card__item">

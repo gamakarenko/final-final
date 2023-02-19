@@ -24,13 +24,13 @@ const initialState: INewOrderState = {
   order: {
     transferDate: '',
     transferTime: '',
-    direction: 'fromAirport',
-    airport: 'Анталья',
-    location: '',
     carType: 'vito',
     adultsAmount: 1,
     childrenUnder5: 0,
     childrenAbove5: 0,
+    startLocation: '',
+    endLocation: '',
+    isPickUpFromAirport: false,
     users: [newUser],
   },
 };

@@ -19,25 +19,9 @@ export const StyledMainInfoStep = styled.fieldset`
       gap: 5px;
     }
 
-    &__label {
-      margin-bottom: 5px;
-    }
-
     &__radio-group {
       display: flex;
       justify-content: space-around;
-    }
-
-    &__card-btn {
-      font-size: 10px;
-      width: auto;
-    }
-
-    &__address-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 5px;
     }
   }
 `;

@@ -1,16 +1,23 @@
-import { FC, useEffect, useState } from 'react';
+import AppButton from 'components/ui/AppButton/AppButton';
+import AppTextArea from 'components/ui/AppTextArea/AppTextArea';
+import { FC, TextareaHTMLAttributes, useEffect, useId, useState } from 'react';
 
 import { StyledYaMap } from './YaMap.styled';
 
-export interface YaMapProps {
-  isVisible: boolean;
-  setLocation: (value: any) => void;
+export interface YaMapProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   location: string;
+  setLocation: (data: string) => void;
+  heading: string;
 }
 
-const YaMap: FC<YaMapProps> = ({ isVisible, location, setLocation }) => {
+const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
   const [yaMap, setYaMap] = useState<any>();
   const [isInit, setIsInit] = useState(false);
+  const [isCardVisible, setIsCardVisible] = useState(false);
+
+  const mapId = useId();
+  const suggestId = useId();
 
   useEffect(() => {
     if ((window as any).ymaps) {
@@ -18,15 +25,13 @@ const YaMap: FC<YaMapProps> = ({ isVisible, location, setLocation }) => {
     }
   }, []);
 
-  useEffect(() => {
-    
-  }, [location]);
+  useEffect(() => {}, [location]);
 
   function onLoad(ymaps: any) {
-    var suggestView = new ymaps.SuggestView('suggest', { results: 5 });
+    var suggestView = new ymaps.SuggestView(suggestId, { results: 5 });
     suggestView.events.add('select', (e: any) => {
       //Задаем локацию из выпадающей подсказки
-      setLocation(e.originalEvent.item.displayName);      
+      setLocation(e.originalEvent.item.displayName);
     });
   }
 
@@ -95,13 +100,37 @@ const YaMap: FC<YaMapProps> = ({ isVisible, location, setLocation }) => {
   useEffect(() => {
     if (yaMap && !isInit) {
       yaMap.ready(() => onLoad(yaMap));
-      yaMap.ready(() => init('map'));
+      yaMap.ready(() => init(mapId));
 
       setIsInit(true);
     }
   }, [yaMap]);
 
-  return yaMap ? <StyledYaMap id="map" isVisible={isVisible} /> : null;
+  return (
+    <StyledYaMap isCardVisible={isCardVisible} className={`ya-map`}>
+      <div className="ya-map__address-label">
+        <p>{heading}</p>
+        <AppButton
+          className="ya-map__card-btn"
+          isFilled={false}
+          isUppercase
+          onClick={() => setIsCardVisible((prev) => !prev)}
+        >
+          {isCardVisible ? 'Скрыть карту' : 'Выбрать на карте'}
+        </AppButton>
+      </div>
+
+      <div className="ya-map__map" id={mapId} />
+
+      <AppTextArea
+        id={suggestId}
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+        className="ya-map__text-area"
+        {...rest}
+      />
+    </StyledYaMap>
+  );
 };
 
 export default YaMap;

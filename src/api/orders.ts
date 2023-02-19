@@ -4,7 +4,7 @@ import { IOrder } from 'types/order';
 
 export const createOrder = async (order: IOrder) => {
   const res = await $api.post('transfers/create-transfer', { order });
-  
+
   return res.data.body;
 };
 
