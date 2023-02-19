@@ -55,10 +55,6 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
   return (
     <div className="transfers-page">
       <div>
-        <div style={{ marginBottom: '0px' }} className="transfers-page__title">
-          О проекте
-        </div>
-        <br />
         <hr />
         <br />
         <p>
@@ -94,9 +90,6 @@ const ReviewPage: React.FunctionComponent<ReviewPageProps> = () => {
             }}
           >
             Оставить отзыв
-          </Button>
-          <Button sx={backButton} onClick={() => navigate(-1)}>
-            Назад
           </Button>
         </form>
       </div>

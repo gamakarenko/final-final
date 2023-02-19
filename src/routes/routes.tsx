@@ -10,7 +10,7 @@ import DateTime from 'pages/ordered/DateTime/index';
 import FinalPage from 'pages/ordered/FinalPage';
 import TransferCreation from 'pages/TransferCreation/TransferCreation';
 import SharePage from 'pages/SharePage';
-import FAQPage from 'pages/FAQPage';
+import FAQPage from 'pages/FAQPage/FAQPage';
 import InfoPage from 'pages/AboutPage/InfoPage';
 import ReviewPage from 'pages/AboutPage/ReviewPage';
 import OrderedTransfersPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
@@ -25,6 +25,7 @@ import { MainPage } from 'pages/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
 import { Example } from 'pages/Example';
+import AboutMain from 'pages/AboutPage/AboutMain/AboutMain';
 
 export const router = createBrowserRouter([
   {
@@ -78,14 +79,20 @@ export const router = createBrowserRouter([
       {
         path: 'about',
         element: <AboutPage />,
-      },
-      {
-        path: 'about/info',
-        element: <InfoPage />,
-      },
-      {
-        path: 'about/review',
-        element: <ReviewPage />,
+        children: [
+          {
+            index: true,
+            element: <AboutMain />,
+          },
+          {
+            path: 'info',
+            element: <InfoPage />,
+          },
+          {
+            path: 'review',
+            element: <ReviewPage />,
+          },
+        ],
       },
 
       {

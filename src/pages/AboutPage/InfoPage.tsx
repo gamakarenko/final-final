@@ -26,17 +26,9 @@ const ButtonStyle: SxProps = {
 
 const InfoPage: React.FunctionComponent<InfoPageProps> = () => {
   const navigate = useNavigate();
-  //@ts-ignore
-  // let tg = window?.Telegram?.WebApp;
-  // const back = tg.BackButton;
-  // back.show();
-  // back.onClick(() => navigate('/about'));
+
   return (
     <div className="transfers-page" style={{ height: '100%' }}>
-      <div style={{ marginBottom: '0px' }} className="transfers-page__title">
-        О проекте
-      </div>
-      <br />
       <hr />
       <br />
       <p className="about-text">
@@ -79,9 +71,6 @@ const InfoPage: React.FunctionComponent<InfoPageProps> = () => {
       </p>
       <Button sx={ButtonStyle} onClick={() => navigate('/about/review')}>
         Оставить отзыв
-      </Button>
-      <Button sx={backButton} onClick={() => navigate(-1)}>
-        Назад
       </Button>
     </div>
   );
