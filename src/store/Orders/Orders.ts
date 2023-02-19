@@ -35,6 +35,9 @@ const ordersSlice = createSlice({
       getOrdersThunk.fulfilled,
       (state, action: PayloadAction<IOrder[]>) => {
         state.orders = action.payload;
+
+        state.orders.sort((a, b) => b.id! - a.id!);
+
         state.isOrdersFetching = false;
       },
     );
@@ -46,12 +49,10 @@ const ordersSlice = createSlice({
       state.isOrdersFetching = false;
       toast.error('Не удалось создать поездку. Попробуйте позже.');
     });
-    builder.addCase(
-      createOrderThunk.fulfilled,
-      (state, action) => {
-        state.orders.push(action.payload as unknown as IOrder);
-      },
-    );
+    builder.addCase(createOrderThunk.fulfilled, (state, action) => {
+      state.orders.unshift(action.payload as unknown as IOrder);
+      state.isOrdersFetching = false;
+    });
 
     builder.addCase(putOrderThunk.pending, (state) => {
       state.isOrdersFetching = true;

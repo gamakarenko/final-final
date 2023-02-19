@@ -3,18 +3,19 @@ import $api from '.';
 import { IOrder } from 'types/order';
 
 export const createOrder = async (order: IOrder) => {
-  return $api.post('transfers/create-transfer', { order });
+  const res = await $api.post('transfers/create-transfer', { order });
+  
+  return res.data.body;
 };
-//TODO tipisation
-export const getOrders = async (): Promise<any> => {
+
+export const getOrders = async () => {
   const res = await $api.get('users/all-transfers');
 
   return res.data;
 };
-//TODO tipisation
-export const putOrder = async (order: any) => {
+
+export const putOrder = async (order: IOrder) => {
   const res = await $api.put('transfers/updateTransfer', { order });
 
   return res.data;
 };
-

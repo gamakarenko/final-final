@@ -13,10 +13,9 @@ export const getOrdersThunk = createAsyncThunk(
 export const createOrderThunk = createAsyncThunk(
   'newOrder/createOrderThunk',
   async (order: IOrder) => {
-    const res = await createOrder(order);
+    return await createOrder(order);
   },
 );
-
 
 export const putOrderThunk = createAsyncThunk(
   'orders/putOrderThunk',
