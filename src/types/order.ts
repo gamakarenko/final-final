@@ -17,7 +17,7 @@ export interface IUser {
 }
 
 export interface IOrder {
-  id: number;
+  id?: number;
   transferTime: string;
   transferDate: string;
   location: string;
@@ -25,10 +25,8 @@ export interface IOrder {
   childrenUnder5: number;
   childrenAbove5: number;
   direction: ITripDirection;
-  isEnded: boolean;
+  isEnded?: boolean;
   carType: ICarType;
   airport: IAirport;
   users: IUser[];
 }
-
-export type INewOrder = Omit<IOrder, 'id' | 'isEnded'>; 

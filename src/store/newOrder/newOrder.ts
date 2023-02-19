@@ -1,14 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { toast } from 'react-toastify';
-
-import { INewOrder, IUser } from '../../types/order';
-
-import { createOrderThunk } from './newOrderThunks';
+import { IOrder, IUser } from '../../types/order';
 
 interface INewOrderState {
-  order: INewOrder;
-  isSendingOrder: boolean;
+  order: IOrder;
 }
 
 const newUser = {
@@ -38,14 +33,13 @@ const initialState: INewOrderState = {
     childrenAbove5: 0,
     users: [newUser],
   },
-  isSendingOrder: false,
 };
 
 const newOrderSlice = createSlice({
   name: 'newOrder',
   initialState,
   reducers: {
-    editOrderInfo: (state, action: PayloadAction<Partial<INewOrder>>) => {
+    editOrderInfo: (state, action: PayloadAction<Partial<IOrder>>) => {
       state.order = {
         ...state.order,
         ...action.payload,
@@ -76,20 +70,6 @@ const newOrderSlice = createSlice({
     clearOrderInfo: (state) => {
       state = initialState;
     },
-  },
-
-  extraReducers: (builder) => {
-    builder.addCase(createOrderThunk.pending, (state) => {
-      state.isSendingOrder = true;
-    });
-    builder.addCase(createOrderThunk.rejected, (state, payload) => {
-      state.isSendingOrder = false;
-      toast.error(payload.error.message);
-    });
-    builder.addCase(createOrderThunk.fulfilled, (state) => {
-      state = initialState;
-      return state;
-    });
   },
 });
 

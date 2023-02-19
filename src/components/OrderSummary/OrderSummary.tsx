@@ -5,13 +5,13 @@ import PageParagraph from '../ui/PageParagraph/PageParagraph';
 import PassengerSummary from '../PassengerSummary/PassengerSummary';
 
 import { convertDateFormat } from '../../utils/convertDateFormat';
-import { INewOrder, IOrder } from 'types/order';
+import { IOrder } from 'types/order';
 
 import { StyledTwoColumnBox } from '../../styles/StyledTwoColumnBox';
 import { StyledOrderSummary } from './OrderSummary.styled';
 
 interface OrderSummaryProps {
-  order: IOrder | INewOrder;
+  order: IOrder;
   heading: string;
 }
 

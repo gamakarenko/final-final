@@ -8,7 +8,7 @@ import AppTextArea from '../ui/AppTextArea/AppTextArea';
 import AppRadioBtn from '../ui/RadioButton/AppRadioBtn';
 import YaMap from '../YaMap/YaMap';
 
-import { INewOrder, IOrder } from 'types/order';
+import { IOrder } from 'types/order';
 
 import { sedanIcon, vitoIcon } from '../../images/index';
 
@@ -16,7 +16,7 @@ import { StyledMainInfoStep } from './MainInfoStep.styles';
 
 interface MainInfoStepProps extends PropsWithChildren {
   heading?: string;
-  order: IOrder | INewOrder;
+  order: IOrder;
   handleChange: (data: Partial<IOrder>) => void;
 }
 

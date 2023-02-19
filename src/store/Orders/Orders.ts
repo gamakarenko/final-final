@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { IOrder } from 'types/order';
 
-import { getOrdersThunk, putOrderThunk } from './OrdersThunk';
+import { createOrderThunk, getOrdersThunk, putOrderThunk } from './OrdersThunk';
 
 interface IOrdersState {
   orders: IOrder[];
@@ -26,10 +26,10 @@ const ordersSlice = createSlice({
     builder.addCase(getOrdersThunk.pending, (state) => {
       state.isOrdersFetching = true;
     });
-    builder.addCase(getOrdersThunk.rejected, (state, payload) => {
+    builder.addCase(getOrdersThunk.rejected, (state) => {
       state.isOrdersFetching = false;
-        
-      toast.error(payload.error.message);
+
+      toast.error('Ошибка загрузки поездок.');
     });
     builder.addCase(
       getOrdersThunk.fulfilled,
@@ -39,11 +39,26 @@ const ordersSlice = createSlice({
       },
     );
 
+    builder.addCase(createOrderThunk.pending, (state) => {
+      state.isOrdersFetching = true;
+    });
+    builder.addCase(createOrderThunk.rejected, (state) => {
+      state.isOrdersFetching = false;
+      toast.error('Не удалось создать поездку. Попробуйте позже.');
+    });
+    builder.addCase(
+      createOrderThunk.fulfilled,
+      (state, action) => {
+        state.orders.push(action.payload as unknown as IOrder);
+      },
+    );
+
     builder.addCase(putOrderThunk.pending, (state) => {
       state.isOrdersFetching = true;
     });
     builder.addCase(putOrderThunk.rejected, (state) => {
       state.isOrdersFetching = false;
+      toast.error('Не удалось изменить поездку. Попробуйте позже.');
     });
     builder.addCase(
       putOrderThunk.fulfilled,

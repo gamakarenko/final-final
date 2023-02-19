@@ -13,16 +13,20 @@ import Spinner from 'components/ui/Spinner/Spinner';
 import { useMultiStepForm } from 'hooks/useMultiStepForm';
 import {
   addNewPassenger,
+  clearOrderInfo,
   deletePassengerById,
   editOrderInfo,
   editPassengerById,
 } from 'store/newOrder/newOrder';
-import { createOrderThunk } from 'store/newOrder/newOrderThunks';
+import { createOrderThunk } from 'store/Orders/OrdersThunk';
 
 import { StyledTransferCreationForm } from './TransferCreationForm.styles';
 
 const TransferCreationForm = () => {
-  const { order, isSendingOrder } = useAppSelector(({ newOrder }) => newOrder);
+  const { order, isSendingOrder } = useAppSelector(({ newOrder, orders }) => ({
+    order: newOrder.order,
+    isSendingOrder: orders.isOrdersFetching,
+  }));
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -80,8 +84,9 @@ const TransferCreationForm = () => {
     }
 
     try {
+      dispatch(clearOrderInfo());
       await dispatch(createOrderThunk(order)).unwrap();
-      
+
       navigate('/order/complete');
     } catch {}
   };

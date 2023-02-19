@@ -1,8 +1,8 @@
 import $api from '.';
 
-import { INewOrder } from 'types/order';
+import { IOrder } from 'types/order';
 
-export const createOrder = async (order: INewOrder) => {
+export const createOrder = async (order: IOrder) => {
   return $api.post('transfers/create-transfer', { order });
 };
 //TODO tipisation
