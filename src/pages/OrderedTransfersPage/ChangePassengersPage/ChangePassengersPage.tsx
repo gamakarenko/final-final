@@ -43,7 +43,7 @@ const ChangePassengersPage = () => {
       await dispatch(putOrderThunk(newOrder)).unwrap();
 
       dispatch(clearOrderInfo());
-      navigate('/transfers/ordered', { replace: true });
+      navigate('/transfers/ordered/changes-saved', { replace: true });
     } catch {}
   };
 
@@ -62,7 +62,11 @@ const ChangePassengersPage = () => {
         }
       />
 
-      {isSendingData ? <Spinner /> : <AppButton onClick={sendEditedOrder}>Сохранить изменения</AppButton>}
+      {isSendingData ? (
+        <Spinner />
+      ) : (
+        <AppButton onClick={sendEditedOrder}>Сохранить изменения</AppButton>
+      )}
     </StyledChangePassengersPage>
   );
 };

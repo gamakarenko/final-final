@@ -39,7 +39,7 @@ const ChangeMainInfoPage = () => {
       await dispatch(putOrderThunk(newOrder)).unwrap();
 
       dispatch(clearOrderInfo());
-      navigate('/transfers/ordered', { replace: true });
+      navigate('/transfers/ordered/changes-saved', { replace: true });
     } catch {}
   };
 

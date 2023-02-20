@@ -61,17 +61,13 @@ const ordersSlice = createSlice({
       state.isOrdersFetching = false;
       toast.error('Не удалось изменить поездку. Попробуйте позже.');
     });
-    builder.addCase(
-      putOrderThunk.fulfilled,
-      (state, action) => {
-        state.orders = state.orders.map((order) =>
-          order.id === action.payload.body.id ? action.payload.body : order,
-        );
+    builder.addCase(putOrderThunk.fulfilled, (state, action) => {
+      state.orders = state.orders.map((order) =>
+        order.id === action.payload.body.id ? action.payload.body : order,
+      );
 
-        state.isOrdersFetching = false;
-        toast.success('Поездка изменена.');
-      },
-    );
+      state.isOrdersFetching = false;
+    });
   },
 });
 

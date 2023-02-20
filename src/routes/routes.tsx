@@ -27,6 +27,7 @@ import AboutMain from 'pages/AboutPage/AboutMain/AboutMain';
 import SelectChangeOptionsPage from 'pages/OrderedTransfersPage/SelectChangeOptionsPage/SelectChangeOptionsPage';
 import ChangeMainInfoPage from 'pages/OrderedTransfersPage/ChangeMainInfoPage/ChangeMainInfoPage';
 import ChangePassengersPage from 'pages/OrderedTransfersPage/ChangePassengersPage/ChangePassengersPage';
+import ChangesSaved from 'pages/OrderedTransfersPage/ChangesSaved/ChangesSaved';
 
 export const router = createBrowserRouter([
   {
@@ -77,7 +78,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'changes-saved',
-            // element: <ChangePassengersPage />,
+            element: <ChangesSaved />,
           },
         ],
       },
