@@ -19,3 +19,11 @@ export const putOrder = async (order: IOrder) => {
 
   return res.data;
 };
+
+export const deleteOrder = async (order: IOrder): Promise<number> => {
+  const res = await $api.delete('transfers/deleteTransfer', {
+    data: { order },
+  });
+
+  return res.data;
+};

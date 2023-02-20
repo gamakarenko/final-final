@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { createOrder, getOrders, putOrder } from 'api/orders';
+import { createOrder, deleteOrder, getOrders, putOrder } from 'api/orders';
 
 import { IOrder } from 'types/order';
 
@@ -22,5 +22,12 @@ export const putOrderThunk = createAsyncThunk(
   'orders/putOrderThunk',
   async (order: IOrder) => {
     return await putOrder(order);
+  },
+);
+
+export const deleteOrderThunk = createAsyncThunk(
+  'orders/deleteOrderThunk',
+  async (order: IOrder) => {
+    return await deleteOrder(order);
   },
 );

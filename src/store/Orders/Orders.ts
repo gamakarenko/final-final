@@ -4,7 +4,12 @@ import { toast } from 'react-toastify';
 
 import { IOrder } from 'types/order';
 
-import { createOrderThunk, getOrdersThunk, putOrderThunk } from './OrdersThunk';
+import {
+  createOrderThunk,
+  deleteOrderThunk,
+  getOrdersThunk,
+  putOrderThunk,
+} from './OrdersThunk';
 
 interface IOrdersState {
   orders: IOrder[];
@@ -66,6 +71,22 @@ const ordersSlice = createSlice({
         order.id === action.payload.body.id ? action.payload.body : order,
       );
 
+      state.isOrdersFetching = false;
+    });
+
+    builder.addCase(deleteOrderThunk.pending, (state) => {
+      state.isOrdersFetching = true;
+    });
+    builder.addCase(deleteOrderThunk.rejected, (state) => {
+      state.isOrdersFetching = false;
+      toast.error('Не удалось удалить поездку. Попробуйте позже.');
+    });
+    builder.addCase(deleteOrderThunk.fulfilled, (state, action) => {
+      state.orders = state.orders.filter((order) => {
+        console.log(order.id, action.payload);
+
+        return order.id !== action.payload;
+      });
       state.isOrdersFetching = false;
     });
   },

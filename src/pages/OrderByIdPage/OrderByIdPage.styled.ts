@@ -5,5 +5,10 @@ export const StyledOrderByIdPage = styled.div`
   &__btn:not(:last-child) {
     margin-bottom: 10px;
   }
+
+  &__deleting-text {
+    font-size: 16px;
+    color: var(--error-color);
+  }
 }
 `

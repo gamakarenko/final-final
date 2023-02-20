@@ -67,9 +67,7 @@ const newOrderSlice = createSlice({
       );
     },
 
-    clearOrderInfo: (state) => {
-      state = initialState;
-    },
+    clearOrderInfo: () => initialState,
   },
 });
 

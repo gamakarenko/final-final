@@ -36,13 +36,16 @@ const ChangePassengersPage = () => {
     const order = findOrderById(orders, id);
 
     dispatch(editOrderInfo(structuredClone(order)));
+
+    return () => {
+      dispatch(clearOrderInfo());
+    }
   }, []);
 
   const sendEditedOrder = async () => {
     try {
       await dispatch(putOrderThunk(newOrder)).unwrap();
 
-      dispatch(clearOrderInfo());
       navigate('/transfers/ordered/changes-saved', { replace: true });
     } catch {}
   };

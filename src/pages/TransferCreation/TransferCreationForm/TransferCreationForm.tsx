@@ -84,9 +84,9 @@ const TransferCreationForm = () => {
     }
 
     try {
-      dispatch(clearOrderInfo());
       await dispatch(createOrderThunk(order)).unwrap();
-
+      
+      dispatch(clearOrderInfo());
       navigate('/order/complete');
     } catch {}
   };

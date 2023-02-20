@@ -69,6 +69,8 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           setLocation={setStartLocation}
           heading="Откуда тебя забрать?"
           required
+          minLength={10}
+          defaultValue=""
         />
 
         <YaMap
@@ -76,6 +78,8 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           setLocation={setEndLocation}
           heading="Куда тебя привезти?"
           required
+          minLength={10}
+          defaultValue=""
         />
 
         <AppCheckbox
