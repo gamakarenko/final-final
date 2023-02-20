@@ -18,5 +18,11 @@ export const StyledPassengerFieldset = styled.div`
     &__input-box:not(:last-of-type) {
       margin-bottom: 15px;
     }
+
+    &__heading {
+      font-weight: 600;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
   }
 `;

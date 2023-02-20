@@ -12,9 +12,7 @@ import Spinner from 'components/ui/Spinner/Spinner';
 
 import { useMultiStepForm } from 'hooks/useMultiStepForm';
 import {
-  addNewPassenger,
   clearOrderInfo,
-  deletePassengerById,
   editOrderInfo,
   editPassengerById,
 } from 'store/newOrder/newOrder';
@@ -23,12 +21,14 @@ import { createOrderThunk } from 'store/Orders/OrdersThunk';
 import { StyledTransferCreationForm } from './TransferCreationForm.styles';
 
 const TransferCreationForm = () => {
-  const { order, isSendingOrder } = useAppSelector(({ newOrder, orders }) => ({
-    order: newOrder.order,
-    isSendingOrder: orders.isOrdersFetching,
-  }));
+  const { order, isSendingOrder, errorText } = useAppSelector(
+    ({ newOrder, orders }) => ({
+      order: newOrder.order,
+      isSendingOrder: orders.isOrdersFetching,
+      errorText: newOrder.errorText,
+    }),
+  );
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
   const {
@@ -59,11 +59,9 @@ const TransferCreationForm = () => {
 
     <PassengerStep
       passengers={order.users}
-      handleAddPassenger={() => dispatch(addNewPassenger())}
       handleEditPassengerById={(id, data) =>
         dispatch(editPassengerById({ id, ...data }))
       }
-      handleDeletePassengerById={(id) => dispatch(deletePassengerById({ id }))}
     >
       <PageParagraph underlined>
         Отлично! Мы&nbsp;почти у&nbsp;цели:) Для оформления трансфера нам
@@ -85,7 +83,7 @@ const TransferCreationForm = () => {
 
     try {
       await dispatch(createOrderThunk(order)).unwrap();
-      
+
       dispatch(clearOrderInfo());
       navigate('/order/complete');
     } catch {}
@@ -100,6 +98,8 @@ const TransferCreationForm = () => {
     <StyledTransferCreationForm className="transfer-creation-form">
       <form onSubmit={handleNextClick}>
         {currentStepFieldset}
+
+        <p className="transfer-creation-form__error-text">{errorText}</p>
 
         <div className="transfer-creation-form__steps-btns-box">
           {isSendingOrder ? (
@@ -118,7 +118,7 @@ const TransferCreationForm = () => {
               )}
 
               <AppButton
-                disabled={isSendingOrder}
+                disabled={isSendingOrder || Boolean(errorText)}
                 className="transfer-creation-form__btn-right"
                 type="submit"
               >

@@ -3,7 +3,6 @@ import { FC, PropsWithChildren } from 'react';
 import PassengerFieldset from '../PassengerFieldset/PassengerFieldset';
 import PageText from '../ui/PageText/PageText';
 import PageParagraph from '../ui/PageParagraph/PageParagraph';
-import AppButton from '../ui/AppButton/AppButton';
 
 import { IUser } from 'types/order';
 
@@ -12,9 +11,7 @@ import { StyledPassengerStep } from './PassengerStep.styles';
 interface PassengerStepProps extends PropsWithChildren {
   heading?: string;
   passengers: IUser[];
-  handleAddPassenger: () => void;
   handleEditPassengerById: (id: number, data: Partial<IUser>) => void;
-  handleDeletePassengerById: (id: number) => void;
   className?: string;
 }
 
@@ -22,9 +19,7 @@ const PassengerStep: FC<PassengerStepProps> = ({
   children,
   heading,
   passengers,
-  handleAddPassenger,
   handleEditPassengerById,
-  handleDeletePassengerById,
   className,
 }) => {
   return (
@@ -37,12 +32,12 @@ const PassengerStep: FC<PassengerStepProps> = ({
         <PageParagraph underlined>{heading}</PageParagraph>
       ) : null}
 
-      {passengers.map((passenger) => (
+      {passengers.map((passenger, index) => (
         <PassengerFieldset
           key={passenger.id}
           {...passenger}
+          passengerNumber={index + 1}
           handleEditPassengerById={handleEditPassengerById}
-          handleDeletePassengerById={handleDeletePassengerById}
         />
       ))}
 
@@ -51,13 +46,6 @@ const PassengerStep: FC<PassengerStepProps> = ({
         обратитесь к&nbsp;ассистенту @...
       </PageText>
 
-      <AppButton
-        className="passenger-step__add-btn"
-        isFilled={false}
-        onClick={handleAddPassenger}
-      >
-        Добавить пассажира
-      </AppButton>
     </StyledPassengerStep>
   );
 };

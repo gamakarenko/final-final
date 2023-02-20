@@ -4,9 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import PassengerStep from 'components/PassengerStep/PassengerStep';
 
 import {
-  addNewPassenger,
   clearOrderInfo,
-  deletePassengerById,
   editOrderInfo,
   editPassengerById,
 } from 'store/newOrder/newOrder';
@@ -56,12 +54,8 @@ const ChangePassengersPage = () => {
         className="change-passenger-step__form"
         heading="Личные данные поездки"
         passengers={newOrder.users}
-        handleAddPassenger={() => dispatch(addNewPassenger())}
         handleEditPassengerById={(id, data) =>
           dispatch(editPassengerById({ id, ...data }))
-        }
-        handleDeletePassengerById={(id) =>
-          dispatch(deletePassengerById({ id }))
         }
       />
 

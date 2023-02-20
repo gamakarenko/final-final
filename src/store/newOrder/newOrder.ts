@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IOrder, IUser } from '../../types/order';
+import { NUMBERS_OF_SEATS } from 'utils/constants';
 
 interface INewOrderState {
   order: IOrder;
+  errorText: string;
 }
 
 const newUser = {
@@ -33,6 +35,7 @@ const initialState: INewOrderState = {
     isPickUpFromAirport: false,
     users: [newUser],
   },
+  errorText: '',
 };
 
 const newOrderSlice = createSlice({
@@ -44,22 +47,51 @@ const newOrderSlice = createSlice({
         ...state.order,
         ...action.payload,
       };
+
+      const { users, adultsAmount, childrenAbove5, childrenUnder5 } =
+        state.order;
+      const usersAmount = users.length;
+      const neededUsersAmount = adultsAmount + childrenAbove5 + childrenUnder5;
+
+      if (usersAmount > neededUsersAmount) {
+        state.order.users.length = neededUsersAmount;
+      } else if (usersAmount < neededUsersAmount) {
+        while (state.order.users.length < neededUsersAmount) {
+          const maxId = state.order.users.reduce(
+            (result: number, user) => (user.id > result ? user.id : result),
+            0,
+          ) as unknown as number;
+
+          state.order.users.push({ ...newUser, id: maxId + 1 });
+        }
+      }
+
+      if (
+        state.order.adultsAmount +
+          state.order.childrenAbove5 +
+          state.order.childrenUnder5 >
+        NUMBERS_OF_SEATS[state.order.carType]
+      ) {
+        state.errorText = 'Количество пассажиров превышает количество мест';
+      } else {
+        state.errorText = '';
+      }
     },
 
-    addNewPassenger: (state) => {
-      const maxId = state.order.users.reduce(
-        (result: number, user) => (user.id > result ? user.id : result),
-        0,
-      ) as unknown as number;
+    // addNewPassenger: (state) => {
+    //   const maxId = state.order.users.reduce(
+    //     (result: number, user) => (user.id > result ? user.id : result),
+    //     0,
+    //   ) as unknown as number;
 
-      state.order.users.push({ ...newUser, id: maxId + 1 });
-    },
+    //   state.order.users.push({ ...newUser, id: maxId + 1 });
+    // },
 
-    deletePassengerById: (state, action: PayloadAction<{ id: number }>) => {
-      state.order.users = state.order.users.filter(
-        (user) => user.id !== action.payload.id,
-      );
-    },
+    // deletePassengerById: (state, action: PayloadAction<{ id: number }>) => {
+    //   state.order.users = state.order.users.filter(
+    //     (user) => user.id !== action.payload.id,
+    //   );
+    // },
 
     editPassengerById: (state, action: PayloadAction<Partial<IUser>>) => {
       state.order.users = state.order.users.map((user) =>
@@ -74,8 +106,8 @@ const newOrderSlice = createSlice({
 export const {
   editOrderInfo,
   clearOrderInfo,
-  deletePassengerById,
-  addNewPassenger,
+  // deletePassengerById,
+  // addNewPassenger,
   editPassengerById,
 } = newOrderSlice.actions;
 

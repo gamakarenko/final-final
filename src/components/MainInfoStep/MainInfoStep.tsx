@@ -1,16 +1,16 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren} from 'react';
 
-import PageParagraph from '../ui/PageParagraph/PageParagraph';
-import CarRadioBtn from '../CarRadioBtn/CarRadioBtn';
-import AppInput from '../ui/AppInput/AppInput';
-import YaMap from '../YaMap/YaMap';
+import AppCheckbox from 'components/ui/AppCheckbox/AppCheckbox';
+import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
+import AppInput from 'components/ui/AppInput/AppInput';
+import CarRadioBtn from 'components/CarRadioBtn/CarRadioBtn';
+import YaMap from 'components/YaMap/YaMap';
 
 import { IOrder } from 'types/order';
-
+import { NUMBERS_OF_SEATS } from 'utils/constants';
 import { sedanIcon, vitoIcon } from '../../images/index';
 
 import { StyledMainInfoStep } from './MainInfoStep.styles';
-import AppCheckbox from 'components/ui/AppCheckbox/AppCheckbox';
 
 interface MainInfoStepProps extends PropsWithChildren {
   heading?: string;
@@ -98,7 +98,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             value="vito"
             checked={order.carType === 'vito'}
             onChange={() => handleChange({ carType: 'vito' })}
-            maxPeople={8}
+            maxPeople={NUMBERS_OF_SEATS['vito']}
             img={vitoIcon}
           />
           <CarRadioBtn
@@ -107,7 +107,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             value="sedan"
             checked={order.carType === 'sedan'}
             onChange={() => handleChange({ carType: 'sedan' })}
-            maxPeople={4}
+            maxPeople={NUMBERS_OF_SEATS['sedan']}
             img={sedanIcon}
           />
         </div>
@@ -119,7 +119,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           min={1}
           value={order.adultsAmount}
           onChange={(e) =>
-            handleChange({ adultsAmount: e.target.value as unknown as number })
+            handleChange({ adultsAmount: Number(e.target.value) })
           }
         />
 
@@ -131,7 +131,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             value={order.childrenUnder5}
             onChange={(e) =>
               handleChange({
-                childrenUnder5: e.target.value as unknown as number,
+                childrenUnder5: Number(e.target.value),
               })
             }
           >
@@ -146,7 +146,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             value={order.childrenAbove5}
             onChange={(e) =>
               handleChange({
-                childrenAbove5: e.target.value as unknown as number,
+                childrenAbove5: Number(e.target.value),
               })
             }
           >

@@ -35,5 +35,11 @@ export const StyledTransferCreationForm = styled.div`
       grid-column: 1/-1;
       align-self: center;
     }
+
+    &__error-text {
+      min-height: 17px;
+      color: var(--error-color);
+      font-size: 14px;
+    }
   }
 `;

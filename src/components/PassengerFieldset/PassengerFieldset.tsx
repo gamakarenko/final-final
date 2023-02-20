@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IUser } from 'types/order';
 
-import AppButton from '../ui/AppButton/AppButton';
+import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 import AppInput from '../ui/AppInput/AppInput';
 import AppTextArea from '../ui/AppTextArea/AppTextArea';
 
@@ -9,7 +9,7 @@ import { StyledPassengerFieldset } from './PassengerFieldset.styles';
 
 interface PassengerFieldsetProps extends IUser {
   handleEditPassengerById: (id: number, data: Partial<IUser>) => void;
-  handleDeletePassengerById: (id: number) => void;
+  passengerNumber: number;
 }
 
 const PassengerFieldset: FC<PassengerFieldsetProps> = ({
@@ -22,10 +22,12 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
   tripComment,
   id,
   handleEditPassengerById,
-  handleDeletePassengerById,
+  passengerNumber,
 }) => {
   return (
     <StyledPassengerFieldset className="passenger-field">
+      <PageParagraph className="passenger-field__heading">{`Пассажир #${passengerNumber}`}</PageParagraph>
+
       <AppInput
         className="passenger-field__input-box"
         label="ФИО"
@@ -86,14 +88,6 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
           handleEditPassengerById(id, { tripComment: e.target.value })
         }
       />
-
-      <AppButton
-        className="passenger-field__del-btn"
-        isFilled={false}
-        onClick={() => handleDeletePassengerById(id)}
-      >
-        Удалить пассажира
-      </AppButton>
     </StyledPassengerFieldset>
   );
 };
