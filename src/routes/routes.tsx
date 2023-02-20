@@ -16,16 +16,17 @@ import ReviewPage from 'pages/AboutPage/ReviewPage';
 import OrderedTransfersPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
 import OrderByIdPage from 'pages/OrderByIdPage/OrderByIdPage';
 import OrderedTransfersList from 'pages/OrderedTransfersPage/OrderedTransfersList/OrderedTransfersList';
-import SelectChangeOptionsPage from 'components/SelectChangeOptionsPage/SelectChangeOptionsPage';
-import ChangePassengersPage from 'components/ChangePassengersPage/ChangePassengersPage';
-import ChangeMainInfoPage from 'components/ChangeMainInfoPage/ChangeMainInfoPage';
-import TransferCreationComplete from 'pages/TransferCreationComplete/TransferCreationComplete';
+
+import TransferCreationComplete from 'pages/TransferCreation/TransferCreationComplete/TransferCreationComplete';
 import TransferCreationForm from 'pages/TransferCreation/TransferCreationForm/TransferCreationForm';
 import { MainPage } from 'pages/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
 import { Example } from 'pages/Example';
 import AboutMain from 'pages/AboutPage/AboutMain/AboutMain';
+import SelectChangeOptionsPage from 'pages/OrderedTransfersPage/SelectChangeOptionsPage/SelectChangeOptionsPage';
+import ChangeMainInfoPage from 'pages/OrderedTransfersPage/ChangeMainInfoPage/ChangeMainInfoPage';
+import ChangePassengersPage from 'pages/OrderedTransfersPage/ChangePassengersPage/ChangePassengersPage';
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
           {
             path: ':id/change/passengers',
             element: <ChangePassengersPage />,
+          },
+          {
+            path: 'changes-saved',
+            // element: <ChangePassengersPage />,
           },
         ],
       },
