@@ -98,7 +98,7 @@ const TransferCreationForm = () => {
 
   return (
     <StyledTransferCreationForm className="transfer-creation-form">
-      <form onSubmit={handleNextClick} noValidate>
+      <form onSubmit={handleNextClick}>
         {currentStepFieldset}
 
         <div className="transfer-creation-form__steps-btns-box">
