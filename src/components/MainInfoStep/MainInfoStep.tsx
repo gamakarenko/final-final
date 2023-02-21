@@ -1,14 +1,16 @@
-import { FC, PropsWithChildren} from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import AppCheckbox from 'components/ui/AppCheckbox/AppCheckbox';
 import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 import AppInput from 'components/ui/AppInput/AppInput';
 import CarRadioBtn from 'components/CarRadioBtn/CarRadioBtn';
 import YaMap from 'components/YaMap/YaMap';
+import InfoCell from 'components/InfoCell/InfoCell';
 
 import { IOrder } from 'types/order';
 import { NUMBERS_OF_SEATS } from 'utils/constants';
 import { sedanIcon, vitoIcon } from '../../images/index';
+import { compareAddress } from './MainInfoStep.utils';
 
 import { StyledMainInfoStep } from './MainInfoStep.styles';
 
@@ -30,6 +32,26 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
     handleChange({ startLocation: location });
   const setEndLocation = (location: string) =>
     handleChange({ endLocation: location });
+
+  const calculateTransferCost = () => {
+    if (order.carType === 'sedan' && compareAddress(order, 'даламан', 'каш')) {
+      return 105;
+    }
+    if (order.carType === 'vito' && compareAddress(order, 'даламан', 'каш')) {
+      return 135;
+    }
+
+    if (order.carType === 'sedan' && compareAddress(order, 'анталья', 'каш')) {
+      return 115;
+    }
+    if (order.carType === 'vito' && compareAddress(order, 'анталья', 'каш')) {
+      return 145;
+    }
+
+    return null;
+  };
+
+  const transferCost = calculateTransferCost();
 
   return (
     <StyledMainInfoStep
@@ -111,6 +133,14 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             img={sedanIcon}
           />
         </div>
+
+        {transferCost ? (
+          <InfoCell
+            heading=""
+            data={`Расчетная стоимость поездки: $${transferCost}`}
+            caption="* конечная стоимость может отличаться"
+          />
+        ) : null}
 
         <AppInput
           label="Количество взрослых"
