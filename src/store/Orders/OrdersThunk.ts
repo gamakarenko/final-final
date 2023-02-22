@@ -7,27 +7,31 @@ import { IOrder } from 'types/order';
 export const getOrdersThunk = createAsyncThunk(
   'orders/getOrdersThunk',
   async () => {
-    return await getOrders();
+    const res = await getOrders();
+    return res.data;
   },
 );
 
 export const createOrderThunk = createAsyncThunk(
   'orders/createOrderThunk',
   async (order: IOrder) => {
-    return await createOrder(order);
+    const res = await createOrder(order);
+    return res.data.body;
   },
 );
 
 export const putOrderThunk = createAsyncThunk(
   'orders/putOrderThunk',
   async (order: IOrder) => {
-    return await putOrder(order);
+    const res = await putOrder(order);
+    return res.data;
   },
 );
 
 export const deleteOrderThunk = createAsyncThunk(
   'orders/deleteOrderThunk',
   async (order: IOrder) => {
-    return await deleteOrder(order);
+    const res = await deleteOrder(order);
+    return res.data;
   },
 );
