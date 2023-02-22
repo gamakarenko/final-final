@@ -1,13 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import App from 'App';
-//TODO не удалять неактивные импорты, потом почистить лишние компоненты
-import CancelChangePage from 'pages/ordered/CancelChange';
-import SelectPage from 'pages/ordered/SelectPage';
-import { InfoStep } from 'pages/ordered/AgeInfoPage/steps/InfoStep';
-import AgeStep from 'pages/ordered/AgeInfoPage/steps/AgeStep';
-import DateTime from 'pages/ordered/DateTime/index';
-import FinalPage from 'pages/ordered/FinalPage';
 import TransferCreation from 'pages/TransferCreation/TransferCreation';
 import SharePage from 'pages/SharePage';
 import FAQPage from 'pages/FAQPage/FAQPage';
@@ -16,7 +9,6 @@ import ReviewPage from 'pages/AboutPage/ReviewPage';
 import OrderedTransfersPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
 import OrderByIdPage from 'pages/OrderByIdPage/OrderByIdPage';
 import OrderedTransfersList from 'pages/OrderedTransfersPage/OrderedTransfersList/OrderedTransfersList';
-
 import TransferCreationComplete from 'pages/TransferCreation/TransferCreationComplete/TransferCreationComplete';
 import TransferCreationForm from 'pages/TransferCreation/TransferCreationForm/TransferCreationForm';
 import { MainPage } from 'pages/MainPage';
