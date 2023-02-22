@@ -9,7 +9,7 @@ interface INewOrderState {
 }
 
 const newUser = {
-  id: 0,
+  id: -1,
   name: '',
   arrivalDate: '',
   arrivalTime: '',
@@ -20,6 +20,7 @@ const newUser = {
   telegramLogin: '',
   tripComment: '',
   identificationNumber: 0,
+  uiKey: 0,
 };
 
 const initialState: INewOrderState = {
@@ -57,12 +58,11 @@ const newOrderSlice = createSlice({
         state.order.users.length = neededUsersAmount;
       } else if (usersAmount < neededUsersAmount) {
         while (state.order.users.length < neededUsersAmount) {
-          const maxId = state.order.users.reduce(
-            (result: number, user) => (user.id > result ? user.id : result),
+          const maxKey = state.order.users.reduce(
+            (result: number, user) => (user.uiKey > result ? user.uiKey : result),
             0,
           ) as unknown as number;
-
-          state.order.users.push({ ...newUser, id: maxId + 1 });
+          state.order.users.push({ ...newUser, uiKey: maxKey + 1 });
         }
       }
 
@@ -78,9 +78,9 @@ const newOrderSlice = createSlice({
       }
     },
 
-    editPassengerById: (state, action: PayloadAction<Partial<IUser>>) => {
+    editPassengerByUiKey: (state, action: PayloadAction<Partial<IUser>>) => {
       state.order.users = state.order.users.map((user) =>
-        user.id === action.payload.id ? { ...user, ...action.payload } : user,
+        user.uiKey === action.payload.uiKey ? { ...user, ...action.payload } : user,
       );
     },
 
@@ -88,10 +88,7 @@ const newOrderSlice = createSlice({
   },
 });
 
-export const {
-  editOrderInfo,
-  clearOrderInfo,
-  editPassengerById,
-} = newOrderSlice.actions;
+export const { editOrderInfo, clearOrderInfo, editPassengerByUiKey } =
+  newOrderSlice.actions;
 
 export default newOrderSlice.reducer;

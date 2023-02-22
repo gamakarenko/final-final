@@ -11,7 +11,7 @@ import { StyledPassengerStep } from './PassengerStep.styles';
 interface PassengerStepProps extends PropsWithChildren {
   heading?: string;
   passengers: IUser[];
-  handleEditPassengerById: (id: number, data: Partial<IUser>) => void;
+  handleEditPassengerByUiKey: (uiKey: number, data: Partial<IUser>) => void;
   className?: string;
 }
 
@@ -19,7 +19,7 @@ const PassengerStep: FC<PassengerStepProps> = ({
   children,
   heading,
   passengers,
-  handleEditPassengerById,
+  handleEditPassengerByUiKey,
   className,
 }) => {
   return (
@@ -34,10 +34,10 @@ const PassengerStep: FC<PassengerStepProps> = ({
 
       {passengers.map((passenger, index) => (
         <PassengerFieldset
-          key={passenger.id}
+          key={passenger.uiKey}
           {...passenger}
           passengerNumber={index + 1}
-          handleEditPassengerById={handleEditPassengerById}
+          handleEditPassengerByUiKey={handleEditPassengerByUiKey}
         />
       ))}
 

@@ -14,6 +14,7 @@ export interface IUser {
   telegramLogin: string;
   tripComment: string;
   identificationNumber: number;
+  uiKey: number;
 }
 
 export interface IOrder {

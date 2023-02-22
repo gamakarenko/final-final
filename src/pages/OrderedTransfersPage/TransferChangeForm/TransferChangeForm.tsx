@@ -6,7 +6,7 @@ import { useMultiStepForm } from 'hooks/useMultiStepForm';
 import {
   clearOrderInfo,
   editOrderInfo,
-  editPassengerById,
+  editPassengerByUiKey,
 } from 'store/newOrder/newOrder';
 import { putOrderThunk } from 'store/Orders/OrdersThunk';
 import { findOrderById } from 'utils/findOrderById';
@@ -66,8 +66,8 @@ const TransferChangeForm = () => {
     <PassengerStep
       passengers={order.users}
       heading="Личные данные поездки"
-      handleEditPassengerById={(id, data) =>
-        dispatch(editPassengerById({ id, ...data }))
+      handleEditPassengerByUiKey={(uiKey, data) =>
+        dispatch(editPassengerByUiKey({ uiKey, ...data }))
       }
     />,
 

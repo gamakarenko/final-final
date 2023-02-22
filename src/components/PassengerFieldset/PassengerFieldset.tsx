@@ -8,7 +8,7 @@ import AppTextArea from '../ui/AppTextArea/AppTextArea';
 import { StyledPassengerFieldset } from './PassengerFieldset.styles';
 
 interface PassengerFieldsetProps extends IUser {
-  handleEditPassengerById: (id: number, data: Partial<IUser>) => void;
+  handleEditPassengerByUiKey: (uiKey: number, data: Partial<IUser>) => void;
   passengerNumber: number;
 }
 
@@ -20,8 +20,8 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
   phoneNumber,
   telegramLogin,
   tripComment,
-  id,
-  handleEditPassengerById,
+  uiKey,
+  handleEditPassengerByUiKey,
   passengerNumber,
 }) => {
   return (
@@ -35,7 +35,7 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
         required
         value={name}
         onChange={(e) =>
-          handleEditPassengerById(id, { name: e.target.value })
+          handleEditPassengerByUiKey(uiKey, { name: e.target.value })
         }
       />
       <AppInput
@@ -44,7 +44,7 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
         value={passport}
         required
         onChange={(e) =>
-          handleEditPassengerById(id, { passport: e.target.value })
+          handleEditPassengerByUiKey(uiKey, { passport: e.target.value })
         }
       />
       <AppInput
@@ -52,7 +52,7 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
         label="Дата отправки"
         value={arrivalDate || ''}
         onChange={(e) =>
-          handleEditPassengerById(id, { arrivalDate: e.target.value })
+          handleEditPassengerByUiKey(uiKey, { arrivalDate: e.target.value })
         }
       />
       <AppInput
@@ -60,7 +60,7 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
         label="Время отправки"
         value={arrivalTime || ''}
         onChange={(e) =>
-          handleEditPassengerById(id, { arrivalTime: e.target.value })
+          handleEditPassengerByUiKey(uiKey, { arrivalTime: e.target.value })
         }
       />
       <AppInput
@@ -69,7 +69,7 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
         autoComplete="tel"
         value={phoneNumber}
         onChange={(e) =>
-          handleEditPassengerById(id, { phoneNumber: e.target.value })
+          handleEditPassengerByUiKey(uiKey, { phoneNumber: e.target.value })
         }
       />
       <AppInput
@@ -77,7 +77,7 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
         label="Логин в телеграмме"
         value={telegramLogin}
         onChange={(e) =>
-          handleEditPassengerById(id, { telegramLogin: e.target.value })
+          handleEditPassengerByUiKey(uiKey, { telegramLogin: e.target.value })
         }
       />
       <AppTextArea
@@ -85,7 +85,7 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
         label="Комментарий к поездке"
         value={tripComment}
         onChange={(e) =>
-          handleEditPassengerById(id, { tripComment: e.target.value })
+          handleEditPassengerByUiKey(uiKey, { tripComment: e.target.value })
         }
       />
     </StyledPassengerFieldset>
