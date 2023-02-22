@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from 'App';
 import TransferCreation from 'pages/TransferCreation/TransferCreation';
-import SharePage from 'pages/SharePage';
 import FAQPage from 'pages/FAQPage/FAQPage';
 import InfoPage from 'pages/AboutPage/InfoPage';
 import ReviewPage from 'pages/AboutPage/ReviewPage';
@@ -14,7 +13,6 @@ import TransferCreationForm from 'pages/TransferCreation/TransferCreationForm/Tr
 import { MainPage } from 'pages/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
-import { Example } from 'pages/Example';
 import AboutMain from 'pages/AboutPage/AboutMain/AboutMain';
 import SelectChangeOptionsPage from 'pages/OrderedTransfersPage/SelectChangeOptionsPage/SelectChangeOptionsPage';
 import ChangeMainInfoPage from 'pages/OrderedTransfersPage/ChangeMainInfoPage/ChangeMainInfoPage';
@@ -38,10 +36,6 @@ export const router = createBrowserRouter([
           { index: true, element: <TransferCreationForm /> },
           { path: 'complete', element: <TransferCreationComplete /> },
         ],
-      },
-      {
-        path: 'share',
-        element: <SharePage />,
       },
 
       {
@@ -98,10 +92,6 @@ export const router = createBrowserRouter([
         ],
       },
 
-      {
-        path: 'example',
-        element: <Example />,
-      },
       {
         path: 'faq',
         element: <FAQPage />,

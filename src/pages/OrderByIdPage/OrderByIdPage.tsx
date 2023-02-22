@@ -11,7 +11,7 @@ import { deleteOrderThunk } from 'store/Orders/OrdersThunk';
 import { findOrderById } from 'utils/findOrderById';
 import { IOrder } from 'types/order';
 
-import { StyledTwoColumnBox } from 'styles/StyledTwoColumnBox';
+import { StyledTwoColumnBox } from 'components/StyledTwoColumnBox';
 import { StyledOrderByIdPage } from './OrderByIdPage.styled';
 
 const OrderByIdPage = () => {

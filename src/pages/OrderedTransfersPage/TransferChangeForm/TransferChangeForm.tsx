@@ -18,7 +18,7 @@ import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 import Spinner from 'components/ui/Spinner/Spinner';
 import AppButton from 'components/ui/AppButton/AppButton';
 
-import { StyledTransferCreationForm } from 'pages/TransferCreation/TransferCreationForm/TransferCreationForm.styles';
+import { StyledTransferChangeForm } from 'components/StyledTransferChangeForm';
 
 const TransferChangeForm = () => {
   const { order, orders, isSendingOrder, errorText } = useAppSelector(
@@ -107,7 +107,7 @@ const TransferChangeForm = () => {
   return isSendingOrder ? (
     <Spinner />
   ) : (
-    <StyledTransferCreationForm className="transfer-creation-form">
+    <StyledTransferChangeForm className="transfer-creation-form">
       <form onSubmit={handleNextClick}>
         {currentStepFieldset}
 
@@ -140,7 +140,7 @@ const TransferChangeForm = () => {
           )}
         </div>
       </form>
-    </StyledTransferCreationForm>
+    </StyledTransferChangeForm>
   );
 };
 

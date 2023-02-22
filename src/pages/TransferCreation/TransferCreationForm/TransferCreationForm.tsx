@@ -18,7 +18,7 @@ import {
 } from 'store/newOrder/newOrder';
 import { createOrderThunk } from 'store/Orders/OrdersThunk';
 
-import { StyledTransferCreationForm } from './TransferCreationForm.styles';
+import { StyledTransferChangeForm } from 'components/StyledTransferChangeForm';
 
 const TransferCreationForm = () => {
   const { order, isSendingOrder, errorText } = useAppSelector(
@@ -95,7 +95,7 @@ const TransferCreationForm = () => {
   };
 
   return (
-    <StyledTransferCreationForm className="transfer-creation-form">
+    <StyledTransferChangeForm className="transfer-creation-form">
       <form onSubmit={handleNextClick}>
         {currentStepFieldset}
 
@@ -128,7 +128,7 @@ const TransferCreationForm = () => {
           )}
         </div>
       </form>
-    </StyledTransferCreationForm>
+    </StyledTransferChangeForm>
   );
 };
 

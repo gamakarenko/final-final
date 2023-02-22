@@ -1,5 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
 
+import sedanIcon from 'images/sedan.png';
+import vitoIcon from 'images/vito.png';
+
 import AppCheckbox from 'components/ui/AppCheckbox/AppCheckbox';
 import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 import AppInput from 'components/ui/AppInput/AppInput';
@@ -9,7 +12,6 @@ import InfoCell from 'components/InfoCell/InfoCell';
 
 import { IOrder } from 'types/order';
 import { NUMBERS_OF_SEATS } from 'utils/constants';
-import { sedanIcon, vitoIcon } from '../../images/index';
 import { compareAddress } from './MainInfoStep.utils';
 
 import { StyledMainInfoStep } from './MainInfoStep.styles';
