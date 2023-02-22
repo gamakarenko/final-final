@@ -33,15 +33,15 @@ const TransferChangeForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  useEffect(() => {
-    const order = findOrderById(orders, id);
+  const currentOrder = findOrderById(orders, id);
 
-    dispatch(editOrderInfo(structuredClone(order)));
+  useEffect(() => {
+    dispatch(editOrderInfo(structuredClone(currentOrder)));
 
     return () => {
       dispatch(clearOrderInfo());
     };
-  }, []);
+  }, [orders]);
 
   const {
     currentStepFieldset,
@@ -96,7 +96,17 @@ const TransferChangeForm = () => {
     goPrevStep();
   };
 
-  return (
+  if (!currentOrder) {
+    return isSendingOrder ? (
+      <Spinner />
+    ) : (
+      <PageParagraph>Трансфера #{id} не существует.</PageParagraph>
+    );
+  }
+
+  return isSendingOrder ? (
+    <Spinner />
+  ) : (
     <StyledTransferCreationForm className="transfer-creation-form">
       <form onSubmit={handleNextClick}>
         {currentStepFieldset}
