@@ -14,9 +14,6 @@ import { MainPage } from 'pages/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
 import AboutMain from 'pages/AboutPage/AboutMain/AboutMain';
-import SelectChangeOptionsPage from 'pages/OrderedTransfersPage/SelectChangeOptionsPage/SelectChangeOptionsPage';
-import ChangeMainInfoPage from 'pages/OrderedTransfersPage/ChangeMainInfoPage/ChangeMainInfoPage';
-import ChangePassengersPage from 'pages/OrderedTransfersPage/ChangePassengersPage/ChangePassengersPage';
 import ChangesSaved from 'pages/OrderedTransfersPage/ChangesSaved/ChangesSaved';
 import TransferChangeForm from 'pages/OrderedTransfersPage/TransferChangeForm/TransferChangeForm';
 
@@ -55,18 +52,6 @@ export const router = createBrowserRouter([
             path: ':id/change',
             element: <TransferChangeForm />,
           },
-          // {
-          //   path: ':id/change',
-          //   element: <SelectChangeOptionsPage />,
-          // },
-          // {
-          //   path: ':id/change/main-info',
-          //   element: <ChangeMainInfoPage />,
-          // },
-          // {
-          //   path: ':id/change/passengers',
-          //   element: <ChangePassengersPage />,
-          // },
           {
             path: 'changes-saved',
             element: <ChangesSaved />,

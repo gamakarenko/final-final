@@ -78,21 +78,6 @@ const newOrderSlice = createSlice({
       }
     },
 
-    // addNewPassenger: (state) => {
-    //   const maxId = state.order.users.reduce(
-    //     (result: number, user) => (user.id > result ? user.id : result),
-    //     0,
-    //   ) as unknown as number;
-
-    //   state.order.users.push({ ...newUser, id: maxId + 1 });
-    // },
-
-    // deletePassengerById: (state, action: PayloadAction<{ id: number }>) => {
-    //   state.order.users = state.order.users.filter(
-    //     (user) => user.id !== action.payload.id,
-    //   );
-    // },
-
     editPassengerById: (state, action: PayloadAction<Partial<IUser>>) => {
       state.order.users = state.order.users.map((user) =>
         user.id === action.payload.id ? { ...user, ...action.payload } : user,
@@ -106,8 +91,6 @@ const newOrderSlice = createSlice({
 export const {
   editOrderInfo,
   clearOrderInfo,
-  // deletePassengerById,
-  // addNewPassenger,
   editPassengerById,
 } = newOrderSlice.actions;
 
