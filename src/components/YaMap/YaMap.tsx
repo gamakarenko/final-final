@@ -10,6 +10,8 @@ import {
 } from 'react';
 import { debounce } from 'utils/debounce';
 
+import placeMarkSvg from './placemark.svg';
+
 import { StyledYaMap } from './YaMap.styled';
 
 export interface YaMapProps
@@ -21,18 +23,18 @@ export interface YaMapProps
 
 const yaMap = (window as any).ymaps;
 
-const createPlaceMark = (coords: any) => {
-  return new yaMap.Placemark(
-    coords,
-    {
-      iconCaption: '',
-    },
-    {
-      preset: 'islands#blueDotIconWithCaption',
-      draggable: true,
-    },
-  );
-};
+// const createPlaceMark = (coords: any) => {
+//   return new yaMap.Placemark(
+//     coords,
+//     {
+//       iconCaption: '',
+//     },
+//     {
+//       preset: 'islands#blueDotIconWithCaption',
+//       draggable: true,
+//     },
+//   );
+// };
 
 const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
   const [isCardVisible, setIsCardVisible] = useState(false);
@@ -43,31 +45,26 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
   const mapRef = useRef();
   const placeMarkRef = useRef();
 
-  useEffect(() => {
-    if (!location) {
-      return;
-    }
-
-    const setGeo = async () => {
-      const suggests: any = await yaMap.suggest(location);
-
-      yaMap.geocode(suggests[0].value).then((res: any) => {
-        const coords = res.geoObjects.get(0).geometry.getCoordinates();
-
-        (mapRef.current as any).setCenter(coords, 12);
-        let placeMark = (mapRef.current as any).geoObjects.get(0);
-
-        if (placeMark) {
-          placeMark.geometry.setCoordinates(coords);
-        } else {
-          placeMark = createPlaceMark(coords);
-          (mapRef.current as any).geoObjects.add(placeMark);
-        }
-      });
-    };
-
-    debounce(() => setGeo(), 1000);
-  }, [location]);
+  // useEffect(() => {
+  //   if (!location) {
+  //     return;
+  //   }
+  //   const setGeo = async () => {
+  //     const suggests: any = await yaMap.suggest(location);
+  //     yaMap.geocode(suggests[0].value).then((res: any) => {
+  //       const coords = res.geoObjects.get(0).geometry.getCoordinates();
+  //       (mapRef.current as any).setCenter(coords);
+  //       let placeMark = (mapRef.current as any).geoObjects.get(0);
+  //       if (placeMark) {
+  //         placeMark.geometry.setCoordinates(coords);
+  //       } else {
+  //         placeMark = createPlaceMark(coords);
+  //         (mapRef.current as any).geoObjects.add(placeMark);
+  //       }
+  //     });
+  //   };
+  //   debounce(() => setGeo(), 1000);
+  // }, [location]);
 
   const onLoad = (ymaps: any) => {
     var suggestView = new ymaps.SuggestView(suggestId, { results: 5 });
@@ -86,23 +83,37 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
     });
 
     const map = mapRef.current as any;
-    let placeMark = placeMarkRef.current as any;
 
-    map.events.add('click', (e: any) => {
-      const coords = e.get('coords');
+    const placeMark = new yaMap.Placemark(
+      [],
+      {},
+      {
+        iconLayout: 'default#image',
+        iconImageHref: placeMarkSvg,
+        iconImageSize: [24, 24],
+        iconImageOffset: [-12, -24]
+      },
+    );
+    map.geoObjects.add(placeMark);
 
-      if (placeMark) {
-        placeMark.geometry.setCoordinates(coords);
-      } else {
-        placeMark = createPlaceMark(coords);
-        map.geoObjects.add(placeMark);
+    const centerPlaceMark = () => {
+      var current_state = map.action.getCurrentState();
+      var geoCenter = map.options
+        .get('projection')
+        .fromGlobalPixels(current_state.globalPixelCenter, current_state.zoom);
+      placeMark.geometry.setCoordinates(geoCenter);
+    };
 
-        placeMark.events.add('dragend', function () {
-          getAddress(placeMark.geometry.getCoordinates());
-        });
-      }
+    centerPlaceMark();
 
-      getAddress(coords);
+    map.events.add('actiontick', function (e: any) {
+      centerPlaceMark();
+    });
+
+    map.events.add('actionend', function () {
+      centerPlaceMark();
+
+      getAddress(placeMark.geometry.getCoordinates());
     });
 
     const getAddress = (coords: any) => {
