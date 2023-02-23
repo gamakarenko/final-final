@@ -20,8 +20,9 @@ export const StyledYaMap = styled.div<StyledYaMapProps>`
 
     &__map {
       width: 100%;
-      max-width: 375px;
+      max-width: 100%;
       height: 400px;
+      max-height: 70vh;
       display: ${({ isCardVisible }) => (isCardVisible ? 'block' : 'none')};
       border: 1px solid #adadad;
       border-bottom: none;
