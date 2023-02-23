@@ -1,6 +1,14 @@
 import AppButton from 'components/ui/AppButton/AppButton';
 import AppTextArea from 'components/ui/AppTextArea/AppTextArea';
-import { FC, TextareaHTMLAttributes, useEffect, useId, useState } from 'react';
+import {
+  FC,
+  TextareaHTMLAttributes,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from 'react';
+import { debounce } from 'utils/debounce';
 
 import { StyledYaMap } from './YaMap.styled';
 
@@ -11,100 +19,105 @@ export interface YaMapProps
   heading: string;
 }
 
+const yaMap = (window as any).ymaps;
+
+const createPlaceMark = (coords: any) => {
+  return new yaMap.Placemark(
+    coords,
+    {
+      iconCaption: '',
+    },
+    {
+      preset: 'islands#blueDotIconWithCaption',
+      draggable: true,
+    },
+  );
+};
+
 const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
-  const [yaMap, setYaMap] = useState<any>();
-  const [isInit, setIsInit] = useState(false);
   const [isCardVisible, setIsCardVisible] = useState(false);
 
   const mapId = useId();
   const suggestId = useId();
 
+  const mapRef = useRef();
+  const placeMarkRef = useRef();
+
   useEffect(() => {
-    if ((window as any).ymaps) {
-      setYaMap((window as any).ymaps);
+    if (!location) {
+      return;
     }
-  }, []);
 
-  useEffect(() => {}, [location]);
+    const setGeo = async () => {
+      const suggests: any = await yaMap.suggest(location);
 
-  function onLoad(ymaps: any) {
+      yaMap.geocode(suggests[0].value).then((res: any) => {
+        const coords = res.geoObjects.get(0).geometry.getCoordinates();
+
+        (mapRef.current as any).setCenter(coords, 12);
+        let placeMark = (mapRef.current as any).geoObjects.get(0);
+
+        if (placeMark) {
+          placeMark.geometry.setCoordinates(coords);
+        } else {
+          placeMark = createPlaceMark(coords);
+          (mapRef.current as any).geoObjects.add(placeMark);
+        }
+      });
+    };
+
+    debounce(() => setGeo(), 1000);
+  }, [location]);
+
+  const onLoad = (ymaps: any) => {
     var suggestView = new ymaps.SuggestView(suggestId, { results: 5 });
     suggestView.events.add('select', (e: any) => {
       //Задаем локацию из выпадающей подсказки
       setLocation(e.originalEvent.item.displayName);
     });
-  }
+  };
 
-  function init(id: string) {
-    var myPlacemark: any;
-
-    var myMap = new yaMap.Map(id, {
+  const init = (id: string) => {
+    mapRef.current = new yaMap.Map(id, {
       center: [36.887763, 30.702574],
       zoom: 7,
 
       options: { autoFitToViewport: 'always' },
     });
 
-    myMap.events.add('click', function (e: any) {
-      var coords = e.get('coords');
+    const map = mapRef.current as any;
+    let placeMark = placeMarkRef.current as any;
 
-      if (myPlacemark) {
-        myPlacemark.geometry.setCoordinates(coords);
+    map.events.add('click', (e: any) => {
+      const coords = e.get('coords');
+
+      if (placeMark) {
+        placeMark.geometry.setCoordinates(coords);
       } else {
-        myPlacemark = createPlacemark(coords);
-        myMap.geoObjects.add(myPlacemark);
+        placeMark = createPlaceMark(coords);
+        map.geoObjects.add(placeMark);
 
-        myPlacemark.events.add('dragend', function () {
-          getAddress(myPlacemark.geometry.getCoordinates());
+        placeMark.events.add('dragend', function () {
+          getAddress(placeMark.geometry.getCoordinates());
         });
       }
+
       getAddress(coords);
     });
 
-    function createPlacemark(coords: any) {
-      return new yaMap.Placemark(
-        coords,
-        {
-          iconCaption: 'поиск...',
-        },
-        {
-          preset: 'islands#blueDotIconWithCaption',
-          draggable: true,
-        },
-      );
-    }
-
-    function getAddress(coords: any) {
-      myPlacemark.properties.set('iconCaption', 'поиск...');
-      yaMap.geocode(coords).then(function (res: any) {
-        var firstGeoObject = res.geoObjects.get(0);
-
-        myPlacemark.properties.set({
-          iconCaption: [
-            firstGeoObject.getLocalities().length
-              ? firstGeoObject.getLocalities()
-              : firstGeoObject.getAdministrativeAreas(),
-            firstGeoObject.getThoroughfare() || firstGeoObject.getPremise(),
-          ]
-            .filter(Boolean)
-            .join(', '),
-          balloonContent: firstGeoObject.getAddressLine(),
-        });
-
+    const getAddress = (coords: any) => {
+      yaMap.geocode(coords).then((res: any) => {
+        const firstGeoObject = res.geoObjects.get(0);
         //Задаем локацию кликом по карте
         setLocation(firstGeoObject.getAddressLine());
       });
-    }
-  }
+    };
+  };
 
   useEffect(() => {
-    if (yaMap && !isInit) {
-      yaMap.ready(() => onLoad(yaMap));
-      yaMap.ready(() => init(mapId));
-
-      setIsInit(true);
-    }
-  }, [yaMap]);
+    // yaMap.ready(() => onLoad(yaMap));
+    yaMap.ready(() => init(mapId));
+  }, []);
 
   return (
     <StyledYaMap isCardVisible={isCardVisible} className={`ya-map`}>
