@@ -83,8 +83,6 @@ const ordersSlice = createSlice({
     });
     builder.addCase(deleteOrderThunk.fulfilled, (state, action) => {
       state.orders = state.orders.filter((order) => {
-        console.log(order.id, action.payload);
-
         return order.id !== action.payload;
       });
       state.isOrdersFetching = false;

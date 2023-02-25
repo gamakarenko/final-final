@@ -1,6 +1,8 @@
-let timeout: NodeJS.Timeout;
+export const getDebounce = () => {
+  let timeout: NodeJS.Timeout;
 
-export const debounce = (callback: () => any, timeoutMs: number): void => {
-  clearTimeout(timeout);
-  timeout = setTimeout(callback, timeoutMs);
+  return (callback: () => any, timeoutMs: number) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(callback, timeoutMs);
+  };
 };

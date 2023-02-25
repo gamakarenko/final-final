@@ -1,4 +1,7 @@
 import { FC } from 'react';
+
+import { joinClasses } from 'utils/joinClasses';
+
 import { StyledInfoCell } from './InfoCell.styled';
 
 interface InfoCellProps {
@@ -10,7 +13,7 @@ interface InfoCellProps {
 
 const InfoCell: FC<InfoCellProps> = ({ heading, data, caption, className }) => {
   return (
-    <StyledInfoCell className={`info-cell${className ? ' ' + className : ''}`}>
+    <StyledInfoCell className={joinClasses('info-cell', className)}>
       <p className="info-cell__heading">{heading}</p>
       <p className="info-cell__data">{data || '—'}</p>
       <p className="info-cell__caption">{caption}</p>

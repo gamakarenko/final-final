@@ -1,5 +1,7 @@
 import { AllHTMLAttributes, FC } from 'react';
 
+import { joinClasses } from 'utils/joinClasses';
+
 import { StyledPageHeading } from './PageHeading.styled';
 
 const PageHeading: FC<AllHTMLAttributes<HTMLHeadingElement>> = ({
@@ -7,9 +9,7 @@ const PageHeading: FC<AllHTMLAttributes<HTMLHeadingElement>> = ({
   className = '',
 }) => {
   return (
-    <StyledPageHeading
-      className={`page-heading${className ? ' ' + className : ''}`}
-    >
+    <StyledPageHeading className={joinClasses('page-heading', className)}>
       {children}
     </StyledPageHeading>
   );

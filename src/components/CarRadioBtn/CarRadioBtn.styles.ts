@@ -18,7 +18,7 @@ export const StyledCarRadioBtn = styled.div`
       z-index: -1;
       cursor: pointer;
       border-radius: 10px;
-      border: 1px #000 solid;
+      border: 1px var(--line-color) solid;
     }
 
     &__label {
@@ -34,10 +34,6 @@ export const StyledCarRadioBtn = styled.div`
       border: 1px var(--primary-color) solid;
     }
 
-    //? баг? не подставляет в составном селекторе вместо амперсанда
-    /* &__input:checked + &__label {
-      color: #fff;
-    } */
     &__input:checked + .car-radio-btn__label {
       color: #fff;
     }

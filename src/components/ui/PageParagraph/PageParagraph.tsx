@@ -1,5 +1,7 @@
 import { AllHTMLAttributes, FC } from 'react';
 
+import { joinClasses } from 'utils/joinClasses';
+
 import { StyledPageParagraph } from './PageParagraph.styles';
 
 export interface PageParagraphProps
@@ -15,7 +17,7 @@ const PageParagraph: FC<PageParagraphProps> = ({
 }) => {
   return (
     <StyledPageParagraph
-      className={className ? ' ' + className : ''}
+      className={joinClasses('page-paragraph', className)}
       underlined={underlined}
     >
       {children}

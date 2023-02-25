@@ -13,6 +13,7 @@ import InfoCell from 'components/InfoCell/InfoCell';
 import { IOrder } from 'types/order';
 import { NUMBERS_OF_SEATS } from 'utils/constants';
 import { compareAddress } from './MainInfoStep.utils';
+import { joinClasses } from 'utils/joinClasses';
 
 import { StyledMainInfoStep } from './MainInfoStep.styles';
 
@@ -57,7 +58,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
 
   return (
     <StyledMainInfoStep
-      className={`main-info-step${className ? ' ' + className : ''}`}
+      className={joinClasses('app-main-info-stepicon-btn', className)}
     >
       {children ? (
         children
@@ -93,8 +94,6 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           setLocation={setStartLocation}
           heading="Откуда тебя забрать?"
           required
-          minLength={10}
-          defaultValue=""
         />
 
         <YaMap
@@ -102,8 +101,6 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           setLocation={setEndLocation}
           heading="Куда тебя привезти?"
           required
-          minLength={10}
-          defaultValue=""
         />
 
         <AppCheckbox

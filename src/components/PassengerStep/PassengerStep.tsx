@@ -7,6 +7,7 @@ import PageParagraph from '../ui/PageParagraph/PageParagraph';
 import { IUser } from 'types/order';
 
 import { StyledPassengerStep } from './PassengerStep.styles';
+import { joinClasses } from 'utils/joinClasses';
 
 interface PassengerStepProps extends PropsWithChildren {
   heading?: string;
@@ -23,9 +24,7 @@ const PassengerStep: FC<PassengerStepProps> = ({
   className,
 }) => {
   return (
-    <StyledPassengerStep
-      className={`passenger-step${className ? ' ' + className : ''}`}
-    >
+    <StyledPassengerStep className={joinClasses('passenger-step', className)}>
       {children ? (
         children
       ) : heading ? (
@@ -45,7 +44,6 @@ const PassengerStep: FC<PassengerStepProps> = ({
         При возникновении вопросов на&nbsp;этапе бронирования, пожалуйста,
         обратитесь к&nbsp;ассистенту @...
       </PageText>
-
     </StyledPassengerStep>
   );
 };

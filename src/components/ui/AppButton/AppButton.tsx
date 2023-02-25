@@ -1,5 +1,7 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 
+import { joinClasses } from 'utils/joinClasses';
+
 import { StyledAppButton } from './AppButton.styled';
 
 export interface IAppButton extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,7 +25,7 @@ const AppButton: FC<IAppButton> = ({
     <StyledAppButton
       isFilled={isFilled}
       isUppercase={isUppercase}
-      className={`app-button${className ? ' ' + className : ''}`}
+      className={joinClasses('app-button', className)}
       type="button"
       textAlign={textAlign}
       size={size}

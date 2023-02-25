@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { joinClasses } from 'utils/joinClasses';
+
 import { StyledSpinner } from './Spinner.styled';
 
 interface ISpinner {
@@ -8,9 +10,7 @@ interface ISpinner {
 
 const Spinner: FC<ISpinner> = ({ className }) => {
   return (
-    <StyledSpinner
-      className={`sending-spinner${className ? ' ' + className : ''}`}
-    />
+    <StyledSpinner className={joinClasses('sending-spinner', className)} />
   );
 };
 

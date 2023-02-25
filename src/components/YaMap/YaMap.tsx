@@ -1,5 +1,3 @@
-import AppButton from 'components/ui/AppButton/AppButton';
-import AppTextArea from 'components/ui/AppTextArea/AppTextArea';
 import {
   FC,
   TextareaHTMLAttributes,
@@ -8,11 +6,15 @@ import {
   useRef,
   useState,
 } from 'react';
-import { debounce } from 'utils/debounce';
+
+import AppButton from 'components/ui/AppButton/AppButton';
+import YaMapInput from './YaMapInput/YaMapInput';
 
 import placeMarkSvg from './placemark.svg';
+import { IMapControl } from './YaMap.types';
 
 import { StyledYaMap } from './YaMap.styled';
+import AppIconBtn from 'components/ui/AppIconBtn/AppIconBtn';
 
 export interface YaMapProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -23,54 +25,25 @@ export interface YaMapProps
 
 const yaMap = (window as any).ymaps;
 
-// const createPlaceMark = (coords: any) => {
-//   return new yaMap.Placemark(
-//     coords,
-//     {
-//       iconCaption: '',
-//     },
-//     {
-//       preset: 'islands#blueDotIconWithCaption',
-//       draggable: true,
-//     },
-//   );
-// };
-
 const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
   const [isCardVisible, setIsCardVisible] = useState(false);
+  const [isAddressInputOpen, setIsAddressInputOpen] = useState(false);
 
   const mapId = useId();
-  const suggestId = useId();
 
   const mapRef = useRef();
-  const placeMarkRef = useRef();
 
-  // useEffect(() => {
-  //   if (!location) {
-  //     return;
-  //   }
-  //   const setGeo = async () => {
-  //     const suggests: any = await yaMap.suggest(location);
-  //     yaMap.geocode(suggests[0].value).then((res: any) => {
-  //       const coords = res.geoObjects.get(0).geometry.getCoordinates();
-  //       (mapRef.current as any).setCenter(coords);
-  //       let placeMark = (mapRef.current as any).geoObjects.get(0);
-  //       if (placeMark) {
-  //         placeMark.geometry.setCoordinates(coords);
-  //       } else {
-  //         placeMark = createPlaceMark(coords);
-  //         (mapRef.current as any).geoObjects.add(placeMark);
-  //       }
-  //     });
-  //   };
-  //   debounce(() => setGeo(), 1000);
-  // }, [location]);
+  const setGeo = async (location: string, scale?: number) => {
+    yaMap.geocode(location).then((res: any) => {
+      const coords = res.geoObjects.get(0).geometry.getCoordinates();
+      if (scale) {
+        (mapRef.current as any).setCenter(coords, scale);
+      } else {
+        (mapRef.current as any).setCenter(coords);
+      }
+      let placeMark = (mapRef.current as any).geoObjects.get(0);
 
-  const onLoad = (ymaps: any) => {
-    var suggestView = new ymaps.SuggestView(suggestId, { results: 5 });
-    suggestView.events.add('select', (e: any) => {
-      //Задаем локацию из выпадающей подсказки
-      setLocation(e.originalEvent.item.displayName);
+      placeMark.geometry.setCoordinates(coords);
     });
   };
 
@@ -84,15 +57,17 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
 
     const map = mapRef.current as any;
 
-    map.controls.remove('geolocationControl'); // удаляем геолокацию
-    map.controls.remove('searchControl'); // удаляем поиск
-    map.controls.remove('trafficControl'); // удаляем контроль трафика
-    map.controls.remove('typeSelector'); // удаляем тип
-    map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
-    // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
-    map.controls.remove('rulerControl'); // удаляем контрол правил
-    // map.behaviors.disable(['scrollZoom']); // отключаем скролл карты (опционально)
-
+    (
+      [
+        'geolocationControl',
+        'searchControl',
+        'trafficControl',
+        'typeSelector',
+        'fullscreenControl',
+        'rulerControl',
+        'zoomControl',
+      ] as IMapControl[]
+    ).forEach((control) => map.controls.remove(control));
 
     const placeMark = new yaMap.Placemark(
       [],
@@ -101,7 +76,7 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
         iconLayout: 'default#image',
         iconImageHref: placeMarkSvg,
         iconImageSize: [24, 24],
-        iconImageOffset: [-12, -24]
+        iconImageOffset: [-12, -24],
       },
     );
     map.geoObjects.add(placeMark);
@@ -116,27 +91,22 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
 
     centerPlaceMark();
 
-    map.events.add('actiontick', function (e: any) {
+    map.events.add('actiontick', (e: any) => {
       centerPlaceMark();
     });
 
-    map.events.add('actionend', function () {
+    map.events.add('actionend', () => {
       centerPlaceMark();
 
-      getAddress(placeMark.geometry.getCoordinates());
-    });
-
-    const getAddress = (coords: any) => {
-      yaMap.geocode(coords).then((res: any) => {
+      yaMap.geocode(placeMark.geometry.getCoordinates()).then((res: any) => {
         const firstGeoObject = res.geoObjects.get(0);
-        //Задаем локацию кликом по карте
+
         setLocation(firstGeoObject.getAddressLine());
       });
-    };
+    });
   };
 
   useEffect(() => {
-    // yaMap.ready(() => onLoad(yaMap));
     yaMap.ready(() => init(mapId));
   }, []);
 
@@ -156,12 +126,33 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
 
       <div className="ya-map__map" id={mapId} />
 
-      <AppTextArea
-        id={suggestId}
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        className="ya-map__text-area"
-        {...rest}
+      <div
+        className="ya-map__address-select-box"
+        onClick={() => setIsAddressInputOpen(true)}
+      >
+        <textarea
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="ya-map__text-area"
+          placeholder="Ввести адрес..."
+          aria-hidden="true"
+          tabIndex={-1}
+          {...rest}
+        />
+        <AppIconBtn
+          className="ya-map__btn-select"
+          icon="arrow-right"
+          withSeparator="left-lined"
+          aria-label="Выбрать адрес."
+        />
+      </div>
+
+      <YaMapInput
+        setGeo={setGeo}
+        isOpen={isAddressInputOpen}
+        onClose={() => setIsAddressInputOpen(false)}
+        location={location}
+        setLocation={setLocation}
       />
     </StyledYaMap>
   );

@@ -1,5 +1,7 @@
 import { FC, TextareaHTMLAttributes } from 'react';
 
+import { joinClasses } from 'utils/joinClasses';
+
 import { StyledAppTextArea } from './AppTextArea.styled';
 
 interface IAppTextArea extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -13,9 +15,7 @@ const AppTextArea: FC<IAppTextArea> = ({
   ...rest
 }) => {
   return (
-    <StyledAppTextArea
-      className={`app-input${className ? ' ' + className : ''}`}
-    >
+    <StyledAppTextArea className={joinClasses('app-input', className)}>
       {label || children}
       <textarea
         className="app-input__input app-input__input_text-area"
