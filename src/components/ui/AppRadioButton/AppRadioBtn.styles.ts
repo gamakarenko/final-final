@@ -6,7 +6,8 @@ export const StyledAppRadioBtn = styled.label`
   align-items: center;
   gap: 5px;
   line-height: 1;
-
+  -webkit-tap-highlight-color: transparent;
+  
   .app-radio-btn {
     &__input {
       appearance: none;

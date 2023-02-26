@@ -108,6 +108,10 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
 
   useEffect(() => {
     yaMap.ready(() => init(mapId));
+
+    if (location) {
+      setGeo(location, 17);
+    }
   }, []);
 
   return (

@@ -6,6 +6,7 @@ export const StyledAppCheckbox = styled.label`
   align-items: center;
   gap: 5px;
   line-height: 1;
+  -webkit-tap-highlight-color: transparent;
 
   .app-checkbox {
     &__input {

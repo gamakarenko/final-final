@@ -5,7 +5,7 @@ export const StyledCarRadioBtn = styled.div`
   cursor: pointer;
   z-index: 0;
   padding: 6px;
-
+  -webkit-tap-highlight-color: transparent;
 
   .car-radio-btn {
     &__input {

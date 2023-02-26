@@ -59,44 +59,60 @@ const YaMapInput: FC<YaMapInputProps> = ({
 
   const handleBtnDoneClick = () => {
     setLocation(newLocation);
-    setGeo(newLocation, 16);
+    setGeo(newLocation, 17);
     onClose();
   };
 
   return (
     <StyledYaMapInput className="ya-map-input" open={isOpen} onClose={onClose}>
-      <div className="ya-map-input__section">
-        <div className="ya-map-input__input-box">
-          <textarea
-            className="ya-map-input__input"
-            value={newLocation}
-            onChange={handleChangeLocation}
-            ref={inputRef}
-            placeholder="Начните вводить адрес"
-            autoComplete="off"
-            autoFocus
-          />
+      <div
+        className="ya-map-input__section"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            onClose();
+          }
+        }}
+      >
+        <AppIconBtn
+          icon="close"
+          className="ya-map-input__close-btn"
+          fill="#fff"
+          onClick={() => onClose()}
+          size={32}
+        />
+        <div className="ya-map-input__content">
+          <div className="ya-map-input__input-box">
+            <textarea
+              className="ya-map-input__input"
+              value={newLocation}
+              onChange={handleChangeLocation}
+              ref={inputRef}
+              placeholder="Начните вводить адрес"
+              autoComplete="off"
+              autoFocus
+            />
 
-          <AppIconBtn
-            icon="arrow-right"
-            withSeparator="left-lined"
-            className="ya-map-input__btn-done"
-            size={32}
-            onClick={handleBtnDoneClick}
-          />
+            <AppIconBtn
+              icon="arrow-right"
+              withSeparator="left-lined"
+              className="ya-map-input__btn-done"
+              size={32}
+              onClick={handleBtnDoneClick}
+            />
+          </div>
+
+          {suggests.map((suggest) => (
+            <button
+              key={getId()}
+              className="ya-map-input__suggest"
+              onClick={() => {
+                handleSuggestClick(suggest.value);
+              }}
+            >
+              {suggest.value}
+            </button>
+          ))}
         </div>
-
-        {suggests.map((suggest) => (
-          <button
-            key={getId()}
-            className="ya-map-input__suggest"
-            onClick={() => {
-              handleSuggestClick(suggest.value);
-            }}
-          >
-            {suggest.value}
-          </button>
-        ))}
       </div>
     </StyledYaMapInput>
   );

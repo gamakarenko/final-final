@@ -9,7 +9,18 @@ export const StyledYaMapInput = styled(Modal)`
       max-width: 420px;
       height: 100%;
       margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    &__content {
       background-color: var(--bgc);
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+    }
+
+    &__close-btn {
+      justify-self: center;
     }
 
     &__input-box {
@@ -22,6 +33,7 @@ export const StyledYaMapInput = styled(Modal)`
       width: 100%;
       background-color: var(--bgc);
       font-size: 16px;
+      border: none;
       border-bottom: 1px solid hsl(0, 0%, 70%);
       padding: 10px 59px 10px 10px;
       resize: none;

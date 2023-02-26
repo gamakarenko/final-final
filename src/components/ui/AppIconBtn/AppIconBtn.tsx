@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 
-import { ReactComponent as ArrowStart } from './icons/icon-start.svg';
+import { ReactComponent as ArrowStart } from './icons/start.svg';
+import { ReactComponent as Close } from './icons/close.svg';
 import { ReactComponent as ArrowRight } from './icons/arrow-right.svg';
 import { ReactComponent as ArrowLeft } from './icons/arrow-left.svg';
 
@@ -8,13 +9,14 @@ import { joinClasses } from 'utils/joinClasses';
 
 import { StyledAppIconBtn } from './AppIconBtn.styles';
 
-type IIcons = 'right-arrow' | 'arrow-right' | 'arrow-left';
+type IIcons = 'right-arrow' | 'arrow-right' | 'arrow-left' | 'close';
 
 export interface AppIconBtnProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: IIcons;
   size?: number;
   withSeparator?: 'left-lined' | 'right-lined';
+  fill?: string;
 }
 
 const AppIconBtn: FC<AppIconBtnProps> = ({
@@ -22,6 +24,7 @@ const AppIconBtn: FC<AppIconBtnProps> = ({
   size = 24,
   className,
   withSeparator,
+  fill,
   ...rest
 }) => {
   const getIcon = (icon: IIcons) => {
@@ -32,6 +35,8 @@ const AppIconBtn: FC<AppIconBtnProps> = ({
         return <ArrowRight className="app-icon-btn__icon" />;
       case 'arrow-left':
         return <ArrowLeft className="app-icon-btn__icon" />;
+      case 'close':
+        return <Close className="app-icon-btn__icon" />;
     }
   };
 
@@ -40,6 +45,7 @@ const AppIconBtn: FC<AppIconBtnProps> = ({
       className={joinClasses('app-icon-btn', className)}
       size={size}
       withSeparator={withSeparator}
+      fill={fill}
       type="button"
       {...rest}
     >

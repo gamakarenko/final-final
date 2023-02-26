@@ -3,13 +3,17 @@ import styled from '@emotion/styled';
 
 import { AppIconBtnProps } from './AppIconBtn';
 
-type StyledAppIconBtnProps = Pick<AppIconBtnProps, 'size' | 'withSeparator'>;
+type StyledAppIconBtnProps = Pick<
+  AppIconBtnProps,
+  'size' | 'withSeparator' | 'fill'
+>;
 
 export const StyledAppIconBtn = styled.button<StyledAppIconBtnProps>`
   padding: 8px;
   background-color: transparent;
   display: grid;
   place-content: center;
+  -webkit-tap-highlight-color: transparent;
 
   ${({ withSeparator }) => {
     switch (withSeparator) {
@@ -22,6 +26,12 @@ export const StyledAppIconBtn = styled.button<StyledAppIconBtnProps>`
     }
   }};
 
+  &:active {
+    .app-icon-btn__icon * {
+      fill: var(--primary-color-lighter);
+    }
+  }
+
   .app-icon-btn {
     &__icon {
       ${({ size }) => css`
@@ -32,7 +42,7 @@ export const StyledAppIconBtn = styled.button<StyledAppIconBtnProps>`
       display: block;
     }
     &__icon * {
-      fill: var(--primary-color);
+      fill: ${({ fill }) => (fill ? fill : 'var(--primary-color)')};
     }
   }
 `;

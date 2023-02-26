@@ -16,6 +16,7 @@ export const StyledAppButton = styled.button<
   font-size: 15px;
   line-height: 1;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
   &:disabled {
     pointer-events: none;
@@ -32,6 +33,11 @@ export const StyledAppButton = styled.button<
             border: 1px var(--disabled-color) solid;
             color: #fff;
           }
+
+          &:active {
+            background-color: var(--primary-color-lighter);
+            border: 1px var(--primary-color-lighter) solid;
+          }
         `
       : css`
           background-color: transparent;
@@ -40,6 +46,11 @@ export const StyledAppButton = styled.button<
           &:disabled {
             border: 1px var(--disabled-color) solid;
             color: var(--disabled-color);
+          }
+
+          &:active {
+            border: 1px var(--primary-color-lighter) solid;
+            color: var(--primary-color-lighter);
           }
         `}
 `;
