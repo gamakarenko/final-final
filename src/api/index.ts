@@ -11,13 +11,10 @@ const $api = axios.create({
 });
 
 $api.interceptors.request.use((config: AxiosRequestConfig) => {
-  //@ts-ignore
-  // let tg = window?.Telegram?.WebApp;
-  // let user = tg?.initDataUnsafe?.user;
+  const tg = (window as any).Telegram.WebApp;
+  let user = tg?.initDataUnsafe?.user;
 
-  // config.headers!['ngrok-skip-browser-warning'] = 'true';
-
-  config.headers!.id = 1;
+  config.headers!.id = user?.id ? user.id : 1;
   return config;
 });
 

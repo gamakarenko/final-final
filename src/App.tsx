@@ -7,11 +7,16 @@ import { Slide, ToastContainer } from 'react-toastify';
 import { useAppDispatch } from 'store/store';
 import { getOrdersThunk } from 'store/Orders/OrdersThunk';
 
+const tg = (window as any).Telegram.WebApp;
+const user = tg?.initDataUnsafe?.user;
+
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getOrdersThunk());
+
+
   }, []);
 
   return (
@@ -30,6 +35,7 @@ function App() {
         theme="colored"
         transition={Slide}
       />
+      <div style={{display: 'grid', placeContent: 'center', padding: 5 }}>{user?.id ? user.id : 'tg not found'}</div>
       <Outlet />
     </>
   );
