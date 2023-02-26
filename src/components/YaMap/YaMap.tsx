@@ -115,7 +115,7 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
   }, []);
 
   return (
-    <StyledYaMap isCardVisible={isCardVisible} className={`ya-map`}>
+    <StyledYaMap isCardVisible={isCardVisible} className="ya-map">
       <div className="ya-map__address-label">
         <p>{heading}</p>
         <AppButton

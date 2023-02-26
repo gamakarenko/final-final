@@ -2,7 +2,7 @@ import { FC, InputHTMLAttributes } from 'react';
 
 import { joinClasses } from 'utils/joinClasses';
 
-import { StyledAppInput } from './AppInput.styled';
+import { StyledAppInput } from '../StyledAppInput';
 
 interface IAppInput extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
