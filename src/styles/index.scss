@@ -1,7 +1,7 @@
 @import 'normalize.css';
-@import './simplify.css';
 @import './base/fonts';
 
+@import './simplify.css';
 @import 'react-toastify/dist/ReactToastify.css';
 
 @import './components/button.scss';
@@ -18,7 +18,7 @@
 @import './pages/defaultPage.scss';
 
 body {
-  font-family: 'SF Pro Display' , sans-serif;
+  font-family: 'SF Pro Display', sans-serif;
   color: #333;
   background: #F2F2F2;
 }
@@ -36,9 +36,10 @@ body {
 :root {
   scroll-behavior: smooth;
 
-  --primary-color: #007AFF;
-  --primary-color-light: hsl(211, 100%, 85%);
-  --primary-color-lighter: hsl(211, 100%, 66%);
+  --primary-color: #007aff;
+  --primary-color-light: #6d9ef8;
+  --primary-color-lighter: hsl(211, 100%, 85%);
+  --primary-color-darker: #0a4ac2;
   --bgc: #f2f2f2;
   --line-color: #adadad;
   --disabled-color: #afafaf;

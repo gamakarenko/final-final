@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from 'App';
 import TransferCreation from 'pages/TransferCreation/TransferCreation';
-import FAQPage from 'pages/FAQPage/FaqPage';
 import InfoPage from 'pages/AboutPage/InfoPage';
 import ReviewPage from 'pages/AboutPage/ReviewPage';
 import OrderedTransfersPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
@@ -16,6 +15,7 @@ import { AboutPage } from 'pages/AboutPage/AboutPage';
 import AboutMain from 'pages/AboutPage/AboutMain/AboutMain';
 import ChangesSaved from 'pages/OrderedTransfersPage/ChangesSaved/ChangesSaved';
 import TransferChangeForm from 'pages/OrderedTransfersPage/TransferChangeForm/TransferChangeForm';
+import FaqPage from 'pages/FaqPage/FaqPage';
 
 export const router = createBrowserRouter([
   {
@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
 
       {
         path: 'faq',
-        element: <FAQPage />,
+        element: <FaqPage />,
       },
     ],
   },
