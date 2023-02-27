@@ -1,21 +1,9 @@
 @import 'normalize.css';
-@import './base/fonts';
 
-@import './simplify.css';
+@import 'assets/fonts/index.scss';
+@import 'assets/simplify.css';
+
 @import 'react-toastify/dist/ReactToastify.css';
-
-@import './components/button.scss';
-@import './components/button-complete.scss';
-@import './components/passengerBlock.scss';
-@import './components/orderStep.scss';
-@import './components/passengerStep.scss';
-@import './components/faqTab.scss';
-
-
-@import './pages/orderPage.scss';
-@import './pages/myTransferPage.scss';
-@import './pages/orderedPage.scss';
-@import './pages/defaultPage.scss';
 
 body {
   font-family: 'SF Pro Display', sans-serif;

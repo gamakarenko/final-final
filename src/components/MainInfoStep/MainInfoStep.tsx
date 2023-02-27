@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 
-import sedanIcon from 'images/sedan.png';
-import vitoIcon from 'images/vito.png';
+import sedanIcon from 'assets/images/sedan.png';
+import vitoIcon from 'assets/images/vito.png';
 
 import AppCheckbox from 'components/ui/AppCheckbox/AppCheckbox';
 import PageParagraph from 'components/ui/PageParagraph/PageParagraph';

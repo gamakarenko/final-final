@@ -2,14 +2,14 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from 'App';
 import TransferCreation from 'pages/TransferCreation/TransferCreation';
-import InfoPage from 'pages/AboutPage/InfoPage';
-import ReviewPage from 'pages/AboutPage/ReviewPage';
+import AboutInfo from 'pages/AboutPage/AboutInfo/AboutInfo';
+import AboutReview from 'pages/AboutPage/AboutReview/AboutReview';
 import OrderedTransfersPage from 'pages/OrderedTransfersPage/OrderedTransfersPage';
 import OrderByIdPage from 'pages/OrderByIdPage/OrderByIdPage';
 import OrderedTransfersList from 'pages/OrderedTransfersPage/OrderedTransfersList/OrderedTransfersList';
 import TransferCreationComplete from 'pages/TransferCreation/TransferCreationComplete/TransferCreationComplete';
 import TransferCreationForm from 'pages/TransferCreation/TransferCreationForm/TransferCreationForm';
-import { MainPage } from 'pages/MainPage';
+import { MainPage } from 'pages/MainPage/MainPage';
 import { MyTransfersPage } from 'pages/MyTransfersPage/MyTransfersPage';
 import { AboutPage } from 'pages/AboutPage/AboutPage';
 import AboutMain from 'pages/AboutPage/AboutMain/AboutMain';
@@ -68,11 +68,11 @@ export const router = createBrowserRouter([
           },
           {
             path: 'info',
-            element: <InfoPage />,
+            element: <AboutInfo />,
           },
           {
             path: 'review',
-            element: <ReviewPage />,
+            element: <AboutReview />,
           },
         ],
       },

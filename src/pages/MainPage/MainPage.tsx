@@ -1,7 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useTelegram } from '../hooks/useTelegram';
+import { useTelegram } from '../../hooks/useTelegram';
+
+import MainButton from '../../components/MainBtn/MainBtn';
 
 import { ReactComponent as OrderIcon } from 'images/Order.svg';
 import { ReactComponent as ShareIcon } from 'images/Share.svg';
@@ -10,12 +12,11 @@ import { ReactComponent as TransfersIcon } from 'images/Transfers.svg';
 import { ReactComponent as AboutIcon } from 'images/About.svg';
 import { ReactComponent as FAQIcon } from 'images/FAQ.svg';
 
-import MainButton from '../components/MainButton.tsx';
+import { StyledMainPage } from './MainPage.styles';
 
 interface MainPageProps {}
 
 export const MainPage: FC<MainPageProps> = () => {
-  const [users, setUsers] = useState<any>([]);
   const navigate = useNavigate();
   const { tg } = useTelegram();
 
@@ -24,7 +25,7 @@ export const MainPage: FC<MainPageProps> = () => {
   }, []);
 
   return (
-    <div className="main-page">
+    <StyledMainPage className="main-page">
       <MainButton
         title="Заказать трансфер"
         icon={<OrderIcon />}
@@ -56,20 +57,6 @@ export const MainPage: FC<MainPageProps> = () => {
         icon={<FAQIcon />}
         onClick={() => navigate('/faq')}
       />
-      {users.map((user: any) => (
-        <div
-          style={{
-            backgroundColor: 'var(--tg-theme-button-color)',
-            color: 'var(--tg-theme-button-text-color)',
-            height: '2rem',
-            marginBottom: '10px',
-            borderRadius: '5px',
-          }}
-          key={user.id}
-        >
-          {user.email}
-        </div>
-      ))}
-    </div>
+    </StyledMainPage>
   );
 };

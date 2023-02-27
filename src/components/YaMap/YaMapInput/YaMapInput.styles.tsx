@@ -91,7 +91,7 @@ export const StyledYaMapInput = styled(Modal)`
     }
 
     &__suggest:active {
-      background-color: var(--primary-color-lighter);
+      background-color: var(--primary-color-light);
     }
   }
 `;

@@ -28,7 +28,7 @@ export const StyledAppIconBtn = styled.button<StyledAppIconBtnProps>`
 
   &:active {
     .app-icon-btn__icon * {
-      fill: var(--primary-color-lighter);
+      fill: var(--primary-color-light);
     }
   }
 

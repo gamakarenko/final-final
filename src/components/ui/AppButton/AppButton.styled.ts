@@ -42,8 +42,8 @@ export const StyledAppButton = styled.button<
           }
 
           &:active {
-            background-color: var(--primary-color-lighter);
-            border: 1px var(--primary-color-lighter) solid;
+            background-color: var(--primary-color-light);
+            border: 1px var(--primary-color-light) solid;
           }
         `
       : css`
@@ -56,8 +56,8 @@ export const StyledAppButton = styled.button<
           }
 
           &:active {
-            border: 1px var(--primary-color-lighter) solid;
-            color: var(--primary-color-lighter);
+            border: 1px var(--primary-color-light) solid;
+            color: var(--primary-color-light);
           }
         `}
 `;
