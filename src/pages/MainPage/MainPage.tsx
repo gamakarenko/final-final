@@ -5,12 +5,12 @@ import { useTelegram } from '../../hooks/useTelegram';
 
 import MainButton from '../../components/MainBtn/MainBtn';
 
-import { ReactComponent as OrderIcon } from 'images/Order.svg';
-import { ReactComponent as ShareIcon } from 'images/Share.svg';
-import { ReactComponent as SearchIcon } from 'images/Search.svg';
-import { ReactComponent as TransfersIcon } from 'images/Transfers.svg';
-import { ReactComponent as AboutIcon } from 'images/About.svg';
-import { ReactComponent as FAQIcon } from 'images/FAQ.svg';
+import { ReactComponent as OrderIcon } from 'assets/images/Order.svg';
+import { ReactComponent as ShareIcon } from 'assets/images/Share.svg';
+import { ReactComponent as SearchIcon } from 'assets/images/Search.svg';
+import { ReactComponent as TransfersIcon } from 'assets/images/Transfers.svg';
+import { ReactComponent as AboutIcon } from 'assets/images/About.svg';
+import { ReactComponent as FAQIcon } from 'assets/images/FAQ.svg';
 
 import { StyledMainPage } from './MainPage.styles';
 
