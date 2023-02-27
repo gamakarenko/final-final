@@ -11,10 +11,10 @@ const $api = axios.create({
 });
 
 $api.interceptors.request.use((config: AxiosRequestConfig) => {
-  const tg = (window as any).Telegram.WebApp;
+  const tg = (window as any).Telegram?.WebApp;
   let user = tg?.initDataUnsafe?.user;
-
-  config.headers!.id = user?.id ? user.id : 1;
+  config.headers!.id = user?.id;
+  
   return config;
 });
 

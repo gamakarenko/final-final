@@ -15,8 +15,6 @@ function App() {
 
   useEffect(() => {
     dispatch(getOrdersThunk());
-
-
   }, []);
 
   return (
@@ -35,7 +33,7 @@ function App() {
         theme="colored"
         transition={Slide}
       />
-      <div style={{display: 'grid', placeContent: 'center', padding: 5 }}>{user?.id ? user.id : 'tg not found'}</div>
+      {!Boolean(user?.id) && 'tg not found!'}
       <Outlet />
     </>
   );

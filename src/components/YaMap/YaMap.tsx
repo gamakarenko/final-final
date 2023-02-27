@@ -21,11 +21,18 @@ export interface YaMapProps
   location: string;
   setLocation: (data: string) => void;
   heading: string;
+  caption: string;
 }
 
 const yaMap = (window as any).ymaps;
 
-const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
+const YaMap: FC<YaMapProps> = ({
+  location,
+  setLocation,
+  heading,
+  caption,
+  ...rest
+}) => {
   const [isCardVisible, setIsCardVisible] = useState(false);
   const [isAddressInputOpen, setIsAddressInputOpen] = useState(false);
 
@@ -141,6 +148,10 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
           placeholder="Ввести адрес..."
           aria-hidden="true"
           tabIndex={-1}
+          onFocus={(e) => {
+            e.target.blur();
+            setIsAddressInputOpen(true);
+          }}
           {...rest}
         />
         <AppIconBtn
@@ -157,6 +168,7 @@ const YaMap: FC<YaMapProps> = ({ location, setLocation, heading, ...rest }) => {
         onClose={() => setIsAddressInputOpen(false)}
         location={location}
         setLocation={setLocation}
+        caption={caption}
       />
     </StyledYaMap>
   );

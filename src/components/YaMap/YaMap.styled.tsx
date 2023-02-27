@@ -14,7 +14,7 @@ export const StyledYaMap = styled.div<StyledYaMapProps>`
     }
 
     &__card-btn {
-      font-size: 10px;
+      /* font-size: 10px; */
       width: auto;
     }
 

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC } from 'react';
+import { ButtonHTMLAttributes, FC, RefObject } from 'react';
 
 import { ReactComponent as ArrowStart } from './icons/start.svg';
 import { ReactComponent as Close } from './icons/close.svg';
@@ -46,7 +46,7 @@ const AppIconBtn: FC<AppIconBtnProps> = ({
       size={size}
       withSeparator={withSeparator}
       fill={fill}
-      type="button"
+      type="button"   
       {...rest}
     >
       {getIcon(icon)}

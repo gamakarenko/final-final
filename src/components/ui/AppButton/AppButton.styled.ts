@@ -11,12 +11,19 @@ export const StyledAppButton = styled.button<
   padding: ${({ size }) => (size === 'normal' ? '11px 22px' : '15px')};
   border-radius: 5px;
   border: 1px var(--primary-color) solid;
-  text-transform: ${({ isUppercase }) => (isUppercase ? 'uppercase' : 'none')};
   text-align: ${({ textAlign }) => textAlign};
-  font-size: 15px;
+  font-size: ${({ isUppercase }) => (isUppercase ? '10px' : '16px')};
   line-height: 1;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+
+  ${({ isUppercase }) =>
+    isUppercase &&
+    css`
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 11px 16px;
+    `}
 
   &:disabled {
     pointer-events: none;

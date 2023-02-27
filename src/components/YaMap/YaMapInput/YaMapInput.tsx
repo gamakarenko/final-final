@@ -7,12 +7,14 @@ import { getId } from './YaMapInput.utils';
 import { ISuggest } from '../YaMap.types';
 
 import { StyledYaMapInput } from './YaMapInput.styles';
+import { Backdrop, backdropClasses } from '@mui/material';
 
 const yaMap = (window as any).ymaps;
 const debounce = getDebounce();
 
 interface YaMapInputProps {
   isOpen: boolean;
+  caption: string;
   onClose: () => void;
   location: string;
   setLocation: (location: string) => void;
@@ -21,6 +23,7 @@ interface YaMapInputProps {
 
 const YaMapInput: FC<YaMapInputProps> = ({
   isOpen,
+  caption,
   onClose,
   location,
   setLocation,
@@ -64,22 +67,31 @@ const YaMapInput: FC<YaMapInputProps> = ({
   };
 
   return (
-    <StyledYaMapInput className="ya-map-input" open={isOpen} onClose={onClose}>
-      <div
-        className="ya-map-input__section"
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            onClose();
-          }
-        }}
-      >
-        <AppIconBtn
-          icon="close"
-          className="ya-map-input__close-btn"
-          fill="#fff"
-          onClick={() => onClose()}
-          size={32}
-        />
+    <StyledYaMapInput
+      className="ya-map-input"
+      open={isOpen}
+      onClose={onClose}
+      slotProps={{ backdrop: {className: 'ya-map-input__backdrop'} }}
+    >
+      <div className="ya-map-input__section">
+        <div
+          className="ya-map-input__heading-box"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              onClose();
+            }
+          }}
+        >
+          <AppIconBtn
+            icon="close"
+            className="ya-map-input__close-btn"
+            fill="#fff"
+            onClick={() => onClose()}
+            size={22}
+            withSeparator="right-lined"
+          />
+          <p className="ya-map-input__heading">{caption}</p>
+        </div>
         <div className="ya-map-input__content">
           <div className="ya-map-input__input-box">
             <textarea
@@ -87,7 +99,7 @@ const YaMapInput: FC<YaMapInputProps> = ({
               value={newLocation}
               onChange={handleChangeLocation}
               ref={inputRef}
-              placeholder="Начните вводить адрес"
+              placeholder={`Начните вводить ${caption.toLowerCase()}...`}
               autoComplete="off"
               autoFocus
             />

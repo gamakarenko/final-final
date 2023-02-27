@@ -93,6 +93,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           location={order.startLocation}
           setLocation={setStartLocation}
           heading="Откуда тебя забрать?"
+          caption="адрес отправления"
           required
         />
 
@@ -100,6 +101,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           location={order.endLocation}
           setLocation={setEndLocation}
           heading="Куда тебя привезти?"
+          caption="адрес прибытия"
           required
         />
 

@@ -4,6 +4,11 @@ import { Modal } from '@mui/material';
 
 export const StyledYaMapInput = styled(Modal)`
   .ya-map-input {
+    &__backdrop {
+      background-color: hsla(0, 0%, 0%, 0.66);
+      backdrop-filter: blur(3px);
+    }
+
     &__section {
       width: 100%;
       max-width: 420px;
@@ -11,6 +16,22 @@ export const StyledYaMapInput = styled(Modal)`
       margin: 0 auto;
       display: grid;
       grid-template-rows: auto 1fr;
+    }
+
+    &__heading-box {
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+    }
+    
+    &__heading {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #fff;
+      padding-left: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      pointer-events: none;
     }
 
     &__content {
