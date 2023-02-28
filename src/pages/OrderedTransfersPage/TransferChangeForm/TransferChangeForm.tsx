@@ -83,11 +83,9 @@ const TransferChangeForm = () => {
     }
 
     try {
-      try {
-        await dispatch(putOrderThunk(order)).unwrap();
+      await dispatch(putOrderThunk(order)).unwrap();
 
-        navigate('/transfers/ordered/changes-saved', { replace: true });
-      } catch {}
+      navigate('/transfers/ordered/changes-saved', { replace: true });
     } catch {}
   };
 

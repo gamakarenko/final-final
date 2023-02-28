@@ -40,6 +40,7 @@ export const StyledTransferChangeForm = styled.div`
       min-height: 17px;
       color: var(--error-color);
       font-size: 14px;
+      margin-top: 3px;
     }
   }
 `;

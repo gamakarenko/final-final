@@ -88,31 +88,6 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
           />
         </div>
 
-        <YaMap
-          location={order.startLocation}
-          setLocation={setStartLocation}
-          heading="Откуда тебя забрать?"
-          caption="адрес отправления"
-          required
-        />
-
-        <YaMap
-          location={order.endLocation}
-          setLocation={setEndLocation}
-          heading="Куда тебя привезти?"
-          caption="адрес прибытия"
-          required
-        />
-
-        <AppCheckbox
-          checked={order.isPickUpFromAirport}
-          onChange={(e) =>
-            handleChange({ isPickUpFromAirport: e.target.checked })
-          }
-        >
-          Вас забрать из аэропорта?
-        </AppCheckbox>
-
         <div className="main-info-fieldset__rows-box">
           <CarRadioBtn
             car="Vito"
@@ -133,14 +108,6 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             img={sedanIcon}
           />
         </div>
-
-        {transferCost ? (
-          <InfoCell
-            heading=""
-            data={`Расчетная стоимость поездки: $${transferCost}`}
-            caption="* конечная стоимость может отличаться"
-          />
-        ) : null}
 
         <AppInput
           label="Количество взрослых"
@@ -187,6 +154,39 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             6-12 лет
           </AppInput>
         </div>
+
+        <YaMap
+          location={order.startLocation}
+          setLocation={setStartLocation}
+          heading="Откуда тебя забрать?"
+          caption="адрес отправления"
+          required
+        />
+
+        <YaMap
+          location={order.endLocation}
+          setLocation={setEndLocation}
+          heading="Куда тебя привезти?"
+          caption="адрес прибытия"
+          required
+        />
+
+        <AppCheckbox
+          checked={order.isPickUpFromAirport}
+          onChange={(e) =>
+            handleChange({ isPickUpFromAirport: e.target.checked })
+          }
+        >
+          Вас забрать из аэропорта?
+        </AppCheckbox>
+
+        {transferCost ? (
+          <InfoCell
+            heading=""
+            data={`Расчетная стоимость поездки: $${transferCost}`}
+            caption="* конечная стоимость может отличаться"
+          />
+        ) : null}       
       </fieldset>
     </StyledMainInfoStep>
   );
