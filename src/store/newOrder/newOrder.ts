@@ -49,6 +49,22 @@ const newOrderSlice = createSlice({
         ...action.payload,
       };
 
+      if (
+        state.order.adultsAmount +
+          state.order.childrenAbove5 +
+          state.order.childrenUnder5 >
+        NUMBERS_OF_SEATS[state.order.carType]
+      ) {
+        state.errorText = 'Количество пассажиров превышает количество мест';
+        return;
+      }
+
+      if (state.order.adultsAmount < 1) {
+        state.errorText = 'Количество взрослых не может быть равно нулю';
+        return;
+      }
+      state.errorText = '';
+
       const { users, adultsAmount, childrenAbove5, childrenUnder5 } =
         state.order;
       const usersAmount = users.length;
@@ -59,28 +75,20 @@ const newOrderSlice = createSlice({
       } else if (usersAmount < neededUsersAmount) {
         while (state.order.users.length < neededUsersAmount) {
           const maxKey = state.order.users.reduce(
-            (result: number, user) => (user.uiKey > result ? user.uiKey : result),
+            (result: number, user) =>
+              user.uiKey > result ? user.uiKey : result,
             0,
           ) as unknown as number;
           state.order.users.push({ ...newUser, uiKey: maxKey + 1 });
         }
       }
-
-      if (
-        state.order.adultsAmount +
-          state.order.childrenAbove5 +
-          state.order.childrenUnder5 >
-        NUMBERS_OF_SEATS[state.order.carType]
-      ) {
-        state.errorText = 'Количество пассажиров превышает количество мест';
-      } else {
-        state.errorText = '';
-      }
     },
 
     editPassengerByUiKey: (state, action: PayloadAction<Partial<IUser>>) => {
       state.order.users = state.order.users.map((user) =>
-        user.uiKey === action.payload.uiKey ? { ...user, ...action.payload } : user,
+        user.uiKey === action.payload.uiKey
+          ? { ...user, ...action.payload }
+          : user,
       );
     },
 

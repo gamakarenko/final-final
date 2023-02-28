@@ -12,7 +12,7 @@ import InfoCell from 'components/InfoCell/InfoCell';
 
 import { IOrder } from 'types/order';
 import { NUMBERS_OF_SEATS } from 'utils/constants';
-import { compareAddress } from './MainInfoStep.utils';
+import { compareAddress, filterNumbers, setLength } from './MainInfoStep.utils';
 import { joinClasses } from 'utils/joinClasses';
 
 import { StyledMainInfoStep } from './MainInfoStep.styles';
@@ -79,7 +79,6 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             onChange={(e) => handleChange({ transferDate: e.target.value })}
           />
 
-          {/* TODO не время, а начало поездки? */}
           <AppInput
             label="Время поездки"
             type="time"
@@ -145,24 +144,26 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
 
         <AppInput
           label="Количество взрослых"
-          type="number"
+          type="text"
           required
           min={1}
           value={order.adultsAmount}
           onChange={(e) =>
-            handleChange({ adultsAmount: Number(e.target.value) })
+            handleChange({
+              adultsAmount: setLength(filterNumbers(e.target.value), 2),
+            })
           }
         />
 
         <div className="main-info-fieldset__two-columns-box">
           <AppInput
-            type="number"
+            type="text"
             required
             min={0}
             value={order.childrenUnder5}
             onChange={(e) =>
               handleChange({
-                childrenUnder5: Number(e.target.value),
+                childrenUnder5: setLength(filterNumbers(e.target.value), 2),
               })
             }
           >
@@ -171,15 +172,15 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             до 5 лет
           </AppInput>
           <AppInput
-            type="number"
+            type="text"
             required
             min={0}
             value={order.childrenAbove5}
-            onChange={(e) =>
+            onChange={(e) => {
               handleChange({
-                childrenAbove5: Number(e.target.value),
-              })
-            }
+                childrenAbove5: setLength(filterNumbers(e.target.value), 2),
+              });
+            }}
           >
             Количество детей
             <br />
