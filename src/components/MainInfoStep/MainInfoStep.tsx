@@ -89,6 +89,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
         </div>
 
         <div className="main-info-fieldset__rows-box">
+          Автомобиль
           <CarRadioBtn
             car="Vito"
             name="car-type"
@@ -186,7 +187,7 @@ const MainInfoStep: FC<MainInfoStepProps> = ({
             data={`Расчетная стоимость поездки: $${transferCost}`}
             caption="* конечная стоимость может отличаться"
           />
-        ) : null}       
+        ) : null}
       </fieldset>
     </StyledMainInfoStep>
   );
