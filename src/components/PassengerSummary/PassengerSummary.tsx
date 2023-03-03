@@ -3,6 +3,7 @@ import { FC } from 'react';
 import InfoCell from '../InfoCell/InfoCell';
 
 import { IUser } from 'types/order';
+import { convertDateFormat } from 'utils/convertDateFormat';
 
 import { StyledPassengerSummary } from './PassengerSummary.styled';
 
@@ -26,13 +27,23 @@ const PassengerSummary: FC<PassengerSummaryProps> = ({ index, ...user }) => {
       />
       <InfoCell
         className="passenger-summary__info"
-        heading="Логин в телеграмме"
-        data={user.telegramLogin}
+        heading="Дата и время прилёта"
+        data={`${convertDateFormat(user.arrivalDate)}; ${user.arrivalTime}`}
+      />
+      <InfoCell
+        className="passenger-summary__info"
+        heading="Номер рейса"
+        data={user.flightNumber || ''}
       />
       <InfoCell
         className="passenger-summary__info"
         heading="Номер телефона"
         data={user.phoneNumber}
+      />
+      <InfoCell
+        className="passenger-summary__info"
+        heading="Логин в телеграмме"
+        data={user.telegramLogin}
       />
       <InfoCell
         className="passenger-summary__info"

@@ -19,7 +19,7 @@ const newUser = {
   passport: '',
   telegramLogin: '',
   tripComment: '',
-  identificationNumber: 0,
+  identificationNumber: -1,
   uiKey: 0,
 };
 

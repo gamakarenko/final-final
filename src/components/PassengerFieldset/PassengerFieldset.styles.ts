@@ -15,7 +15,7 @@ export const StyledPassengerFieldset = styled.div`
       margin-top: 10px;
     }
 
-    &__input-box:not(:last-of-type) {
+    &__input-box:not(:last-of-type), &__two-column-box {
       margin-bottom: 15px;
     }
 

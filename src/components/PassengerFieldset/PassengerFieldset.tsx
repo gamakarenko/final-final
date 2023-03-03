@@ -1,11 +1,13 @@
 import { FC } from 'react';
-import { IUser } from 'types/order';
 
 import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 import AppInput from '../ui/AppInput/AppInput';
 import AppTextArea from '../ui/AppTextArea/AppTextArea';
 
+import { IUser } from 'types/order';
+
 import { StyledPassengerFieldset } from './PassengerFieldset.styles';
+import { StyledTwoColumnBox } from 'components/StyledTwoColumnBox';
 
 interface PassengerFieldsetProps extends IUser {
   handleEditPassengerByUiKey: (uiKey: number, data: Partial<IUser>) => void;
@@ -17,6 +19,7 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
   passport,
   arrivalDate,
   arrivalTime,
+  flightNumber,
   phoneNumber,
   telegramLogin,
   tripComment,
@@ -27,7 +30,6 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
   return (
     <StyledPassengerFieldset className="passenger-field">
       <PageParagraph className="passenger-field__heading">{`Пассажир #${passengerNumber}`}</PageParagraph>
-
       <AppInput
         className="passenger-field__input-box"
         label="ФИО"
@@ -47,20 +49,31 @@ const PassengerFieldset: FC<PassengerFieldsetProps> = ({
           handleEditPassengerByUiKey(uiKey, { passport: e.target.value })
         }
       />
+      <StyledTwoColumnBox className="passenger-field__two-column-box">
+        <AppInput
+          label="Дата вылета"
+          type="date"
+          value={arrivalDate || ''}
+          onChange={(e) =>
+            handleEditPassengerByUiKey(uiKey, { arrivalDate: e.target.value })
+          }
+        />
+        <AppInput
+          label="Время вылета"
+          type="time"
+          value={arrivalTime || ''}
+          onChange={(e) =>
+            handleEditPassengerByUiKey(uiKey, { arrivalTime: e.target.value })
+          }
+        />
+      </StyledTwoColumnBox>
+      {/* TODO тот самый инпут для правок */}
       <AppInput
         className="passenger-field__input-box"
-        label="Дата отправки"
-        value={arrivalDate || ''}
+        label="Номер рейса"
+        value={flightNumber || ''}
         onChange={(e) =>
-          handleEditPassengerByUiKey(uiKey, { arrivalDate: e.target.value })
-        }
-      />
-      <AppInput
-        className="passenger-field__input-box"
-        label="Время отправки"
-        value={arrivalTime || ''}
-        onChange={(e) =>
-          handleEditPassengerByUiKey(uiKey, { arrivalTime: e.target.value })
+          handleEditPassengerByUiKey(uiKey, { flightNumber: e.target.value })
         }
       />
       <AppInput
