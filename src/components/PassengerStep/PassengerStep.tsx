@@ -42,7 +42,7 @@ const PassengerStep: FC<PassengerStepProps> = ({
 
       <PageText className="passenger-step__hint">
         При возникновении вопросов на&nbsp;этапе бронирования, пожалуйста,
-        обратитесь к&nbsp;ассистенту @...
+        обратитесь к&nbsp;ассистенту https://t.me/assistantkas
       </PageText>
     </StyledPassengerStep>
   );
