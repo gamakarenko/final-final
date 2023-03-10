@@ -2,11 +2,23 @@ import AppButton from 'components/ui/AppButton/AppButton';
 import AppInput from 'components/ui/AppInput/AppInput';
 import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
 import { useNavigate } from 'react-router-dom';
+import useUpdateOrderInfo from 'hooks/useUpdateOrderInfo';
 import './style.css';
+import React from 'react';
+import { useAppSelector } from 'store/store';
+import useNavigateByCondition from 'hooks/useNavigateByCondition';
 
 export default function ShareMain() {
-  const navigate = useNavigate();
-  const handleChange = () => {};
+  const { order } = useAppSelector((state) => state.newOrder);
+  const { navigate } = useNavigateByCondition(
+    '/share/location',
+    () => order.transferDate.length > 3,
+  );
+  const { updateOrderInfo } = useUpdateOrderInfo();
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    updateOrderInfo('transferDate', event.currentTarget.value);
+  };
 
   return (
     <div className="share-main">
@@ -48,22 +60,11 @@ export default function ShareMain() {
         type="date"
         className="share-main__input"
         required
-        min={new Date(Date.now() + 28 * (60 * 60 * 1000)).toLocaleDateString(
-          'en-ca',
-        )}
-        value={''}
-        onChange={(e) => handleChange()}
+        value={order.transferDate}
+        onChange={(e) => handleChange(e)}
       />
 
-      <AppButton
-        onClick={() =>
-          navigate('/share/location', {
-            state: { stayInSectionWhenClickBack: true },
-          })
-        }
-      >
-        Далее
-      </AppButton>
+      <AppButton onClick={() => navigate()}>Далее</AppButton>
     </div>
   );
 }
