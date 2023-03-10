@@ -1,0 +1,23 @@
+.void-transfer-item {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start
+    /* padding-bottom: 20%; */
+}
+
+.void-transfer-item__title {
+    font-size: 15px;
+    color: #333333;
+    font-weight: 510;
+}
+
+.void-transfer-item__subtitle {
+    /* margin-top: 30px; */
+    margin-top: 17%;
+    font-weight: 400;
+    font-size: 15px;
+    color: #333333;
+}

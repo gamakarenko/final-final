@@ -1,0 +1,42 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+.transfers-item-slide {
+    padding-right: 10px;
+}
+
+.transfers-item-slide__inner {
+    background-color: #007AFF;
+    color: #FFFFFF;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+
+.transfers-item {
+    padding-right: 0px;
+}
+
+.transfers-item__title {
+    font-size: 15px;
+    color: #333333;
+    margin-top: 20px;
+}
+
+.transfers-item__subtitle {
+    font-size: 15px;
+    color: #333333;
+    margin: 4px 0px 15px;
+}
+
+.transfers-item {
+    margin-top: 20px;
+}
+
+.transfers-item__img {
+    margin: 0 auto;
+    display: block;
+}
+
+
+/* .slick-slide {
+    margin: 0 20px;
+} */
