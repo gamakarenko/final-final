@@ -1,0 +1,26 @@
+.way {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.way__title {
+    text-align: center;
+    font-size: 20px;
+    color: #333333;
+    font-weight: 510;
+}
+
+.way-content {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.way-content__location {
+    max-width: 90px;
+    text-align: center;
+    font-weight: 510;
+}

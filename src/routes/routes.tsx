@@ -20,6 +20,7 @@ import Share from 'pages/SharePage/Share';
 import ShareMain from 'pages/SharePage/ShareMain/ShareMain';
 import ShareLocation from 'pages/SharePage/ShareLocation/ShareLocation';
 import SharePassengers from 'pages/SharePage/SharePassengers/SharePassengers';
+import ShareTransfers from 'pages/SharePage/ShareTransfers/ShareTransfers';
 
 export const router = createBrowserRouter([
   {
@@ -98,6 +99,11 @@ export const router = createBrowserRouter([
           {
             path: "passengers",
             element: <SharePassengers />,
+          },
+
+          {
+            path: "transfers",
+            element: <ShareTransfers />,
           },
         ]
       },

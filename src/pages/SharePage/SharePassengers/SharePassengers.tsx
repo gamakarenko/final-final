@@ -7,7 +7,7 @@ import { useAppSelector } from 'store/store';
 import "./style.css"
 
 export default function SharePassengers() {
-  const { navigate } = useNavigateByCondition('/share/passengers', () => true);
+  const { navigate } = useNavigateByCondition('/share/transfers', () => true);
   const { order } = useAppSelector(({ newOrder }) => newOrder);
   const { updateOrderInfo } = useUpdateOrderInfo();
 
