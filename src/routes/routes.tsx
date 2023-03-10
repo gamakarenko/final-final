@@ -16,8 +16,9 @@ import AboutMain from 'pages/AboutPage/AboutMain/AboutMain';
 import ChangesSaved from 'pages/OrderedTransfersPage/ChangesSaved/ChangesSaved';
 import TransferChangeForm from 'pages/OrderedTransfersPage/TransferChangeForm/TransferChangeForm';
 import FaqPage from 'pages/FaqPage/FaqPage';
-import Share from 'pages/Share/Share';
-import ShareMain from 'pages/Share/ShareMain/ShareMain';
+import Share from 'pages/SharePage/Share';
+import ShareMain from 'pages/SharePage/ShareMain/ShareMain';
+import ShareLocation from 'pages/SharePage/ShareLocation/ShareLocation';
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,11 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <ShareMain />,
+          },
+
+          {
+            path: "location",
+            element: <ShareLocation />,
           },
         ]
       },
