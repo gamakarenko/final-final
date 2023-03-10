@@ -32,7 +32,7 @@ export const MainPage: FC<MainPageProps> = () => {
         onClick={() => navigate('/order')}
       />
       <MainButton
-        disabled
+        
         title="Пошерить трансфер"
         icon={<ShareIcon />}
         onClick={() => navigate('/share')}
