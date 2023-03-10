@@ -1,17 +1,15 @@
-import AppButton from "components/ui/AppButton/AppButton";
-import AppInput from "components/ui/AppInput/AppInput";
-import PageParagraph from "components/ui/PageParagraph/PageParagraph";
-import { useNavigate } from "react-router-dom";
-import "./style.css"
+import AppButton from 'components/ui/AppButton/AppButton';
+import AppInput from 'components/ui/AppInput/AppInput';
+import PageParagraph from 'components/ui/PageParagraph/PageParagraph';
+import { useNavigate } from 'react-router-dom';
+import './style.css';
 
-
-export default function ShareMain(){
+export default function ShareMain() {
   const navigate = useNavigate();
   const handleChange = () => {};
 
-    return(
-        <div className="share-main">
-
+  return (
+    <div className="share-main">
       <PageParagraph>
         В этом разделе мы подготовили для тебя слоты в трансфере, к которым ты
         можешь присоединиться. Ты увидишь вид транспорта, количество пассажиров
@@ -67,5 +65,5 @@ export default function ShareMain(){
         Далее
       </AppButton>
     </div>
-    )
+  );
 }
