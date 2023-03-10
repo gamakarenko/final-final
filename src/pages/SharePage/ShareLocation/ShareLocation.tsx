@@ -41,7 +41,7 @@ export default function ShareLocation() {
         </>
       )}
 
-      <AppButton className="share-location__btn" onClick={() => navigate()}>
+      <AppButton className="share-btn" onClick={() => navigate()}>
         Далее
       </AppButton>
     </div>

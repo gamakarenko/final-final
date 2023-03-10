@@ -1,0 +1,10 @@
+.two-columns {
+    display: flex;
+    gap: 20px;
+}
+
+.share-passengers__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
