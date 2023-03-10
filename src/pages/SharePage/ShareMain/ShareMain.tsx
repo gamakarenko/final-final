@@ -12,7 +12,7 @@ export default function ShareMain() {
   const { order } = useAppSelector((state) => state.newOrder);
   const { navigate } = useNavigateByCondition(
     '/share/location',
-    () => order.transferDate.length > 3,
+    () => order.transferDate.length > 2,
   );
   const { updateOrderInfo } = useUpdateOrderInfo();
 
