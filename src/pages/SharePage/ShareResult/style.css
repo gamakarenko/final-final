@@ -1,5 +1,5 @@
-.share-transfers__list {
+.share-result__menu {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }

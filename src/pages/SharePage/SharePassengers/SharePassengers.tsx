@@ -26,7 +26,7 @@ export default function SharePassengers() {
           min={1}
           value={order.adultsAmount}
           onChange={(e) =>
-            updateOrderInfo('adultsAmount', e.currentTarget.value)
+            updateOrderInfo('adultsAmount', +e.currentTarget.value)
           }
         />
         <div className="two-columns">
@@ -36,7 +36,7 @@ export default function SharePassengers() {
             min={0}
             value={order.childrenUnder5}
             onChange={(e) =>
-              updateOrderInfo('childrenUnder5', e.currentTarget.value)
+              updateOrderInfo('childrenUnder5', +e.currentTarget.value)
             }
           >
             Количество детей <br /> (0-5 лет)
@@ -48,7 +48,7 @@ export default function SharePassengers() {
             min={0}
             value={order.childrenAbove5}
             onChange={(e) =>
-              updateOrderInfo('childrenAbove5', e.currentTarget.value)
+              updateOrderInfo('childrenAbove5', +e.currentTarget.value)
             }
           >
             Количество детей

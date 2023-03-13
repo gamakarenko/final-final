@@ -20,7 +20,7 @@ import { createOrderThunk } from 'store/Orders/OrdersThunk';
 
 import { StyledTransferChangeForm } from 'components/StyledTransferChangeForm';
 
-const TransferCreationForm = () => {
+export default function ShareTransferForm() {
   const { order, isSendingOrder, errorText } = useAppSelector(
     ({ newOrder, orders }) => ({
       order: newOrder.order,
@@ -28,8 +28,6 @@ const TransferCreationForm = () => {
       errorText: newOrder.errorText,
     }),
   );
-
-  
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -40,24 +38,6 @@ const TransferCreationForm = () => {
     isFirstStep,
     isLastStep,
   } = useMultiStepForm([
-    <MainInfoStep
-      order={order}
-      handleChange={(data) => dispatch(editOrderInfo(data))}
-    >
-      <PageParagraph>
-        Здесь ты&nbsp;можешь заказ трансфер :)
-        <br />
-        Водитель встретит тебя в&nbsp;указанном месте и&nbsp;отвезёт туда, куда
-        необходимо.
-      </PageParagraph>
-      <PageParagraph underlined>
-        Забронировать, а&nbsp;также отменить трансфер можно
-        не&nbsp;позднее, чем за&nbsp;28&nbsp;часов до&nbsp;поездки. Только так
-        мы&nbsp;можем быть уверены, что машина и&nbsp;водитель будут свободны
-        для вас :)
-      </PageParagraph>
-    </MainInfoStep>,
-
     <PassengerStep
       passengers={order.users}
       handleEditPassengerByUiKey={(uiKey, data) =>
@@ -73,7 +53,8 @@ const TransferCreationForm = () => {
 
     <OrderSummary heading="Подтверждение введённой информации" order={order} />,
   ]);
-  //TODO Подумать стоит ли скролить вверх формы при переходе вперед и назад. Может сделать, чтобы кнопки вперед и назад всегда были на виду?
+
+  
   const handleNextClick: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
@@ -86,7 +67,7 @@ const TransferCreationForm = () => {
       await dispatch(createOrderThunk(order)).unwrap();
 
       dispatch(clearOrderInfo());
-      navigate('/order/complete');
+      navigate('/share/complited');
     } catch {}
   };
 
@@ -131,6 +112,4 @@ const TransferCreationForm = () => {
       </form>
     </StyledTransferChangeForm>
   );
-};
-
-export default TransferCreationForm;
+}

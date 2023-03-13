@@ -8,7 +8,7 @@ export default function useUpdateOrderInfo(){
 
     const dispatcher = useAppDispatch();
     
-    const updateOrderInfo = (key: keyof IOrder, value: string) => {
+    const updateOrderInfo = (key: keyof IOrder, value: string | number) => {
         dispatcher(editOrderInfo({[key]: value}))
     }
 
